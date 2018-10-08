@@ -1,0 +1,11 @@
+<template name="head">
+	<image class="head-topbg" src="/image/login_bg.png"/>
+	<view class="head-content">
+		<view class="head-user">
+			<open-data  type="userAvatarUrl"></open-data>
+		</view>
+		<view class="head-nick">
+			<open-data type="userNickName"></open-data>
+		</view>
+	</view>
+</template>

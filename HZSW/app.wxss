@@ -1,0 +1,90 @@
+/**app.wxss**/
+page{
+	background: #eaeeef;
+	font-size: 30rpx;
+}
+/*weui*/
+.weui-flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.weui-flex__item {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+}
+/*weui*/
+/*PUBLIC*/
+.mt20{
+	margin-top: 20rpx;
+}
+.mt30{
+	margin-top: 30rpx;
+}
+.mt40{
+	margin-top: 40rpx;
+}
+.mt50{
+	margin-top: 50rpx;
+}
+.mt60{
+	margin-top: 60rpx;
+}
+.mt70{
+	margin-top: 70rpx;
+}
+.mt80{
+	margin-top: 80rpx;
+}
+.tr{
+	text-align: right;
+}
+.tl{
+	text-align: left;
+}
+.ml50{
+	margin-left: 50rpx;
+}
+.mr50{
+	margin-right: 50rpx;
+}
+.mr70{
+	margin-right: 70rpx;
+}
+/*PUBLIC*/
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+/*pages/home/head*/
+.head-topbg{
+	position: fixed;
+	top: 0rpx;
+	z-index: -1;
+	width: 100%;
+	height: 328rpx;
+}
+.head-content{
+	text-align: center;
+	height: 280rpx;
+	margin-bottom: 84rpx;
+}
+.head-user{
+	width: 140rpx;
+	height: 140rpx;
+	margin: 47rpx auto 43rpx auto;
+	border-radius: 50%;
+	overflow:hidden;  
+	display: block;  
+}
+.head-nick{
+	font-size: 32rpx;
+	color: #ffffff
+}

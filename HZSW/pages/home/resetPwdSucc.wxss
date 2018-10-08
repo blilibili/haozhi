@@ -1,0 +1,30 @@
+/* pages/home/resetPwdSucc.wxss */
+page{
+	background: white;
+}
+.icon{
+	width: 192rpx;
+	height: 192rpx;
+	margin: 0 auto;
+}
+.icon-bg{
+	text-align: center;
+	margin-top: 164rpx;
+}
+.text-tip{
+	text-align: center;
+	margin-top: 58rpx;
+	color: #333333;
+	font-size: 36rpx;
+}
+.login{
+	width: 600rpx;
+	border-radius: 42rpx;
+	background: #ff9cb8;
+	margin-top: 80rpx;
+	font-size: 36rpx;
+	color: #ffffff;
+}
+.login:after{
+	border:none;
+}

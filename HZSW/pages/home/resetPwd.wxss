@@ -1,0 +1,51 @@
+/* pages/home/resetPwd.wxss */
+.form-input{
+	
+}
+.form-input-item{
+	margin: 0 auto;
+	height: 88rpx;
+	align-items: center;
+	background: #ffffff;
+	width: 690rpx;
+	border-radius:42rpx;
+	
+}
+.left-icon{
+	width:174rpx;
+	color: #333333;
+	text-align:center;
+	border-right:1rpx solid #7d7d7d;
+}
+
+.form-input-item input{
+	margin-left: 20rpx;
+}
+.getcode{
+	text-align: right;
+	margin-right: 40rpx;
+	color:#333333;
+	text-decoration: underline;
+}
+.login{
+	width: 690rpx;
+	border-radius: 42rpx;
+	background: #ff9cb8;
+	margin-top: 80rpx;
+	font-size: 36rpx;
+	color: #ffffff;
+}
+.login:after{
+	border:none;
+}
+
+.item-list{
+	margin-top: 40rpx;
+}
+.right-icon{
+	margin-right: 34rpx;
+}
+.noshowpwd{
+	width: 36rpx;
+	height: 26rpx;
+}

@@ -1,0 +1,57 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/index/index",
+    "pages/physical/index",
+    "pages/count/index",
+    "pages/my/index",
+    "pages/home/editUser",
+    "pages/home/resetPwd",
+    "pages/home/resetPwdSucc"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ff9cb8",
+    "navigationBarTitleText": "昊志生物",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#969696",
+    "selectedColor": "#ff9cb8",
+    "borderStyle": "white",
+    "backgroundColor": "#fcfcfc",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "image/zhuye_nav_icon_zhuye.png",
+        "selectedIconPath": "image/zhuye_nav_icon_zhuye_pre.png",
+        "text": "主页"
+      },
+      {
+        "pagePath": "pages/physical/index",
+        "iconPath": "image/zhuye_nav_icon_jilu.png",
+        "selectedIconPath": "image/zhuye_nav_icon_jilu_pre.png",
+        "text": "理疗记录"
+      },
+      {
+        "pagePath": "pages/count/index",
+        "iconPath": "image/zhuye_nav_icon_tongji.png",
+        "selectedIconPath": "image/zhuye_nav_icon_tongji_pre.png",
+        "text": "统计"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "iconPath": "image/zhuye_nav_icon_wode.png",
+        "selectedIconPath": "image/zhuye_nav_icon_wode_pre.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}

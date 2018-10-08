@@ -1,0 +1,5 @@
+<view class="icon-bg">
+	<image src="/image/login_icon_chenggong.png" class="icon"/>
+</view>
+<view class="text-tip">重置密码成功！</view>
+<button class="login" bindtap="hasDone">完成</button>

@@ -1,0 +1,25 @@
+<import src="head.wxml"/>
+<template is="head"/>
+<view class="form-input">
+	<view class="weui-flex form-input-item">
+		<view class="left-icon">
+			<text>*</text>姓名
+		</view>
+		<view class="weui-flex__item">
+			<input type="text" placeholder="请输入您的姓名" name="name" maxlength="15"/>
+		</view>
+	</view>
+	<view class="weui-flex form-input-item item-list">
+		<view class="left-icon">
+			<text>*</text>性别
+		</view>
+		<view class="weui-flex__item">
+			<radio-group bindchange="radioChange" class="ml50">
+				<label class="radio" wx:for="{{items}}" wx:key="{{item.value}}" class="mr70">
+		            <radio value="{{item.value}}" checked="{{item.checked}}" color="#ff9cb8"/> {{item.name}}
+		        </label>
+			</radio-group>
+		</view>
+	</view>
+	<button class="login" bindtap="doEdit">完成</button>
+</view>
