@@ -1,11 +1,16 @@
-// pages/home/index.js
+// pages/index/search.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    items: [
+      {value: '256321456', name: '周梓轩',id:'ID:256321456'},
+      {value: '256321457', name: '张小睿',id:'ID:256321457'},
+      {value: '256321458', name: '周梓轩',id:'ID:256321458'},
+      {value: '256321459', name: '张小睿',id:'ID:256321459'},
+    ]
   },
 
   /**
@@ -64,21 +69,20 @@ Page({
 
   },
 
-  doLogin:function()
-  {
-    wx.redirectTo({
-      url:"/pages/home/editUser"
-    })
-    return;
-    wx.switchTab({
-      url:"/pages/index/index"
-    })
-  },
+  radioChange: function(e) {
+    console.log('radio发生change事件，携带value值为：', e.detail.value)
 
-  resetPwd:function()
-  {
+    var items = this.data.items;
+    for (var i = 0, len = items.length; i < len; ++i) {
+      items[i].checked = items[i].value == e.detail.value
+    }
+
+    this.setData({
+      items: items
+    });
+
     wx.navigateTo({
-      url:"/pages/home/resetPwd"
+      url:"/pages/index/userInfo?id="+e.detail.value
     })
   },
 })

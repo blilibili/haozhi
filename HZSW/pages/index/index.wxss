@@ -1,1 +1,37 @@
 /* pages/index/index.wxss */
+page{
+	background: white;
+	text-align: center;
+}
+.company-logo{
+	width: 288rpx;
+	height: 72rpx;
+	margin: 98rpx 0 90rpx 0;
+}
+.scan-logo{
+	width: 410rpx;
+	height: 410rpx;
+	margin-bottom: 58rpx;
+}
+input{
+	width: 336rpx;
+	height: 64rpx;
+	border-radius:32rpx;
+	background: #eeeeee;
+	margin:0 auto;
+}
+.tip-style {
+	color: #acacac;
+}
+.title{
+	height: 0px;
+	font-size: 32rpx;
+	color:#ffffff;
+	position: relative;
+	top: -178rpx;
+}
+.step-logo{
+	margin-top: 106rpx;
+	width: 456rpx;
+	height: 140rpx;
+}

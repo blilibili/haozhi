@@ -1,11 +1,12 @@
-// pages/home/index.js
+// pages/index/userInfo.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    agelist: ["70后", "75后", "80后", "85后"],
+    ageIndex: -1,
   },
 
   /**
@@ -64,21 +65,11 @@ Page({
 
   },
 
-  doLogin:function()
-  {
-    wx.redirectTo({
-      url:"/pages/home/editUser"
-    })
-    return;
-    wx.switchTab({
-      url:"/pages/index/index"
-    })
-  },
+  bindAgeChange: function(e) {
+      console.log('picker country 发生选择改变，携带值为', e.detail.value);
 
-  resetPwd:function()
-  {
-    wx.navigateTo({
-      url:"/pages/home/resetPwd"
-    })
+      this.setData({
+          ageIndex: e.detail.value
+      })
   },
 })

@@ -1,2 +1,13 @@
-<!--pages/index/index.wxml-->
-<text>pages/index/index.wxml</text>
+<view>
+	<image class="company-logo" src="/image/zhuye_nav_logo.png"/>
+</view>
+<view>
+	<image class="scan-logo" src="/image/zhuye_btn_saoyisao.png" bindtap="doScan"/>
+	<view class="title">{{title}}</view>
+</view>
+<input placeholder="手动输入ID" placeholder-class="tip-style" disabled="true" bindtap="goSearch"/>
+<view>
+	<image class="step-logo" wx:if="{{step == 1}}" src="/image/step_1.png"/>
+	<image class="step-logo" wx:if="{{step == 2}}" src="/image/step_2.png"/>
+	<image class="step-logo" wx:if="{{step == 3}}" src="/image/step_3.png"/>
+</view>

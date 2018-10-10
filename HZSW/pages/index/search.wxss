@@ -1,0 +1,52 @@
+/* pages/index/search.wxss */
+page{
+	background: white;
+}
+.form-input{
+	margin: 50rpx 0 56rpx 0;
+}
+.form-input-item{
+	height: 88rpx;
+	align-items: center;
+	background: #ffffff;
+	width: 510rpx;
+	border-radius:10rpx;
+	border:2rpx solid #dcdcdc;
+	margin-left: 32rpx;
+}
+.left-icon{
+	width:74rpx;
+	text-align:center;
+}
+.left-icon image{
+	width:26rpx;
+	height:32rpx;
+	margin: 1rpx auto;
+}
+.tip-style{
+	color: #999999;
+}
+.sear-btn{
+	margin: 0 32rpx 0 26rpx;
+	height: 88rpx;
+}
+.sear-btn button{
+	width: 152rpx;
+	border-radius:10rpx;
+	background: #ff9cb8;
+	color: #ffffff;
+}
+.sear-btn button:after{
+	border:none;
+}
+.weui-cell:before {
+	border-top:none;
+}
+.weui-cell{
+	border-bottom: 1rpx solid #e5e5e5;
+}
+.id-style{
+	text-align: right;
+	color: #666666;
+	font-size: 34rpx;
+}

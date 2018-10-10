@@ -1,13 +1,16 @@
 {
   "pages": [
-    "pages/home/index",
     "pages/index/index",
+    "pages/home/index",
     "pages/physical/index",
     "pages/count/index",
     "pages/my/index",
     "pages/home/editUser",
     "pages/home/resetPwd",
-    "pages/home/resetPwdSucc"
+    "pages/home/resetPwdSucc",
+    "pages/index/search",
+    "pages/index/userDetail",
+    "pages/index/userInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",

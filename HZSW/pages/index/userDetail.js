@@ -1,4 +1,4 @@
-// pages/home/index.js
+// pages/index/userDetail.js
 Page({
 
   /**
@@ -62,23 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  doLogin:function()
-  {
-    wx.redirectTo({
-      url:"/pages/home/editUser"
-    })
-    return;
-    wx.switchTab({
-      url:"/pages/index/index"
-    })
-  },
-
-  resetPwd:function()
-  {
-    wx.navigateTo({
-      url:"/pages/home/resetPwd"
-    })
-  },
+  }
 })

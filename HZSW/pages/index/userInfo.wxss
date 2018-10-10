@@ -1,0 +1,52 @@
+/* pages/index/userInfo.wxss */
+@import '../common/lib/weui.wxss';
+
+.user-head{
+	background: white;
+	padding: 27rpx 30rpx;
+	border-bottom: 1rpx solid #eeeeee;
+}
+.head-name{
+	font-size: 34rpx;
+	color: #111111;
+}
+.user-local{
+	font-size: 22rpx;
+	color: #ffffff;
+	border-radius: 6rpx;
+	background: #cbcbcb;
+	margin-left: 16rpx;
+	padding: 8rpx 14rpx;
+}
+.head-id{
+	font-size: 30rpx;
+	color: #999999;
+}
+.user-detail{
+	padding: 34rpx 32rpx;
+	background: white;
+	margin-bottom: 30rpx;
+	line-height: 2em;
+}
+.detail-hd{
+	text-align: right;
+	width: 140rpx;
+	font-size: 28rpx;
+	color: #666666;
+}
+.detail-bd{
+	font-size: 28rpx;
+	color: #111111;
+	margin-left: 20rpx;
+}
+.select-box{
+	font-size: 34rpx;
+	margin-bottom: 32rpx;
+}
+.weui-label{
+	color: #111111;
+	margin-left: 42rpx;
+}
+.noselect{
+	color: #b2b2b2;
+}
