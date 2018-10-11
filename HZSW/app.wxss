@@ -1,4 +1,5 @@
 /**app.wxss**/
+@import "pages/component/toast/toast.wxss";
 page{
 	background: #eaeeef;
 	font-size: 30rpx;
@@ -117,6 +118,15 @@ page{
 }
 .mr70{
 	margin-right: 70rpx;
+}
+.nothing{
+  width: 380rpx;
+  height: 290rpx;
+}
+.nothing-text{
+  font-size: 28rpx;
+  color: #8b8b8b;
+  margin-top: 42rpx;
 }
 /*PUBLIC*/
 

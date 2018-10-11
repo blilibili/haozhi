@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/physical/index",
     "pages/index/index",
     "pages/home/index",
-    "pages/physical/index",
     "pages/count/index",
     "pages/my/index",
     "pages/home/editUser",

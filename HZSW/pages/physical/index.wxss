@@ -1,1 +1,8 @@
 /* pages/physical/index.wxss */
+page{
+	background: #ffffff;
+}
+.nobody{
+	text-align: center;
+	margin-top: 362rpx;
+}

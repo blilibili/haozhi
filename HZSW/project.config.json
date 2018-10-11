@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -45,6 +45,12 @@
 					"id": -1,
 					"name": "会员信息",
 					"pathName": "pages/index/userInfo",
+					"query": "id=256321456"
+				},
+				{
+					"id": -1,
+					"name": "会员详情",
+					"pathName": "pages/index/userDetail",
 					"query": "id=256321456"
 				}
 			]

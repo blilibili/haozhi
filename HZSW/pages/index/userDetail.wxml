@@ -1,2 +1,85 @@
-<!--pages/index/userDetail.wxml-->
-<text>pages/index/userDetail.wxml</text>
+<view class="user-head">
+	<view class="head-name">周梓轩<text class="user-local">天河门店</text></view>
+	<view class="head-id">ID:256321456</view>
+</view>
+<view class="user-detail">
+	<view class="weui-flex">
+		<view class="detail-hd">膜ID：</view>
+		<view class="weui-flex__item detail-bd">256321456</view>
+	</view>
+	<view class="weui-flex">
+		<view class="detail-hd">设备ID：</view>
+		<view class="weui-flex__item detail-bd">151487411</view>
+	</view>
+	<view class="weui-flex">
+		<view class="detail-hd">检测时间：</view>
+		<view class="weui-flex__item detail-bd">2018-10-21 10:50</view>
+	</view>
+	<view class="weui-flex">
+		<view class="detail-hd">用户年龄段：</view>
+		<view class="weui-flex__item detail-bd">80后</view>
+	</view>
+	<view class="weui-flex">
+		<view class="detail-hd">治疗部位：</view>
+		<view class="weui-flex__item detail-bd">大腿</view>
+	</view>
+</view>
+<view class="body-detail">
+	<view class="weui-flex user-body">
+		<view class="body-hd"></view>
+		<view class="weui-flex__item body-bd">当前体重：50.0kg</view>
+	</view>
+	<view class="weui-flex user-body">
+		<view class="body-hd body-hd-color"></view>
+		<view class="weui-flex__item body-bd">当前三围：胸围81cm、腰围54cm、臀围86cm</view>
+	</view>
+	<view class="weui-flex mt86">
+		<view class="result-lf">
+			<image class="body-img" src="/image/zhuye_xq_icon_tizhilv.png"></image>
+			<view class="img-title">体脂率</view>
+		</view>
+		<view class="weui-flex__item result-rt">
+			<view class="ruler" >
+				<block wx:for="{{tzlList}}" wx:key="*this">
+					<text class="rulertext {{tzlIndex == index?'select':''}}">{{item}}</text>
+				</block>
+			</view>
+			<view class="ruler-tip">
+				<text style="margin-left: {{tzlEffect}}rpx;">28.8%</text>
+			</view>
+			<view class="ruler-text">（建议保持在21.0%-24.0%之间）</view>
+		</view>
+	</view>
+	<view class="weui-flex mt86">
+		<view class="result-lf">
+			<image class="body-img" src="/image/zhuye_xq_icon_zhifanglv.png"></image>
+			<view class="img-title img-title1">脂肪率</view>
+		</view>
+		<view class="weui-flex__item result-rt">
+			<view class="ruler1" >
+				<block wx:for="{{zflList}}" wx:key="*this">
+					<text class="rulertext1 {{zflIndex == index?'select1':''}}">{{item}}</text>
+				</block>
+			</view>
+			<view class="ruler-tip1">
+				<text style="margin-left: {{zflEffect}}rpx;">35.2%</text>
+			</view>
+			<view class="ruler-text1">（建议保持在18.5%-23.9%之间）</view>
+		</view>
+	</view>
+	<view class="weui-flex mt86">
+		<view class="result-lf result-lf-mgl">
+			<image class="body-img" src="/image/zhuye_xq_icon_zhifanghoudu.png"></image>
+			<view class="img-title img-title2">脂肪厚度</view>
+		</view>
+		<view class="weui-flex__item result-rt result-rt-mgl">
+			<view class="ruler2" >
+				<text class="select2" style="margin-left: {{zfhdEffect}}rpx;">|</text>
+			</view>
+			<view class="ruler-tip2">
+				<text style="margin-left: {{zfhdEffect-36}}rpx;">25mm</text>
+			</view>
+			<view class="ruler-text2">（建议保持在12-20mm之间）</view>
+		</view>
+	</view>
+</view>

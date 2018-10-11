@@ -104,7 +104,6 @@ Page({
       wx.showToast({
         title:'比对成功',
         icon:'success',
-        duration:2000,
         mask:true
       })
       this.setData({
@@ -115,7 +114,6 @@ Page({
       wx.showToast({
         title:'比对失败',
         image:'/image/zhuye_zhuangtai_icon_shibai.png',
-        duration:2000,
         mask:true
       })
       this.setData({

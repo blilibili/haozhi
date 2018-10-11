@@ -45,8 +45,38 @@
 }
 .weui-label{
 	color: #111111;
-	margin-left: 42rpx;
+	margin-right: 30rpx;
+	text-align: right;
+}
+.label-other{
+	width:216rpx;
+	margin-right:24rpx;
 }
 .noselect{
 	color: #b2b2b2;
+}
+.weui-cells:after{
+	border:none;
+}
+.weui-cells:before {
+	border:none;
+}
+.weui-cell:before {
+	border-top: 1rpx solid #eeeeee;
+}
+.last-box{
+	font-size: 34rpx;
+	margin-bottom: 82rpx;
+}
+.login{
+	width: 690rpx;
+	height: 88rpx;
+	border-radius: 42rpx;
+	background: #ff9cb8;
+	margin-bottom: 30rpx;
+	font-size: 36rpx;
+	color: #ffffff;
+}
+.login:after{
+	border:none;
 }

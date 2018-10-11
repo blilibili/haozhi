@@ -29,6 +29,23 @@ App({
       }
     })
   },
+  /**
+   * 提示信息
+   */
+  showToast: function (_text, _this, _count) {
+    _count = parseInt(_count) ? parseInt(_count) : 2000;
+    //显示提示信息
+    _this.setData({
+      toastText: _text,
+      isShowToast: true,
+    });
+    //延时隐藏提示信息
+    setTimeout(function() {
+      _this.setData({
+        isShowToast: false
+      });
+    }, _count);
+  },
   globalData: {
     userInfo: null
   }
