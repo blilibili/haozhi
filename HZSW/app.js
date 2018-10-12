@@ -47,6 +47,7 @@ App({
     }, _count);
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    userList:[],
   }
 })

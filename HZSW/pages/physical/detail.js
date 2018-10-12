@@ -1,21 +1,19 @@
-// pages/home/editUser.js
+// pages/physical/detail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    items: [
-      {value: '1', name: '男', checked: 'true'},
-      {value: '2', name: '女'},
-    ]
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options.userid)
+    
   },
 
   /**
@@ -65,29 +63,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  radioChange: function(e) {
-    console.log('radio发生change事件，携带value值为：', e.detail.value)
-
-    var items = this.data.items;
-    for (var i = 0, len = items.length; i < len; ++i) {
-      items[i].checked = items[i].value == e.detail.value
-    }
-
-    this.setData({
-      items: items
-    });
-  },
-
-  doEdit:function()
-  {
-    wx.switchTab({
-      url:"/pages/index/index"
-    })
-    return;
-    wx.redirectTo({
-      url:"/pages/home/index"
-    })
-  },
+  }
 })

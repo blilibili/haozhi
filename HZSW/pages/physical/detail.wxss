@@ -1,8 +1,5 @@
-/* pages/physical/index.wxss */
-@import '../common/lib/weui.wxss';
-
+/* pages/physical/detail.wxss */
 page{
-	background: #ffffff;
 	-webkit-user-select:none;
 	user-select:none;
 	width:100%;
@@ -10,31 +7,10 @@ page{
 	line-height:1.6;
 	font-family:-apple-system-font, "Helvetica Neue", sans-serif;
 }
-.page__bd{
-	padding-bottom:40px;
-}
-.nobody{
-	text-align: center;
-	margin-top: 362rpx;
-}
-.searchbar-result{
-    margin-top: 0;
-    font-size: 14px;
-}
-.searchbar-result:before{
-    display: none;
-}
-.weui-cell{
-    padding: 12px 15px 12px 15px;
-}
-.btn-color{
-	color: #ff9cb8;
-}
-.weui-search-bar{
-	background: #f6f6f6;
-}
 .user-head{
 	background: white;
+	padding: 27rpx 30rpx;
+	border-bottom: 1rpx solid #eeeeee;
 }
 .head-name{
 	font-size: 34rpx;

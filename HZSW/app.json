@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/physical/index",
-    "pages/index/index",
     "pages/home/index",
+    "pages/index/index",
     "pages/count/index",
     "pages/my/index",
     "pages/home/editUser",
@@ -10,7 +10,8 @@
     "pages/home/resetPwdSucc",
     "pages/index/search",
     "pages/index/userDetail",
-    "pages/index/userInfo"
+    "pages/index/userInfo",
+    "pages/physical/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
