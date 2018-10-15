@@ -1,0 +1,12 @@
+/* pages/my/helpDetail.wxss */
+page{
+	background: #ffffff;
+}
+.weui-cell:before{
+	border-top: 1rpx solid #e5e5e5;
+}
+.content{
+	font-size: 28rpx;
+	color: #666666;
+
+}

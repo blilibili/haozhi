@@ -1,0 +1,23 @@
+<view class="form-input">
+	<view class="weui-flex form-input-item">
+		<view class="left-icon">
+			新手机号
+		</view>
+		<view class="weui-flex__item">
+			<input type="number" placeholder="请输入新手机号" name="phone" maxlength="11" value="{{phone}}"/>
+		</view>
+		<image bindtap="clearPhone" class="close-icon" src="/image/login_icon_mima_cha.png"/>
+	</view>
+	<view class="weui-flex form-input-item item-list">
+		<view class="left-icon">
+			 验证码
+		</view>
+		<view class="weui-flex__item">
+			<input type="number" placeholder="请输入验证码" name="code" maxlength="6"/>
+		</view>
+		<view class="weui-flex__item getcode">
+			获取验证码
+		</view>
+	</view>
+	<button class="login" bindtap="doSubmit">提交</button>
+</view>

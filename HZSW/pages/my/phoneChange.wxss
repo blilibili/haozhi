@@ -1,0 +1,58 @@
+/* pages/my/phoneChange.wxss */
+.form-input{
+	margin-top: 80rpx;
+}
+.form-input-item{
+	margin: 0 auto;
+	height: 88rpx;
+	align-items: center;
+	background: #ffffff;
+	width: 690rpx;
+	border-radius:42rpx;
+	
+}
+.left-icon{
+	width:182rpx;
+	text-align:center;
+	border-right:1rpx solid #7d7d7d;
+}
+.left-icon image{
+	width:34rpx;
+	height:34rpx;
+}
+.form-input-item input{
+	margin-left: 20rpx;
+}
+.item-list{
+	margin-top: 40rpx;
+}
+.getcode{
+	text-align: right;
+	margin-right: 40rpx;
+	color:#333333;
+	text-decoration: underline;
+}
+.login{
+	width: 690rpx;
+	border-radius: 42rpx;
+	background: #ff9cb8;
+	margin-top: 80rpx;
+	font-size: 36rpx;
+	color: #ffffff;
+}
+.login:after{
+	border:none;
+}
+.resetPwd{
+	position: fixed;
+	bottom: 60rpx;
+	width: 100%;
+	font-size: 28rpx;
+	color: #ff9cb8;
+	text-align: center;
+}
+.close-icon{
+	width: 34rpx;
+	height: 34rpx;
+	padding: 28rpx 34rpx;
+}

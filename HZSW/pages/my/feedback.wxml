@@ -1,0 +1,34 @@
+<view class="QA-title">
+	问题和意见
+</view>
+<view class="QA">
+	<textarea placeholder="请详细描述你的问题和意见..." placeholder-class="QA-tip" />
+</view>
+<view class="QA-title">
+	图片(选填，提供问题截图，总大小10M以下）
+</view>
+<view class="weui-cells">
+  <view class="weui-cell">
+    <view class="weui-cell__bd">
+      <view class="weui-uploader">
+        <view class="weui-uploader__bd">
+          <view class="weui-uploader__files">
+            <block wx:for="{{imageList}}" wx:for-item="image">
+              <view class="weui-uploader__file">
+                <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
+              </view>
+            </block>
+          </view>
+          <image bindtap="chooseImage" class="select-img" src="/image/yijian_btn_tianjiatupian.png"/>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="QA-title">
+	QQ/邮箱
+</view>
+<view class="contract-box">
+	<input placeholder="(选填，方便我们联系您）" placeholder-class="QA-tip" maxlength="40" />
+</view>
+<button class="login" bindtap="doLogin">提交</button>

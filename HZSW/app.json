@@ -1,17 +1,26 @@
 {
   "pages": [
-    "pages/physical/index",
     "pages/home/index",
-    "pages/index/index",
-    "pages/count/index",
     "pages/my/index",
+    "pages/index/index",
+    "pages/physical/index",
+    "pages/count/index",
     "pages/home/editUser",
     "pages/home/resetPwd",
     "pages/home/resetPwdSucc",
     "pages/index/search",
     "pages/index/userDetail",
     "pages/index/userInfo",
-    "pages/physical/detail"
+    "pages/physical/detail",
+    "pages/my/userinfo",
+    "pages/my/vip",
+    "pages/my/device",
+    "pages/my/employee",
+    "pages/my/feedback",
+    "pages/my/helps",
+    "pages/my/msg",
+    "pages/my/phoneChange",
+    "pages/my/helpDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

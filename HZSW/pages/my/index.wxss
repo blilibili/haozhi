@@ -1,1 +1,49 @@
 /* pages/my/index.wxss */
+.user-info{
+	background: white;
+	padding: 16rpx 30rpx;
+	border-bottom: 1rpx solid #eeeeee;
+}
+.user-head{
+	padding: 14rpx 0rpx 0rpx 22rpx;
+}
+.head-name{
+	font-size: 32rpx;
+	color: #111111;
+}
+.user-local{
+	font-size: 22rpx;
+	color: #ffffff;
+	border-radius: 6rpx;
+	background: #cbcbcb;
+	margin-left: 18rpx;
+	padding: 4rpx 14rpx;
+}
+.head-id{
+	font-size: 28rpx;
+	color: #8b8b8b;
+	padding: 18rpx 0rpx 0rpx 0rpx;
+}
+.user-avatar{
+
+}
+.user-avatar image{
+	width: 120rpx;
+	height: 120rpx;
+}
+.weui-cells:after{
+	border:none;
+}
+.weui-cells:before {
+	border:none;
+}
+.weui-cell:before {
+	border-top: 1rpx solid #e5e5e5;
+}
+.my-icon{
+	width: 48rpx;
+	height: 48rpx;
+}
+.my-title{
+	margin-left: 30rpx;
+}

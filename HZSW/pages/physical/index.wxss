@@ -35,6 +35,7 @@ page{
 }
 .user-head{
 	background: white;
+	width: 100%;
 }
 .head-name{
 	font-size: 34rpx;

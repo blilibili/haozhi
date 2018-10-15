@@ -72,6 +72,13 @@ page{
 .weui-check__label:active {
   background-color: #ECECEC;
 }
+.weui-check {
+  position: absolute;
+  left: -9999px;
+}
+.weui-check__hd_in-checkbox {
+  padding-right: 0.35em;
+}
 .weui-cell__bd {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
@@ -80,6 +87,36 @@ page{
 .weui-cell__hd_in-select-after,
 .weui-cell__bd_in-select-before {
   padding-left: 15px;
+}
+.weui-icon-checkbox_circle,
+.weui-icon-checkbox_success {
+  margin-left: 4.6px;
+  margin-right: 4.6px;
+}
+.weui-cell__ft {
+  text-align: right;
+  color: #999999;
+}
+.weui-cell__ft_in-access {
+  padding-right: 13px;
+  position: relative;
+}
+.weui-cell__ft_in-access:after {
+  content: " ";
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  border-width: 2px 2px 0 0;
+  border-color: #C8C8CD;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+          transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: relative;
+  top: -2px;
+  position: absolute;
+  top: 50%;
+  margin-top: -4px;
+  right: 2px;
 }
 /*weui*/
 /*PUBLIC*/

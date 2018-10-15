@@ -1,0 +1,29 @@
+/* pages/my/userinfo.wxss */
+page{
+
+}
+.user-avatar{
+	width: 120rpx;
+	height: 120rpx;
+}
+.weui-cells{
+	margin-top: 0rpx;
+}
+.weui-cells:after{
+	border-bottom: 1rpx solid #e5e5e5;
+}
+.weui-cells:before {
+	border:none;
+}
+.phone-number{
+	color: #666666;
+}
+.mt30{
+	margin-top: 30rpx;
+}
+.right-text{
+	color: #999999;
+}
+.user-sex{
+	color: #666666;
+}

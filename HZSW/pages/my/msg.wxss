@@ -1,0 +1,66 @@
+/* pages/my/msg.wxss */
+@import '../common/lib/weui.wxss';
+
+.page__bd{
+    height: 100%;
+}
+.page__bd{
+    padding-bottom: 0;
+}
+.weui-tab__content{
+    background: #ffffff;
+}
+.weui-navbar{
+	background: #ffffff;
+	height: 94rpx;
+	border-bottom:none;
+}
+.weui-navbar__title{
+	color: #111111;
+	font-size: 30rpx;
+}
+.select-tab{
+	color: #ff9cb8;
+}
+.weui-navbar__slider{
+	background: #ff9cb8;
+	height: 4rpx;
+	width: 50%
+}
+.msg-icon{
+	height: 94rpx;
+}
+.msg-icon image{
+	width: 94rpx;
+	height: 94rpx;
+}
+.weui-tab__panel{
+	padding-top: 124rpx;
+}
+
+.user-info{
+	background: white;
+	padding: 16rpx 30rpx;
+	border-bottom: 1rpx solid #eeeeee;
+}
+.user-head{
+	padding-left:22rpx;
+	width: 100%;
+}
+.head-name{
+	font-size: 32rpx;
+	color: #111111;
+}
+.user-local{
+	font-size: 22rpx;
+	color: #999999;
+	float: right;
+}
+.head-id{
+	font-size: 28rpx;
+	color: #999999;
+}
+.noread{
+	position: absolute;
+	margin-left:-14rpx;
+}
