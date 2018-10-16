@@ -34,10 +34,10 @@
 </view>
 
 <view class="weui-cells weui-cells_after-title" wx:if="{{!isEdit}}">
-    <label class="weui-cell weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
+    <navigator url="/pages/index/userDetail" class="weui-cell weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
         <view class="weui-cell__bd">{{item.name}}</view>
         <view class="weui-cell__ft weui-cell__ft_in-access user-weight">50kg</view>
-    </label>
+    </navigator>
 </view>
 
 <view class="weui-flex bottom-btn"  wx:if="{{isEdit}}">

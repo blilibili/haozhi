@@ -12,7 +12,7 @@
             <view class="weui-tab__panel">
             	<!--选项一的内容-->
                 <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
-                	<navigator url="" class="" hover-class="none">
+                	<navigator url="/pages/my/msgNews" class="" hover-class="none">
 				        <view class="weui-flex user-info">
 				        	<view class="msg-icon">
 								<image src="/image/xiaoxi_img_touxiang1.png"/>
@@ -24,7 +24,7 @@
 							</view>
 						</view>
 				    </navigator>
-				    <navigator url="" class="" hover-class="none">
+				    <navigator url="/pages/my/msgNews" class="" hover-class="none">
 				        <view class="weui-flex user-info">
 				        	<view class="msg-icon">
 								<image src="/image/xiaoxi_img_touxiang2.png"/>
@@ -36,7 +36,7 @@
 							</view>
 						</view>
 				    </navigator>
-				    <navigator url="" class="" hover-class="none">
+				    <navigator url="/pages/my/msgNews" class="" hover-class="none">
 				        <view class="weui-flex user-info">
 				        	<view class="msg-icon">
 								<image src="/image/xiaoxi_img_touxiang3.png"/>
@@ -47,7 +47,7 @@
 							</view>
 						</view>
 				    </navigator>
-				    <navigator url="" class="" hover-class="none">
+				    <navigator url="/pages/my/msgNews" class="" hover-class="none">
 				        <view class="weui-flex user-info">
 				        	<view class="msg-icon">
 								<image src="/image/xiaoxi_img_touxiang4.png"/>
@@ -61,7 +61,7 @@
                 </view>
                 <!--选项二的内容-->
                 <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-                	<navigator url="" class="" hover-class="none">
+                	<navigator url="/pages/my/msgSys" class="" hover-class="none">
 				        <view class="weui-flex user-info">
 				        	<view class="msg-icon">
 								<image src="/image/xiaoxi_img_touxiang_xitong.png"/>
@@ -73,7 +73,7 @@
 							</view>
 						</view>
 				    </navigator>
-				    <navigator url="" class="" hover-class="none">
+				    <navigator url="/pages/my/msgSys" class="" hover-class="none">
 				        <view class="weui-flex user-info">
 				        	<view class="msg-icon">
 								<image src="/image/xiaoxi_img_touxiang_xitong.png"/>
@@ -85,7 +85,7 @@
 							</view>
 						</view>
 				    </navigator>
-				    <navigator url="" class="" hover-class="none">
+				    <navigator url="/pages/my/msgSys" class="" hover-class="none">
 				        <view class="weui-flex user-info">
 				        	<view class="msg-icon">
 								<image src="/image/xiaoxi_img_touxiang_xitong.png"/>
@@ -96,7 +96,7 @@
 							</view>
 						</view>
 				    </navigator>
-				    <navigator url="" class="" hover-class="none">
+				    <navigator url="/pages/my/msgSys" class="" hover-class="none">
 				        <view class="weui-flex user-info">
 				        	<view class="msg-icon">
 								<image src="/image/xiaoxi_img_touxiang_xitong.png"/>

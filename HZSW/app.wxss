@@ -163,7 +163,17 @@ page{
 .nothing-text{
   font-size: 28rpx;
   color: #8b8b8b;
-  margin-top: 42rpx;
+  margin-top: 40rpx;
+}
+.nothing-text-hd{
+  font-size: 30rpx;
+  color: #666666;
+  margin-top: 40rpx;
+}
+.nothing-text-bd{
+  font-size: 28rpx;
+  color: #8b8b8b;
+  margin-top: 10rpx;
 }
 /*PUBLIC*/
 

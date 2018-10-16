@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/home/index",
     "pages/my/index",
+    "pages/home/index",
     "pages/index/index",
     "pages/physical/index",
     "pages/count/index",
@@ -20,7 +20,9 @@
     "pages/my/helps",
     "pages/my/msg",
     "pages/my/phoneChange",
-    "pages/my/helpDetail"
+    "pages/my/helpDetail",
+    "pages/my/msgNews",
+    "pages/my/msgSys"
   ],
   "window": {
     "backgroundTextStyle": "light",

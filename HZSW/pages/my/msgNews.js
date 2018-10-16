@@ -1,32 +1,18 @@
-// pages/physical/index.js
-var utils = require("../../utils/util.js");
-var app = getApp()
-var that
+// pages/my/msgNews.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    inputShowed: false,
-    inputVal: ""
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    that = this
-    this.setData({
-      hasdata:false
-    })
-    setTimeout(function(){
-      app.globalData.userList = [1,2,3,4,5,6]
-      that.setData({
-        hasdata:true,
-        userList:app.globalData.userList
-      })
-    },1000)
+
   },
 
   /**
@@ -76,27 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  showInput: function () {
-      this.setData({
-          inputShowed: true
-      });
-  },
-  hideInput: function () {
-      this.setData({
-          inputVal: "",
-          inputShowed: false
-      });
-  },
-  clearInput: function () {
-      this.setData({
-          inputVal: ""
-      });
-  },
-  inputTyping: function (e) {
-      this.setData({
-          inputVal: e.detail.value
-      });
   }
 })

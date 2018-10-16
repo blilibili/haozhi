@@ -4,7 +4,7 @@
 			<image src="/image/zhuye_ID_icon_shoudongshuru.png"/>
 		</view>
 		<view class="weui-flex__item">
-			<input type="number" placeholder="请输入ID号码" placeholder-class="tip-style" name="phone" maxlength="20" focus auto-focus/>
+			<input type="number" placeholder="请输入ID号码" placeholder-class="tip-style" name="phone" maxlength="20"/>
 		</view>
 	</view>
 	<view class="sear-btn">
@@ -13,7 +13,7 @@
 </view>
 <view class="weui-cells_after-title">
 	<radio-group bindchange="radioChange">
-	  <label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.value}}">
+	  <label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.value}}" bindtap="goInfo">
 	    <view class="weui-cell__hd">
 	      <radio value="{{item.value}}" checked="{{item.checked}}" color="#ff9cb8"/>
 	    </view>

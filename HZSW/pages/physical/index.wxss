@@ -52,4 +52,5 @@ page{
 .head-id{
 	font-size: 30rpx;
 	color: #999999;
+	margin-top: 8rpx;
 }

@@ -81,8 +81,12 @@ Page({
       items: items
     });
 
+  },
+
+  goInfo:function()
+  {
     wx.navigateTo({
-      url:"/pages/index/userInfo?id="+e.detail.value
+      url:"/pages/index/userInfo?id="
     })
   },
 })

@@ -1,1 +1,47 @@
 /* pages/my/vip.wxss */
+@import '../common/lib/weui.wxss';
+
+.page__bd{
+	padding-bottom:40px;
+}
+.nobody{
+	text-align: center;
+	margin-top: 362rpx;
+}
+.searchbar-result{
+    margin-top: 0;
+    font-size: 14px;
+}
+.searchbar-result:before{
+    display: none;
+}
+.weui-cell{
+    padding: 12px 15px 12px 15px;
+}
+.btn-color{
+	color: #ff9cb8;
+}
+.weui-search-bar{
+	background: #f6f6f6;
+}
+.user-head{
+	background: white;
+	width: 100%;
+}
+.head-name{
+	font-size: 34rpx;
+	color: #111111;
+}
+.user-local{
+	font-size: 22rpx;
+	color: #ffffff;
+	border-radius: 6rpx;
+	background: #cbcbcb;
+	margin-left: 16rpx;
+	padding: 8rpx 14rpx;
+}
+.head-id{
+	font-size: 30rpx;
+	color: #999999;
+	margin-top: 8rpx;
+}
