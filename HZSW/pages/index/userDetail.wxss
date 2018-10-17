@@ -38,7 +38,7 @@ page{
 }
 .detail-hd{
 	text-align: right;
-	width: 170rpx;
+	width: 180rpx;
 	font-size: 28rpx;
 	color: #666666;
 }

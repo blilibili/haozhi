@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -92,7 +92,13 @@
 				{
 					"id": -1,
 					"name": "系统消息",
-					"pathName": "pages/my/msgSys"
+					"pathName": "pages/my/msgSys",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的员工",
+					"pathName": "pages/my/employee"
 				}
 			]
 		}

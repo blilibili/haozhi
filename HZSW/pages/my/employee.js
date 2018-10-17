@@ -25,7 +25,7 @@ Page({
         hasdata:true,
         userList:app.globalData.userList
       })
-    },1000000)
+    },1000)
   },
 
   /**
@@ -97,5 +97,36 @@ Page({
       this.setData({
           inputVal: e.detail.value
       });
-  }
+  },
+
+  showInviteBox:function()
+  {
+    this.setData({
+      showInvite:true
+    })
+  },
+  hideInviteBox:function()
+  {
+    this.setData({
+      showInvite:false
+    })
+  },
+
+  removeMember:function()
+  {
+    this.setData({
+      isRemove:true
+    })
+  },
+
+  doRemove:function()
+  {
+    this.setData({
+      isRemove:false
+    })
+  },
+
+
+
+
 })

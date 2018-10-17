@@ -25,6 +25,7 @@ page{
 .select-img{
 	width: 134rpx;
 	height: 134rpx;
+  z-index: 10;
 }
 .weui-cells{
 	margin-top: 0px;

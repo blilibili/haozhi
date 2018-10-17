@@ -67,14 +67,17 @@ Page({
 
   chooseImage: function () {
     wx.chooseImage({
-      sourceType: 'album',
-      sizeType: 'compressed',
-      count: 1,
+      sourceType: ['album', 'camera'],
+      sizeType: ['original', 'compressed'],
+      count: 9,
       success: function (res) {
         console.log(res)
         that.setData({
           imageList: that.data.imageList.concat(res.tempFilePaths)
         })
+      },
+      fail:function(res){
+        console.log(res)
       }
     })
   },

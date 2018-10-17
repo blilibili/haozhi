@@ -30,7 +30,7 @@
 }
 .detail-hd{
 	text-align: right;
-	width: 140rpx;
+	width: 150rpx;
 	font-size: 28rpx;
 	color: #666666;
 }
