@@ -25,12 +25,43 @@ Page({
             });
         }
     });
+    this.setData({
+      hasNews:false
+    })
+    setTimeout(function(){
+      that.setData({
+        hasNews:true,
+      })
+    },1000)
   },
   tabClick: function (e) {
       this.setData({
           sliderOffset: e.currentTarget.offsetLeft,
           activeIndex: e.currentTarget.id
       });
+
+      if(e.currentTarget.id == 0){
+        this.setData({
+          hasNews:false
+        })
+        setTimeout(function(){
+          that.setData({
+            hasNews:true,
+          })
+        },1000)
+      }
+      if(e.currentTarget.id == 1){
+        this.setData({
+          hasSys:false
+        })
+        setTimeout(function(){
+          that.setData({
+            hasSys:true,
+          })
+        },1000)
+      }
+
+      
   },
 
   /**

@@ -23,6 +23,10 @@
 }
 .weui-search-bar{
 	background: #f6f6f6;
+	border-bottom: none;
+}
+.weui-search-bar__form{
+	border: none;
 }
 .user-head{
 	background: white;

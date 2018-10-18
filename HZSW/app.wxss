@@ -3,6 +3,7 @@
 page{
 	background: #eaeeef;
 	font-size: 30rpx;
+  height: 100%;
 }
 /*weui*/
 .weui-flex {

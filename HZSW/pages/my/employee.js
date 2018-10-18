@@ -7,6 +7,15 @@ Page({
    * 页面的初始数据
    */
   data: {
+    checkboxItems: [
+        {name: '员工姓名', value: '0'},
+        {name: '员工姓名', value: '1'},
+        {name: '员工姓名', value: '2'},
+        {name: '员工姓名', value: '3'},
+        {name: '员工姓名', value: '4'},
+        {name: '员工姓名', value: '5'},
+        {name: '员工姓名', value: '6'},
+    ],
     inputShowed: false,
     inputVal: ""
   },
@@ -20,10 +29,8 @@ Page({
       hasdata:false
     })
     setTimeout(function(){
-      app.globalData.userList = [1,2,3,4,5,6]
       that.setData({
         hasdata:true,
-        userList:app.globalData.userList
       })
     },1000)
   },
@@ -124,6 +131,37 @@ Page({
     this.setData({
       isRemove:false
     })
+  },
+
+  checkboxChange: function (e) {
+      console.log('checkbox发生change事件，携带value值为：', e.detail.value);
+
+      var checkboxItems = this.data.checkboxItems, values = e.detail.value;
+      for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
+          checkboxItems[i].checked = false;
+
+          for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
+              if(checkboxItems[i].value == values[j]){
+                  checkboxItems[i].checked = true;
+                  break;
+              }
+          }
+      }
+
+      this.setData({
+          checkboxItems: checkboxItems
+      });
+  },
+
+  selectAll:function()
+  {
+    var checkboxItems = this.data.checkboxItems
+    for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
+      checkboxItems[i].checked = true;
+    }
+    this.setData({
+      checkboxItems: checkboxItems
+    });
   },
 
 

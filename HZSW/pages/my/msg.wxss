@@ -10,6 +10,10 @@
 .weui-tab__content{
     background: #ffffff;
 }
+.nobody{
+	text-align: center;
+	margin-top: 314rpx;
+}
 .weui-navbar{
 	background: #ffffff;
 	height: 94rpx;

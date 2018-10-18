@@ -1,13 +1,48 @@
-<view>
-	<image class="company-logo" src="/image/zhuye_nav_logo.png"/>
+<view class="tc" wx:if="{{userRule > 1}}">
+	<view>
+		<image class="company-logo" src="/image/zhuye_nav_logo.png"/>
+	</view>
+	<view>
+		<image class="scan-logo" src="/image/zhuye_btn_saoyisao.png" bindtap="doScan"/>
+		<view class="title">{{title}}</view>
+	</view>
+	<view class="search-btn" bindtap="goSearch">手动输入ID</view>
+	<view>
+		<image class="step-logo" wx:if="{{step == 1}}" src="/image/zhuye_jindutiao_1.1.png"/>
+		<image class="step-logo" wx:if="{{step == 2}}" src="/image/zhuye_jindutiao_2.1.png"/>
+		<image class="step-logo" wx:if="{{step == 3}}" src="/image/zhuye_jindutiao_3.1.png"/>
+	</view>
 </view>
-<view>
-	<image class="scan-logo" src="/image/zhuye_btn_saoyisao.png" bindtap="doScan"/>
-	<view class="title">{{title}}</view>
-</view>
-<input placeholder="手动输入ID" placeholder-class="tip-style" disabled="true" bindtap="goSearch"/>
-<view>
-	<image class="step-logo" wx:if="{{step == 1}}" src="/image/zhuye_jindutiao_1.1.png"/>
-	<image class="step-logo" wx:if="{{step == 2}}" src="/image/zhuye_jindutiao_2.1.png"/>
-	<image class="step-logo" wx:if="{{step == 3}}" src="/image/zhuye_jindutiao_3.1.png"/>
+
+
+<view class="page" wx:if="{{userRule == 1}}">
+    <view class="page__bd">
+        <view class="weui-search-bar">
+            <view class="weui-search-bar__form">
+                <view class="weui-search-bar__box">
+                    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                    <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                    <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                        <icon type="clear" size="14"></icon>
+                    </view>
+                </view>
+                <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                    <icon class="weui-icon-search" type="search" size="14"></icon>
+                    <view class="weui-search-bar__text">搜索</view>
+                </label>
+            </view>
+            <view class="weui-search-bar__cancel-btn btn-color" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+        </view>
+        <view class="weui-cells searchbar-result">
+        	<block wx:for="{{userList}}" wx:key="*this">
+	            <navigator url="/pages/physical/detail?userid={{item}}" class="weui-cell" hover-class="none">
+	                <view class="user-head">
+						<view class="head-name">天河门店<text class="user-local">店长-张小云</text></view>
+						<view class="head-id">ID:256321456</view>
+					</view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+	            </navigator>
+	        </block>
+        </view>
+    </view>
 </view>

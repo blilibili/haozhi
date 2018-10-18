@@ -48,6 +48,7 @@ App({
   },
   globalData: {
     userInfo: null,
+    userRule:3,//1为管理员,2为店长,3为普通员工
     userList:[],
   }
 })

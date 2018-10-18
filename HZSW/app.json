@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/my/index",
     "pages/home/index",
-    "pages/index/index",
     "pages/physical/index",
     "pages/count/index",
     "pages/home/editUser",
@@ -14,7 +14,6 @@
     "pages/physical/detail",
     "pages/my/userinfo",
     "pages/my/vip",
-    "pages/my/device",
     "pages/my/employee",
     "pages/my/feedback",
     "pages/my/helps",
@@ -22,7 +21,8 @@
     "pages/my/phoneChange",
     "pages/my/helpDetail",
     "pages/my/msgNews",
-    "pages/my/msgSys"
+    "pages/my/msgSys",
+    "pages/device/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

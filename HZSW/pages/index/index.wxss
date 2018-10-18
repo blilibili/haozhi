@@ -1,7 +1,11 @@
 /* pages/index/index.wxss */
-page{
-	background: white;
+@import '../common/lib/weui.wxss';
+
+/*主页*/
+.tc{
 	text-align: center;
+	background:white;
+	height: 100%;
 }
 .company-logo{
 	width: 288rpx;
@@ -13,12 +17,15 @@ page{
 	height: 410rpx;
 	margin-bottom: 58rpx;
 }
-input{
+.search-btn{
 	width: 336rpx;
 	height: 64rpx;
 	border-radius:32rpx;
 	background: #eeeeee;
 	margin:0 auto;
+	color: #acacac;
+	font-size: 32rpx;
+	line-height: 2em;
 }
 .tip-style {
 	color: #acacac;
@@ -34,4 +41,51 @@ input{
 	margin-top: 106rpx;
 	width: 456rpx;
 	height: 88rpx;
+}
+
+/*我的门店*/
+.nobody{
+	text-align: center;
+	margin-top: 362rpx;
+}
+.searchbar-result{
+    margin-top: 0;
+    font-size: 14px;
+}
+.searchbar-result:before{
+    display: none;
+}
+.weui-cell{
+    padding: 12px 15px 12px 15px;
+}
+.btn-color{
+	color: #ff9cb8;
+}
+.weui-search-bar{
+	background: #f6f6f6;
+	border-bottom: none;
+}
+.weui-search-bar__form{
+	border: none;
+}
+.user-head{
+	background: white;
+	width: 100%;
+}
+.head-name{
+	font-size: 34rpx;
+	color: #111111;
+}
+.user-local{
+	font-size: 22rpx;
+	color: #ffffff;
+	border-radius: 6rpx;
+	background: #cbcbcb;
+	margin-left: 16rpx;
+	padding: 8rpx 14rpx;
+}
+.head-id{
+	font-size: 30rpx;
+	color: #999999;
+	margin-top: 8rpx;
 }

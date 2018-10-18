@@ -1,4 +1,7 @@
 // pages/index/index.js
+var utils = require("../../utils/util.js");
+var app = getApp()
+var that
 Page({
 
   /**
@@ -13,20 +16,49 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    that = this
+    app.globalData.userRule = 1
+    if(app.globalData.userRule == 1){
+      that.setData({
+        userList:[1,2,3,4,5,6]
+      })
+
+      wx.setNavigationBarTitle({
+        title:"我的门店"
+      })
+      //管理员页面
+      wx.setTabBarItem({
+        index:0,
+        text:"门店",
+        iconPath:"image/zhuye_nav_icon_dianpu.png",
+        selectedIconPath:"image/zhuye_nav_icon_dianpu_pre.png",
+      })
+      wx.setTabBarItem({
+        index:1,
+        text:"设备",
+        iconPath:"image/zhuye_nav_icon_shebei.png",
+        selectedIconPath:"image/zhuye_nav_icon_shebei_pre.png",
+      })
+      wx.setTabBarItem({
+        index:2,
+        text:"仓库",
+        iconPath:"image/zhuye_nav_icon_cangku.png",
+        selectedIconPath:"image/zhuye_nav_icon_cangku_pre.png",
+      })
+    }else if(app.globalData.userRule == 2){
+      //店长页面
+      this.forScan()
+    }else{
+      //普通员工页面
+      this.forScan()
+    }
+    this.setData({
+      userRule:app.globalData.userRule
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+  forScan:function()
+  {
     wx.showModal({
       title:'',
       content:'是否继续扫膜？',
@@ -43,6 +75,20 @@ Page({
         }
       }
     })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    
   },
 
   /**
@@ -121,6 +167,28 @@ Page({
         step:1
       })
     }
+  },
+
+  showInput: function () {
+      this.setData({
+          inputShowed: true
+      });
+  },
+  hideInput: function () {
+      this.setData({
+          inputVal: "",
+          inputShowed: false
+      });
+  },
+  clearInput: function () {
+      this.setData({
+          inputVal: ""
+      });
+  },
+  inputTyping: function (e) {
+      this.setData({
+          inputVal: e.detail.value
+      });
   },
 
 })
