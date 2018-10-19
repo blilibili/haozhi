@@ -2,6 +2,8 @@
 var utils = require("../../utils/util.js");
 var app = getApp()
 var that
+var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
+
 Page({
 
   /**
@@ -10,6 +12,20 @@ Page({
   data: {
     title:"扫膜",
     step:1,
+    checkboxItems: [
+        {name: '员工姓名', value: '0'},
+        {name: '员工姓名', value: '1'},
+        {name: '员工姓名', value: '2'},
+        {name: '员工姓名', value: '3'},
+        {name: '员工姓名', value: '4'},
+        {name: '员工姓名', value: '5'},
+        {name: '员工姓名', value: '6'},
+        {name: '员工姓名', value: '7'},
+        {name: '员工姓名', value: '8'},
+    ],
+    tabs: ["列表", "地图"],
+    activeIndex: 0,
+    sliderOffset: 0,
   },
 
   /**
@@ -19,8 +35,36 @@ Page({
     that = this
     app.globalData.userRule = 1
     if(app.globalData.userRule == 1){
+      this.setData({
+        hasStore:false
+      })
+      setTimeout(function(){
+        that.setData({
+          hasStore:true,
+        })
+      },1000)
+
+      wx.getSystemInfo({
+          success: function(res) {
+              that.setData({
+                  height:res.screenHeight,
+                  width:res.screenWidth,
+                  sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
+              });
+          }
+      });
+      var store = [{latitude: 23.099994,longitude: 113.324520,name:'番禺门店',id:1},{latitude: 23.099994,longitude: 113.344520,name:'天河门店',id:2}];
+      var markers = [];
+      for (var i = store.length - 1; i >= 0; i--) {
+        markers.push({id:store[i].id,latitude: store[i].latitude,longitude: store[i].longitude,iconPath: '/image/mendian_icon_dingwei.png',width:18,height:21,callout:{content:store[i].name,fontSize:10,color:'#ff9cb8',display:'ALWAYS',borderRadius:3,borderColor:'#ff9cb8',bgColor:"#ffffff",padding:2,textAlign:"center"
+          }})
+      }
+
       that.setData({
-        userList:[1,2,3,4,5,6]
+        userList:[1,2,3,4,5,6],
+        latitude: 23.099994,
+        longitude: 113.324520,
+        markers:markers,
       })
 
       wx.setNavigationBarTitle({
@@ -54,26 +98,6 @@ Page({
     }
     this.setData({
       userRule:app.globalData.userRule
-    })
-  },
-
-  forScan:function()
-  {
-    wx.showModal({
-      title:'',
-      content:'是否继续扫膜？',
-      cancelText:'否',
-      confirmText:'是',
-      confirmColor:'#ff9cb8',
-      success:function(res){
-        if(res.confirm){
-          //点击是
-        }
-        if(res.cancel){
-          //点击否
-
-        }
-      }
     })
   },
 
@@ -126,6 +150,28 @@ Page({
 
   },
 
+  /*-----------------------------主页---------------------------*/
+
+  forScan:function()
+  {
+    wx.showModal({
+      title:'',
+      content:'是否继续扫膜？',
+      cancelText:'否',
+      confirmText:'是',
+      confirmColor:'#ff9cb8',
+      success:function(res){
+        if(res.confirm){
+          //点击是
+        }
+        if(res.cancel){
+          //点击否
+
+        }
+      }
+    })
+  },
+
   goSearch:function()
   {
     wx.navigateTo({
@@ -169,6 +215,15 @@ Page({
     }
   },
 
+  /*-----------------------------我的门店---------------------------*/
+
+  tabClick: function (e) {
+      this.setData({
+          sliderOffset: e.currentTarget.offsetLeft,
+          activeIndex: e.currentTarget.id
+      });
+  },
+
   showInput: function () {
       this.setData({
           inputShowed: true
@@ -189,6 +244,67 @@ Page({
       this.setData({
           inputVal: e.detail.value
       });
+  },
+
+  removeStore:function()
+  {
+    this.setData({
+      isRemove:true
+    })
+  },
+
+  doRemove:function()
+  {
+    this.setData({
+      isRemove:false
+    })
+  },
+
+  addStore:function()
+  {
+    wx.navigateTo({
+      url:"/pages/store/addStore"
+    })
+  },
+
+  checkboxChange: function (e) {
+      console.log('checkbox发生change事件，携带value值为：', e.detail.value);
+
+      var checkboxItems = this.data.checkboxItems, values = e.detail.value;
+      for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
+          checkboxItems[i].checked = false;
+
+          for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
+              if(checkboxItems[i].value == values[j]){
+                  checkboxItems[i].checked = true;
+                  break;
+              }
+          }
+      }
+
+      this.setData({
+          checkboxItems: checkboxItems
+      });
+  },
+
+  selectAll:function()
+  {
+    var checkboxItems = this.data.checkboxItems
+    for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
+      checkboxItems[i].checked = true;
+    }
+    this.setData({
+      checkboxItems: checkboxItems
+    });
+  },
+
+  goStore:function(res)
+  {
+    console.log(res)
+    console.log(res.markerId)
+    wx.navigateTo({
+      url:'/pages/store/detail?storeid='+res.markerId
+    })
   },
 
 })

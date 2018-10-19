@@ -1,5 +1,6 @@
 /**app.wxss**/
 @import "pages/component/toast/toast.wxss";
+@import "pages/component/invite/invite.wxss";
 page{
 	background: #eaeeef;
 	font-size: 30rpx;

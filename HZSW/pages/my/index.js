@@ -24,6 +24,7 @@ Page({
         success: function(e) {
           if (e.confirm) {
             app.globalData.userRule = 1
+            app.globalData.isPhysical = false
             that.setData({
               userRule:1
             })
@@ -107,8 +108,9 @@ Page({
 
   toDevice:function()
   {
+    app.globalData.isPhysical = false
     wx.switchTab({
-      url:"/pages/device/index"
+      url:"/pages/physical/index"
     })
   },
 })

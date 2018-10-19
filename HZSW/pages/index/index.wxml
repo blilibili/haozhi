@@ -33,16 +33,71 @@
             </view>
             <view class="weui-search-bar__cancel-btn btn-color" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
         </view>
-        <view class="weui-cells searchbar-result">
-        	<block wx:for="{{userList}}" wx:key="*this">
-	            <navigator url="/pages/physical/detail?userid={{item}}" class="weui-cell" hover-class="none">
-	                <view class="user-head">
-						<view class="head-name">天河门店<text class="user-local">店长-张小云</text></view>
-						<view class="head-id">ID:256321456</view>
-					</view>
-                    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-	            </navigator>
-	        </block>
+        <view class="weui-tab">
+            <view class="weui-navbar">
+                <block wx:for="{{tabs}}" wx:key="*this">
+                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                        <view class="weui-navbar__title {{activeIndex == index ? 'select-tab' : ''}}">{{item}}</view>
+                    </view>
+                </block>
+                <view class="weui-navbar__slider" style="transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+            </view>
+            <view class="weui-tab__panel">
+            	<!--选项一的内容-->
+            	<view class="nobody" wx:if="{{!hasStore}}">
+					<image class="nothing" src="/image/kong_icon.png"/>
+				    <view class="nothing-text-hd">暂无门店</view>
+					<view class="nothing-text-bd">点击增加门店立即添加</view>
+				</view>
+				<view class="store-list" hidden="{{activeIndex != 0}}" wx:if="{{hasStore}}">
+                	<view class="weui-cells searchbar-result" wx:if="{{!isRemove}}">
+			        	<block wx:for="{{checkboxItems}}" wx:key="value">
+				            <navigator url="/pages/store/detail?storeid={{item.id}}" class="weui-cell" hover-class="none">
+				                <view class="user-head">
+									<view class="head-name">天河门店<text class="user-local">店长-张小云</text></view>
+									<view class="head-id">ID:256321456</view>
+								</view>
+			                    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+				            </navigator>
+				        </block>
+			        </view>
+			        <view class="weui-cells searchbar-result" wx:if="{{isRemove}}">
+			            <checkbox-group bindchange="checkboxChange">
+			            <label wx:for="{{checkboxItems}}" wx:key="value">
+			                <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}"/>
+			                <view class="weui-cell" hover-class="none">
+			                    <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+			                    <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}" color="#ff9cb8"></icon>
+			                    <view class="user-head">
+			                        <view class="head-name">天河门店<text class="user-local">店长-张小云</text></view>
+			                        <view class="head-id">ID:256321456</view>
+			                    </view>
+			                </view>
+			            </label>
+			            </checkbox-group>
+			        </view>
+	            </view>
+                <view class="weui-flex btm-box" wx:if="{{!isRemove}}">
+				    <view class="weui-flex_item btn" bindtap="removeStore">移除门店</view>
+				    <view class="weui-flex_item btn btn-right" bindtap="addStore">增加门店</view>
+				</view>
+				<view class="weui-flex btm-box" wx:if="{{isRemove}}">
+				    <view class="weui-flex_item btn" bindtap="selectAll">全选</view>
+				    <view class="weui-flex_item btn btn-right" bindtap="doRemove">移除</view>
+				</view>
+                <!--选项二的内容-->
+                <view class="map-box" hidden="{{activeIndex != 1}}">
+                	<map
+				        style="width: 100%; height: {{height}}px;"
+				        latitude="{{latitude}}"
+				        longitude="{{longitude}}"
+				        markers="{{markers}}"
+				        bindmarkertap="goStore"
+				        bindcallouttap="goStore"
+				        >
+				      </map>
+                </view>
+            </view>
         </view>
     </view>
 </view>

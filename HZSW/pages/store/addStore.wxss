@@ -1,0 +1,33 @@
+/* pages/store/addStore.wxss */
+.select-box{
+	font-size: 34rpx;
+	margin-top: 32rpx;
+}
+.weui-label{
+	width: 158rpx;
+	color: #000000;
+	margin-right: 30rpx;
+	text-align: right;
+}
+.weui-label text{
+	color: #f43531;
+}
+.weui-cells:after{
+	border:none;
+}
+.weui-cells:before {
+	border:none;
+}
+.weui-cell:before {
+	border-top: 1rpx solid #eeeeee;
+}
+.noselect{
+	color: #999999;
+}
+.pb98{
+	padding-bottom: 98rpx;
+}
+.local-again{
+	text-align: right;
+	color: #999999;
+}

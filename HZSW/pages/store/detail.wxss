@@ -1,0 +1,84 @@
+/* pages/store/detail.wxss */
+page{
+	-webkit-user-select:none;
+	user-select:none;
+	width:100%;
+	overflow-x:hidden;
+	line-height:1.6;
+	font-family:-apple-system-font, "Helvetica Neue", sans-serif;
+}
+.user-head{
+	background: white;
+	padding: 27rpx 30rpx;
+	border-bottom: 1rpx solid #eeeeee;
+}
+.head-name{
+	font-size: 34rpx;
+	color: #111111;
+}
+.user-local{
+	font-size: 22rpx;
+	color: #ffffff;
+	border-radius: 6rpx;
+	background: #cbcbcb;
+	margin-left: 16rpx;
+	padding: 8rpx 14rpx;
+}
+.head-id{
+	font-size: 30rpx;
+	color: #999999;
+}
+.user-detail{
+	padding: 34rpx 30rpx;
+	background: white;
+	align-items: center;
+}
+.detail-hd image{
+	width: 30rpx;
+	height: 36rpx;
+	position: relative;
+	top: 6rpx;
+}
+.detail-bd{
+	font-size: 32rpx;
+	color: #333333;
+	margin-left: 18rpx;
+}
+.list-head{
+	padding: 24rpx 30rpx 14rpx 30rpx;
+}
+.list-title{
+	font-size: 28rpx;color: #888888;
+}
+.eidt-btn{
+	height: 50rpx;
+	background: #ffffff;
+	color: #ff9cb8;
+	border:1rpx solid #ff9cb8;
+	border-radius: 6rpx;
+	font-size: 22rpx;
+	line-height: 2.2em;
+}
+.eidt-btn:after{
+	border:none;
+}
+.store-user{
+	padding: 14rpx 30rpx;
+	background: white;
+	width: 100%;
+}
+.store-user image{
+	width: 100rpx;
+	height: 100rpx;
+	float: left;
+	margin-right: 24rpx;
+}
+.store-admin{
+	font-size: 22rpx;
+	color: #ff9046;
+	border-radius: 6rpx;
+	background: #ffffff;
+	border:1rpx solid #ff9046;
+	margin-left: 16rpx;
+	padding: 6rpx 14rpx;
+}

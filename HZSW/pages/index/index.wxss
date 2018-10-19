@@ -48,12 +48,35 @@
 	text-align: center;
 	margin-top: 362rpx;
 }
+.store-list{
+	padding-bottom: 88rpx;
+}
 .searchbar-result{
     margin-top: 0;
     font-size: 14px;
 }
 .searchbar-result:before{
     display: none;
+}
+.weui-tab__content{
+    margin-top: 30rpx;
+}
+.weui-navbar{
+	background: #ffffff;
+	height: 94rpx;
+	border-bottom:none;
+}
+.weui-navbar__title{
+	color: #111111;
+	font-size: 30rpx;
+}
+.select-tab{
+	color: #ff9cb8;
+}
+.weui-navbar__slider{
+	background: #ff9cb8;
+	height: 4rpx;
+	width: 50%
 }
 .weui-cell{
     padding: 12px 15px 12px 15px;
@@ -88,4 +111,37 @@
 	font-size: 30rpx;
 	color: #999999;
 	margin-top: 8rpx;
+}
+.btm-box{
+	position: fixed;
+	bottom: 0rpx;
+	width: 100%;
+	background:#ffffff;
+	height: 88rpx;
+	font-size: 34rpx;
+	color: #666666;
+	line-height:2.5em;
+	border-top: 1rpx solid #dcdcdc;
+}
+.btn{
+	width: 50%;
+	height: 100%;
+	text-align: center;
+}
+.btn-right{
+	background: #ff9cb8;
+	color: #ffffff;
+}
+.weui-cells:after{
+	border:none;
+}
+.weui-cells:before {
+	border:none;
+}
+.weui-cell:before {
+	border-top: 1rpx solid #e5e5e5;
+}
+.nobody{
+	text-align: center;
+	margin-top: 186rpx;
 }

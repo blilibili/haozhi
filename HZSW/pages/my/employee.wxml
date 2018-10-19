@@ -58,21 +58,5 @@
     <view class="weui-flex_item btn" bindtap="selectAll">全选</view>
     <view class="weui-flex_item btn btn-right" bindtap="doRemove">移除</view>
 </view>
-<view class="showInvite-toast-box" wx:if="{{showInvite}}"></view>
-<view class="invite-box" wx:if="{{showInvite}}">
-    <view class="invite-body">
-        <view class="phone-title">请填写被邀请人手机号</view>
-        <view class="weui-flex phone-input">
-            <view class="weui-flex__item">
-                <input type="number" placeholder="" name="phone" maxlength="11"/>
-            </view>
-            <view class="right-icon">
-                <image src="/image/mendian_icon_tongxunlu.png"/>
-            </view>
-        </view>
-        <view class="weui-flex invite-btn">
-            <view class="weui-flex_item ibtn" bindtap="hideInviteBox">取消</view>
-            <view class="weui-flex_item ibtn ibtn-right">发送信息</view>
-        </view>
-    </view>
-</view>
+<import src="../component/invite/invite.wxml" />
+<template is="invite" data="{{ showInvite: showInvite,cancelbtn:cancelbtn,sendbtn:sendbtn,phoneInput:phoneInput}}" />

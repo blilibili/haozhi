@@ -1,0 +1,23 @@
+<view class="user-head">
+	<view class="head-name">天河门店<text class="user-local">店长-张小云</text></view>
+	<view class="head-id">ID:256321456</view>
+</view>
+<view class="weui-flex user-detail">
+	<view class="detail-hd">
+		<image src="/image/mendian_icon_dizhi.png"/>
+	</view>
+	<view class="weui-flex__item detail-bd">广州市天河区东圃镇荣圃街155号-163号</view>
+</view>
+<view class="weui-flex list-head">
+	<view class="weui-flex__item">
+		<text class="list-title">门店店长</text>
+	</view>
+	<view>
+		<button class="eidt-btn" bindtap="doChange">更换</button>
+	</view>
+</view>
+<view class="store-user">
+    <image src="/image/mendian_img_touxiang.png"/>
+	<view class="head-name">店长姓名<text class="user-local">天河门店</text><text class="store-admin">店长</text></view>
+	<view class="head-id">13652646582</view>
+</view>

@@ -1,15 +1,6 @@
 /* pages/physical/index.wxss */
 @import '../common/lib/weui.wxss';
 
-page{
-	background: #ffffff;
-	-webkit-user-select:none;
-	user-select:none;
-	width:100%;
-	overflow-x:hidden;
-	line-height:1.6;
-	font-family:-apple-system-font, "Helvetica Neue", sans-serif;
-}
 .page__bd{
 	padding-bottom:40px;
 }
@@ -54,4 +45,46 @@ page{
 	font-size: 30rpx;
 	color: #999999;
 	margin-top: 8rpx;
+}
+
+/*我的设备*/
+.dv-nobody{
+	text-align: center;
+	margin-top: 186rpx;
+}
+.store-list{
+	padding-bottom: 88rpx;
+}
+
+.weui-tab__content{
+    margin-top: 30rpx;
+}
+.weui-navbar{
+	background: #ffffff;
+	height: 94rpx;
+	border-bottom:none;
+}
+.weui-navbar__title{
+	color: #111111;
+	font-size: 30rpx;
+}
+.select-tab{
+	color: #ff9cb8;
+}
+.weui-navbar__slider{
+	background: #ff9cb8;
+	height: 4rpx;
+	width: 50%
+}
+.weui-search-bar__form{
+	border: none;
+}
+.weui-cells:after{
+	border:none;
+}
+.weui-cells:before {
+	border:none;
+}
+.weui-cell:before {
+	border-top: 1rpx solid #e5e5e5;
 }

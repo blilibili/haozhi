@@ -109,7 +109,10 @@ Page({
   showInviteBox:function()
   {
     this.setData({
-      showInvite:true
+      showInvite:true,
+      cancelbtn:"hideInviteBox",
+      sendbtn:"sendMessage",
+      phoneInput:"phoneInput"
     })
   },
   hideInviteBox:function()
@@ -117,6 +120,17 @@ Page({
     this.setData({
       showInvite:false
     })
+  },
+  sendMessage:function()
+  {
+    console.log("发送短信")
+    this.setData({
+      showInvite:false
+    })
+  },
+  phoneInput:function(res)
+  {
+    console.log(res)
   },
 
   removeMember:function()

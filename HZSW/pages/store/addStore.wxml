@@ -1,0 +1,70 @@
+<view class="weui-cells weui-cells_after-title select-box">
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label"><text>*</text>门店名称</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" value="{{storeName}}" placeholder="请输入门店名称" placeholder-class="noselect"/>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label"><text>*</text>门店 ID</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" value="{{storeId}}" placeholder="自动生成" placeholder-class="noselect"/>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label"><text>*</text>门店地址</view>
+        </view>
+        <view class="weui-cell__bd">
+            <picker mode="region" bindchange="bindAdressChange">
+                <view wx:if="{{regionIndex == -1}}" class="weui-select weui-select_in-select-after noselect">请选择省市区</view>
+                <view wx:else class="weui-select weui-select_in-select-after">{{region}}</view>
+            </picker>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input pb98">
+        <view class="weui-cell__hd">
+            <view class="weui-label"><text>*</text>详细地址</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" value="{{storeAddr}}" placeholder="请输入详细地址" placeholder-class="noselect"/>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label"><text>*</text>地图定位</view>
+        </view>
+        <view class="weui-cell__bd" wx:if="{{isLocal}}">
+            <radio value="r1" checked="true" color="#ff9cb8"/>定位成功
+        </view>
+        <view class="weui-cell__bd local-again" bindtap="getLocation">
+            {{localtext}}
+        </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </view>
+</view>
+<view class="weui-cells weui-cells_after-title select-box">
+    <view class="weui-cell weui-cell_input" wx:if="{{!inviteSuc}}">
+        <view class="weui-cell__hd">
+            <view class="weui-label"><text>*</text>门店店长</view>
+        </view>
+        <view class="weui-cell__bd local-again" bindtap="inviteStoreAdmin">
+            邀请新店长
+        </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </view>
+    <view class="weui-cell weui-cell_input" wx:if="{{inviteSuc}}">
+        <view class="weui-cell__hd">
+            <view class="weui-label"><text>*</text>门店店长</view>
+        </view>
+        <view class="weui-cell__bd local-again">
+            <radio value="r1" checked="true" color="#ff9cb8"/>已邀请
+        </view>
+    </view>
+</view>
+<import src="../component/invite/invite.wxml" />
+<template is="invite" data="{{ showInvite: showInvite,cancelbtn:cancelbtn,sendbtn:sendbtn,phoneInput:phoneInput}}" />

@@ -1,9 +1,42 @@
-<view class="nobody" wx:if="{{!hasdata}}">
-	<image class="nothing" src="/image/kong_icon.png"/>
-	<view class="nothing-text">暂无记录</view>
+<view wx:if="{{isPhysical}}">
+    <view class="nobody" wx:if="{{!hasdata}}">
+    	<image class="nothing" src="/image/kong_icon.png"/>
+    	<view class="nothing-text">暂无记录</view>
+    </view>
+    <view class="page" wx:if="{{hasdata}}">
+        <view class="page__bd">
+            <view class="weui-search-bar">
+                <view class="weui-search-bar__form">
+                    <view class="weui-search-bar__box">
+                        <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                        <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                        <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                            <icon type="clear" size="14"></icon>
+                        </view>
+                    </view>
+                    <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                        <icon class="weui-icon-search" type="search" size="14"></icon>
+                        <view class="weui-search-bar__text">搜索</view>
+                    </label>
+                </view>
+                <view class="weui-search-bar__cancel-btn btn-color" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+            </view>
+            <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
+            	<block wx:for="{{userList}}" wx:key="*this">
+    	            <navigator url="/pages/physical/detail?userid={{item}}" class="weui-cell" hover-class="none">
+    	                <view class="user-head">
+    						<view class="head-name">周梓轩<text class="user-local">天河门店</text></view>
+    						<view class="head-id">ID:256321456</view>
+    					</view>
+                        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    	            </navigator>
+    	        </block>
+            </view>
+        </view>
+    </view>
 </view>
-<view class="page" wx:if="{{hasdata}}">
-    <view class="page__bd">
+<view wx:if="{{!isPhysical}}">
+     <view class="page__bd">
         <view class="weui-search-bar">
             <view class="weui-search-bar__form">
                 <view class="weui-search-bar__box">
@@ -20,16 +53,63 @@
             </view>
             <view class="weui-search-bar__cancel-btn btn-color" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
         </view>
-        <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
-        	<block wx:for="{{userList}}" wx:key="*this">
-	            <navigator url="/pages/physical/detail?userid={{item}}" class="weui-cell" hover-class="none">
-	                <view class="user-head">
-						<view class="head-name">周梓轩<text class="user-local">天河门店</text></view>
-						<view class="head-id">ID:256321456</view>
-					</view>
-                    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-	            </navigator>
-	        </block>
+        <view class="weui-tab">
+            <view class="weui-navbar">
+                <block wx:for="{{tabs}}" wx:key="*this">
+                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                        <view class="weui-navbar__title {{activeIndex == index ? 'select-tab' : ''}}">{{item}}</view>
+                    </view>
+                </block>
+                <view class="weui-navbar__slider" style="transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+            </view>
+            <view class="weui-tab__panel">
+                <!--选项一的内容-->
+                <view class="dv-nobody" wx:if="{{!hasStore}}">
+                    <image class="nothing" src="/image/kong_icon.png"/>
+                    <view class="nothing-text-hd">暂无门店</view>
+                    <view class="nothing-text-bd">点击增加门店立即添加</view>
+                </view>
+                <view class="store-list" hidden="{{activeIndex != 0}}" wx:if="{{hasStore}}">
+                    <view class="weui-cells searchbar-result" wx:if="{{!isRemove}}">
+                        <block wx:for="{{checkboxItems}}" wx:key="value">
+                            <navigator url="/pages/store/detail?storeid={{item.id}}" class="weui-cell" hover-class="none">
+                                <view class="user-head">
+                                    <view class="head-name">天河门店<text class="user-local">店长-张小云</text></view>
+                                    <view class="head-id">ID:256321456</view>
+                                </view>
+                                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                            </navigator>
+                        </block>
+                    </view>
+                    <view class="weui-cells searchbar-result" wx:if="{{isRemove}}">
+                        <checkbox-group bindchange="checkboxChange">
+                        <label wx:for="{{checkboxItems}}" wx:key="value">
+                            <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}"/>
+                            <view class="weui-cell" hover-class="none">
+                                <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+                                <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}" color="#ff9cb8"></icon>
+                                <view class="user-head">
+                                    <view class="head-name">天河门店<text class="user-local">店长-张小云</text></view>
+                                    <view class="head-id">ID:256321456</view>
+                                </view>
+                            </view>
+                        </label>
+                        </checkbox-group>
+                    </view>
+                </view>
+                <!--选项二的内容-->
+                <view class="map-box" hidden="{{activeIndex != 1}}">
+                    <map
+                        style="width: 100%; height: {{height}}px;"
+                        latitude="{{latitude}}"
+                        longitude="{{longitude}}"
+                        markers="{{markers}}"
+                        bindmarkertap="goStore"
+                        bindcallouttap="goStore"
+                        >
+                      </map>
+                </view>
+            </view>
         </view>
     </view>
 </view>

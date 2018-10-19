@@ -50,5 +50,6 @@ App({
     userInfo: null,
     userRule:3,//1为管理员,2为店长,3为普通员工
     userList:[],
+    isPhysical:true,//true为打开理疗记录页面，false为打开设备管理页面
   }
 })

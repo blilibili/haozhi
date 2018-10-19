@@ -17,7 +17,7 @@
 </view>
 
 <view class="weui-cells" wx:if="{{userRule > 1}}">
-    <navigator url="/pages/my/vip" class="weui-cell weui-cell_access" hover-class="none">
+    <navigator url="/pages/device/index" class="weui-cell weui-cell_access" hover-class="none">
         <image class="my-icon" src="/image/wode_icon_huiyuan.png"/>
         <view class="weui-cell__bd my-title">我的会员</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
