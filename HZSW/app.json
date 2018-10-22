@@ -24,7 +24,11 @@
     "pages/my/msgSys",
     "pages/device/index",
     "pages/store/detail",
-    "pages/store/addStore"
+    "pages/store/addStore",
+    "pages/device/detail",
+    "pages/device/chooseStore",
+    "pages/device/chooseRepertory",
+    "pages/device/disSuccess"
   ],
   "window": {
     "backgroundTextStyle": "light",

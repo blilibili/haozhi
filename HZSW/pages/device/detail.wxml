@@ -1,0 +1,12 @@
+<view class="weui-flex user-head">
+	<view class="weui-flex__item">
+		<view class="head-name">设备AAA-1234<text class="user-local">天河门店</text></view>
+		<view class="head-id">ID:256321456</view>
+	</view>
+	<view class="right-item">
+		<text>使用中</text>
+	</view>
+</view>
+<button class="login" bindtap="showDispatchBox">调度</button>
+<import src="../component/dispatch/dispatch.wxml" />
+<template is="dispatch" data="{{ showDispatch: showDispatch,title: title,items:dispatchers,cancelbtn:cancelbtn,confirmbtn:confirmbtn}}" />

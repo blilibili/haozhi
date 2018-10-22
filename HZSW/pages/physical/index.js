@@ -41,11 +41,11 @@ Page({
             });
         }
     });
-
-    var store = [{latitude: 23.099994,longitude: 113.324520,name:'番禺门店',id:1},{latitude: 23.099994,longitude: 113.344520,name:'天河门店',id:2}];
+    //status 1:空闲 2:使用中 3:故障
+    var store = [{latitude: 23.099994,longitude: 113.324520,status:1,name:'空闲',id:1,icon:"/image/shebei_icon_dingwei_kongxian.png"},{latitude: 23.099994,longitude: 113.344520,status:2,name:'使用中',id:2,icon:"/image/mendian_icon_dingwei.png"},{latitude: 23.099994,longitude: 113.345520,status:3,name:'故障',id:3,icon:"/image/shebei_icon_dingwei_guzhang.png"}];
     var markers = [];
     for (var i = store.length - 1; i >= 0; i--) {
-      markers.push({id:store[i].id,latitude: store[i].latitude,longitude: store[i].longitude,iconPath: '/image/mendian_icon_dingwei.png',width:18,height:21,callout:{content:store[i].name,fontSize:10,color:'#ff9cb8',display:'ALWAYS',borderRadius:3,borderColor:'#ff9cb8',bgColor:"#ffffff",padding:2,textAlign:"center"
+      markers.push({id:store[i].id,latitude: store[i].latitude,longitude: store[i].longitude,iconPath: store[i].icon,width:18,height:21,callout:{content:store[i].name,fontSize:10,color:'#ff9cb8',display:'ALWAYS',borderRadius:3,borderColor:'#ff9cb8',bgColor:"#ffffff",padding:2,textAlign:"center"
         }})
     }
 
@@ -172,5 +172,11 @@ Page({
           sliderOffset: e.currentTarget.offsetLeft,
           activeIndex: e.currentTarget.id
       });
+  },
+  goDetail:function()
+  {
+    wx.navigateTo({
+      url:"/pages/device/detail"
+    })
   },
 })

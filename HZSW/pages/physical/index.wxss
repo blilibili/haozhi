@@ -88,3 +88,8 @@
 .weui-cell:before {
 	border-top: 1rpx solid #e5e5e5;
 }
+.search-text{
+	font-size: 28rpx;
+	color: #ff9cb8;
+	padding: 38rpx 0rpx 22rpx 30rpx
+}

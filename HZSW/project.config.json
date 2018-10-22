@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 12,
+			"current": 14,
 			"list": [
 				{
 					"id": -1,
@@ -112,6 +112,18 @@
 					"name": "增加门店",
 					"pathName": "pages/store/addStore",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "设备详情",
+					"pathName": "pages/device/detail",
+					"query": ""
+				},
+				{
+					"id": 14,
+					"name": "调度成功",
+					"pathName": "pages/device/disSuccess",
+					"query": "type=store"
 				}
 			]
 		}

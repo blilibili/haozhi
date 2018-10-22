@@ -1,0 +1,64 @@
+/* pages/device/disSuccess.wxss */
+.weui-msg {
+  padding-top: 90rpx;
+  text-align: center;
+}
+.weui-msg__link {
+  display: inline;
+  color: #586C94;
+}
+.weui-msg__icon-area {
+  margin-bottom: 58rpx;
+}
+.weui-msg__text-area {
+  margin-bottom: 25px;
+  padding: 0 20px;
+}
+.weui-msg__title {
+	color: #333333;
+	font-size: 36rpx;
+}
+.user-head{
+	padding: 28rpx 30rpx;
+	background: white;
+	width: 100%;
+	text-align: left;
+}
+.user-head image{
+	width: 100rpx;
+	height: 100rpx;
+	float: left;
+	margin-right: 24rpx;
+}
+.head-name{
+	font-size: 34rpx;
+	color: #111111;
+}
+.user-local{
+	font-size: 22rpx;
+	color: #ffffff;
+	border-radius: 6rpx;
+	background: #cbcbcb;
+	margin-left: 16rpx;
+	padding: 8rpx 14rpx;
+}
+.head-id{
+	font-size: 30rpx;
+	color: #999999;
+	margin-top: 8rpx;
+}
+.head-id text{
+	float: right;
+	margin-right: 70rpx;
+}
+.login{
+	width: 600rpx;
+	border-radius: 42rpx;
+	background: #ff9cb8;
+	margin-top: 80rpx;
+	font-size: 36rpx;
+	color: #ffffff;
+}
+.login:after{
+	border:none;
+}
