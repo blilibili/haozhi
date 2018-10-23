@@ -1,1 +1,96 @@
 /* pages/device/index.wxss */
+/* pages/physical/index.wxss */
+@import '../common/lib/weui.wxss';
+
+.page__bd{
+	padding-bottom:40px;
+}
+.nobody{
+	text-align: center;
+	margin-top: 362rpx;
+}
+.searchbar-result{
+    margin-top: 0;
+    font-size: 14px;
+}
+.searchbar-result:before{
+    display: none;
+}
+.weui-cell{
+    padding: 12px 15px 12px 15px;
+}
+.btn-color{
+	color: #ff9cb8;
+}
+.weui-search-bar{
+	background: #f6f6f6;
+	border-bottom: none;
+}
+.user-head{
+	background: white;
+	width: 100%;
+}
+.head-name{
+	font-size: 34rpx;
+	color: #111111;
+}
+.user-local{
+	font-size: 22rpx;
+	color: #ffffff;
+	border-radius: 6rpx;
+	background: #cbcbcb;
+	margin-left: 16rpx;
+	padding: 8rpx 14rpx;
+}
+.head-id{
+	font-size: 30rpx;
+	color: #999999;
+	margin-top: 8rpx;
+}
+
+/*我的设备*/
+.dv-nobody{
+	text-align: center;
+	margin-top: 186rpx;
+}
+.store-list{
+	padding-bottom: 88rpx;
+}
+
+.weui-tab__content{
+    margin-top: 30rpx;
+}
+.weui-navbar{
+	background: #ffffff;
+	height: 94rpx;
+	border-bottom:none;
+}
+.weui-navbar__title{
+	color: #111111;
+	font-size: 30rpx;
+}
+.select-tab{
+	color: #ff9cb8;
+}
+.weui-navbar__slider{
+	background: #ff9cb8;
+	height: 4rpx;
+	width: 50%
+}
+.weui-search-bar__form{
+	border: none;
+}
+.weui-cells:after{
+	border:none;
+}
+.weui-cells:before {
+	border:none;
+}
+.weui-cell:before {
+	border-top: 1rpx solid #e5e5e5;
+}
+.search-text{
+	font-size: 28rpx;
+	color: #ff9cb8;
+	padding: 38rpx 0rpx 22rpx 30rpx
+}

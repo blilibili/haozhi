@@ -3,7 +3,7 @@
 		<image src="/image/wode_touxiang.png"/>
 	</view>
 	<view class="weui-flex_item user-head">
-		<view class="head-name">店长姓名<text class="user-local">天河门店</text></view>
+		<view class="head-name">{{name}}<text class="user-local">天河门店</text></view>
 		<view class="head-id">13652646582</view>
 	</view>
 </view>

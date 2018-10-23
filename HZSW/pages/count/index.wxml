@@ -1,2 +1,4 @@
-<!--pages/count/index.wxml-->
-<text>pages/count/index.wxml</text>
+<view class="nobody">
+    <image class="nothing" src="/image/kong_icon.png"/>
+    <view class="nothing-text">暂无统计数据</view>
+</view>

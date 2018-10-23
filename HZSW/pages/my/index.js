@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    name:'店长姓名'
   },
 
   /**
@@ -26,7 +26,8 @@ Page({
             app.globalData.userRule = 1
             app.globalData.isPhysical = false
             that.setData({
-              userRule:1
+              userRule:1,
+              name:'管理员'
             })
             wx.setTabBarItem({
               index:0,
@@ -108,9 +109,9 @@ Page({
 
   toDevice:function()
   {
-    app.globalData.isPhysical = false
-    wx.switchTab({
-      url:"/pages/physical/index"
+    // app.globalData.isPhysical = false
+    wx.navigateTo({
+      url:"/pages/device/index"
     })
   },
 })

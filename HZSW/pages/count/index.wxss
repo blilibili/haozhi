@@ -1,1 +1,5 @@
 /* pages/count/index.wxss */
+.nobody{
+	text-align: center;
+	margin-top: 362rpx;
+}

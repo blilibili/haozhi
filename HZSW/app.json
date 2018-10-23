@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/home/index",
     "pages/physical/index",
     "pages/index/index",
     "pages/my/index",
-    "pages/home/index",
     "pages/count/index",
     "pages/home/editUser",
     "pages/home/resetPwd",
@@ -28,7 +28,8 @@
     "pages/device/detail",
     "pages/device/chooseStore",
     "pages/device/chooseRepertory",
-    "pages/device/disSuccess"
+    "pages/device/disSuccess",
+    "pages/device/deviceList"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,18 +1,39 @@
 // pages/device/index.js
+var utils = require("../../utils/util.js");
+var app = getApp()
+var that
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    checkboxItems: [
+        {name: '员工姓名', value: '0'},
+        {name: '员工姓名', value: '1'},
+        {name: '员工姓名', value: '2'},
+        {name: '员工姓名', value: '3'},
+        {name: '员工姓名', value: '4'},
+        {name: '员工姓名', value: '5'},
+        {name: '员工姓名', value: '6'},
+        {name: '员工姓名', value: '7'},
+        {name: '员工姓名', value: '8'},
+    ],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    that = this
+    this.setData({
+      hasStore:false
+    })
+    setTimeout(function(){
+      that.setData({
+        hasStore:true,
+      })
+    },1000)
   },
 
   /**
@@ -62,5 +83,27 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+  showInput: function () {
+      this.setData({
+          inputShowed: true
+      });
+  },
+  hideInput: function () {
+      this.setData({
+          inputVal: "",
+          inputShowed: false
+      });
+  },
+  clearInput: function () {
+      this.setData({
+          inputVal: ""
+      });
+  },
+  inputTyping: function (e) {
+      this.setData({
+          inputVal: e.detail.value
+      });
+  },
 })

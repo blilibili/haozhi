@@ -83,7 +83,7 @@ Page({
   doEdit:function()
   {
     wx.switchTab({
-      url:"/pages/index/index"
+      url:"/pages/my/index"
     })
     return;
     wx.redirectTo({

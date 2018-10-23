@@ -33,7 +33,7 @@ Page({
    */
   onLoad: function (options) {
     that = this
-    app.globalData.userRule = 1
+    // app.globalData.userRule = 1
     if(app.globalData.userRule == 1){
       this.setData({
         hasStore:false

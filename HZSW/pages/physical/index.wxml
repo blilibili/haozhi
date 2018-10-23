@@ -69,7 +69,7 @@
                     <view class="nothing-text">暂无设备</view>
                 </view>
                 <view class="store-list" hidden="{{activeIndex != 0}}" wx:if="{{hasStore}}">
-                    <view class="search-text">搜索结果(3)</view>
+                    <view class="search-text" wx:if="{{inputVal.length > 0}}">搜索结果(3)</view>
                     <view class="weui-cells searchbar-result">
                         <block wx:for="{{checkboxItems}}" wx:key="value">
                             <navigator url="/pages/device/detail?storeid={{item.id}}" class="weui-cell" hover-class="none">

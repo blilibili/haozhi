@@ -42,10 +42,10 @@ Page({
         }
     });
     //status 1:空闲 2:使用中 3:故障
-    var store = [{latitude: 23.099994,longitude: 113.324520,status:1,name:'空闲',id:1,icon:"/image/shebei_icon_dingwei_kongxian.png"},{latitude: 23.099994,longitude: 113.344520,status:2,name:'使用中',id:2,icon:"/image/mendian_icon_dingwei.png"},{latitude: 23.099994,longitude: 113.345520,status:3,name:'故障',id:3,icon:"/image/shebei_icon_dingwei_guzhang.png"}];
+    var store = [{latitude: 23.099994,longitude: 113.324520,status:1,name:'空闲',id:1,icon:"/image/shebei_icon_dingwei_kongxian.png",color:"#009944",borderColor:"#009944"},{latitude: 23.099994,longitude: 113.344520,status:2,name:'使用中',id:2,icon:"/image/mendian_icon_dingwei.png",color:"#ff9cb8",borderColor:"#ff9cb8"},{latitude: 23.099994,longitude: 113.345520,status:3,name:'故障',id:3,icon:"/image/shebei_icon_dingwei_guzhang.png",color:"#f43531",borderColor:"#f43531"}];
     var markers = [];
     for (var i = store.length - 1; i >= 0; i--) {
-      markers.push({id:store[i].id,latitude: store[i].latitude,longitude: store[i].longitude,iconPath: store[i].icon,width:18,height:21,callout:{content:store[i].name,fontSize:10,color:'#ff9cb8',display:'ALWAYS',borderRadius:3,borderColor:'#ff9cb8',bgColor:"#ffffff",padding:2,textAlign:"center"
+      markers.push({id:store[i].id,latitude: store[i].latitude,longitude: store[i].longitude,iconPath: store[i].icon,width:18,height:21,callout:{content:store[i].name,fontSize:10,color:store[i].color,display:'ALWAYS',borderRadius:3,borderColor:store[i].borderColor,bgColor:"#ffffff",padding:2,textAlign:"center"
         }})
     }
 
@@ -98,7 +98,8 @@ Page({
         isPhysical:false
       })
       this.setData({
-        hasStore:false
+        hasStore:true
+        // hasStore:false
       })
       setTimeout(function(){
         that.setData({
