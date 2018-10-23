@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 16,
+			"current": 17,
 			"list": [
 				{
 					"id": -1,
@@ -135,6 +135,12 @@
 					"id": -1,
 					"name": "店长-我的设备详情",
 					"pathName": "pages/device/deviceList",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的仓库",
+					"pathName": "pages/count/index",
 					"query": ""
 				}
 			]

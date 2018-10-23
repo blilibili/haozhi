@@ -27,14 +27,6 @@ Page({
    */
   onLoad: function (options) {
     that = this
-    if(app.globalData.userRule == 1){
-      wx.setNavigationBarTitle({
-        title:"我的仓库"
-      })
-    }
-    this.setData({
-      userRule:app.globalData.userRule
-    })
   },
 
   /**
@@ -86,29 +78,46 @@ Page({
 
   },
 
-  /*我的仓库===============================================================*/
+  checkboxChange: function (e) {
+      console.log('checkbox发生change事件，携带value值为：', e.detail.value);
 
-  showInput: function () {
+      var checkboxItems = this.data.checkboxItems, values = e.detail.value;
+      for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
+          checkboxItems[i].checked = false;
+
+          for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
+              if(checkboxItems[i].value == values[j]){
+                  checkboxItems[i].checked = true;
+                  break;
+              }
+          }
+      }
+
       this.setData({
-          inputShowed: true
-      });
-  },
-  hideInput: function () {
-      this.setData({
-          inputVal: "",
-          inputShowed: false
-      });
-  },
-  clearInput: function () {
-      this.setData({
-          inputVal: ""
-      });
-  },
-  inputTyping: function (e) {
-      this.setData({
-          inputVal: e.detail.value
+          checkboxItems: checkboxItems
       });
   },
 
-  
+  doCancle:function()
+  {
+    this.setData({
+      isEdit:false
+    })
+  },
+  doEdit:function()
+  {
+    this.setData({
+      isEdit:true
+    })
+  },
+  selectAll:function()
+  {
+    var checkboxItems = this.data.checkboxItems
+    for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
+      checkboxItems[i].checked = true;
+    }
+    this.setData({
+      checkboxItems: checkboxItems
+    });
+  },
 })

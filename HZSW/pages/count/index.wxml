@@ -1,4 +1,38 @@
-<view class="nobody">
-    <image class="nothing" src="/image/kong_icon.png"/>
-    <view class="nothing-text">暂无统计数据</view>
+<view class="tc" wx:if="{{userRule > 1}}">
+	<view class="nobody">
+	    <image class="nothing" src="/image/kong_icon.png"/>
+	    <view class="nothing-text">暂无统计数据</view>
+	</view>
+</view>
+
+<view wx:if="{{userRule == 1}}">
+
+	<view class="weui-search-bar">
+        <view class="weui-search-bar__form">
+            <view class="weui-search-bar__box">
+                <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                    <icon type="clear" size="14"></icon>
+                </view>
+            </view>
+            <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                <icon class="weui-icon-search" type="search" size="14"></icon>
+                <view class="weui-search-bar__text">搜索</view>
+            </label>
+        </view>
+        <view class="weui-search-bar__cancel-btn btn-color" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+    </view>
+
+    <view class="weui-cells weui-cells_after-title" wx:if="{{!isEdit}}">
+	    <view class="weui-cell weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
+	        <view class="weui-cell__bd">
+	        	<view>
+					<view class="head-name">仓库名称</view>
+					<view class="head-id">ID:256321456</view>
+				</view>
+	        </view>
+	        <view class="weui-cell__ft weui-cell__ft_in-access user-weight"></view>
+	    </view>
+	</view>
 </view>
