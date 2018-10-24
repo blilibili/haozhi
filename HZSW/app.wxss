@@ -209,6 +209,12 @@ page{
 	overflow:hidden;  
 	display: block;  
 }
+.head-user button ,.head-user image{
+  font-size: 15px;
+  line-height: 4em;
+  width: 59px;
+  height: 59px;
+}
 .head-nick{
 	font-size: 32rpx;
 	color: #ffffff

@@ -1,10 +1,10 @@
 <view class="weui-flex user-info">
 	<view class="user-avatar">
-		<image src="/image/wode_touxiang.png"/>
+		<image src="{{userinfo.avatar}}"/>
 	</view>
 	<view class="weui-flex_item user-head">
-		<view class="head-name">{{name}}<text class="user-local">天河门店</text></view>
-		<view class="head-id">13652646582</view>
+		<view class="head-name">{{userinfo.name}}<text class="user-local">天河门店</text></view>
+		<view class="head-id">{{userinfo.phone}}</view>
 	</view>
 </view>
 

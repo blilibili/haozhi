@@ -1,8 +1,16 @@
 //app.js
+var util = require('./utils/util.js');
 App({
   onLaunch: function () {
 
-    // 登录
+    if(wx.getStorageSync('userinfo')){
+      this.globalData.userInfo = wx.getStorageSync('userinfo')
+      wx.switchTab({
+        url:"/pages/my/index"
+      })
+    }
+
+    /*// 登录
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
@@ -27,7 +35,7 @@ App({
           })
         }
       }
-    })
+    })*/
   },
   /**
    * 提示信息
@@ -46,6 +54,194 @@ App({
       });
     }, _count);
   },
+
+  /**
+     * 
+   * @return {[type]}
+   */
+  test: function () {
+    var user_info = wx.getStorageSync('user_info');
+    var city = wx.getStorageSync('city');
+    var data = {
+      "userid": user_info['user_id'],
+      "city": city.city_id,
+      'instid': util.config.wallet.instid,
+      'mchntid': util.config.wallet.mchntid,
+      "syssesq": util.UUID(),
+      "txncode": 'vcardQuery',
+      "mobiletype": wx.getSystemInfoSync().model,
+      'imei': wx.getStorageSync('imei'),
+      "txndate": util.getDateString(),
+      "txntime": util.getTimeString()
+    };
+    var signcode = util.signpk(JSON.stringify(data));
+    data = 'data=' + JSON.stringify({
+        'txninfo': JSON.stringify(data),
+        'signcode': signcode
+      });
+    return data;
+  },
+
+  checkPhone:function(phone)
+  {
+    var data = JSON.stringify({
+      "phone":phone,
+      "txncode":"checkPhone"
+    })
+    return data;
+  },
+
+  userLogin:function(phone,pwd,code)
+  {
+    var data = JSON.stringify({
+      "phone":phone,
+      "password":pwd,
+      "code":code,
+      "txncode":"userLogin"
+    })
+    return data;
+  },
+
+  resetPassword:function(phone,code,originalPassword,newPassword)
+  {
+    var data = JSON.stringify({
+      "phone":phone,
+      "originalPassword":originalPassword,
+      "newPassword":newPassword,
+      "code":code,
+      "txncode":"resetPassword"
+    })
+    return data;
+  },
+
+  perfectInformation:function(name,sex)
+  {
+    var data = JSON.stringify({
+      "name":name,
+      "sex":sex,
+      "id":this.globalData.userInfo.id,
+      "txncode":"perfectInformation"
+    })
+    return data;
+  },
+
+  addImg:function(phone,imgUrl)
+  {
+    var data = JSON.stringify({
+      "phone":phone,
+      "imgUrl":imgUrl,
+      "txncode":"updateAvatar"
+    })
+    return data;
+  },
+
+  showModal:function(content,title='',showCancel = false,cancelText = '',cancelColor = '',confirmText = '确定',confirmColor = '')
+  {
+    wx.showModal({
+      title: title,
+      showCancel: showCancel,
+      cancelText: cancelText,
+      cancelColor: cancelColor,
+      confirmText: confirmText,
+      confirmColor: confirmColor,
+      content: content,
+      success:function(res){
+        if (res.confirm) {
+
+        } else if (res.cancel) {
+
+        }
+      }
+    })
+  },
+
+  /**
+   * 网络请求统一方法
+   * @param  {[type]} data [description]
+   * @param  {[type]} url  [description]
+   * @param  {String} cb   [description]
+   * @return {[type]}      [description]
+   */
+  send_data: function (data, url, cb = '') {
+    var that = this;
+    if (!url) {
+      url = util.ajaxUrl();
+    }
+
+    var d = JSON.parse(data);
+    util.zhw_log(data);
+    wx.request({
+      url: 'https://mylidan.com/api/'+url,
+      method: 'POST',
+      data: data,
+      header: {
+          'content-type': 'application/json'
+      },
+      success: function (res) {
+        util.zhw_log(res);
+        if (res.statusCode == 200) {
+          if (typeof res.data != 'object') { //微信返回的
+            return cb(res.data);
+          }
+
+          //验签，如果有需要的话
+          //your code...
+
+          var txninfo = res.data;
+          //Memo 响应信息
+          if(txninfo.resultCode != '10000'){
+            if(d.txncode == 'userLogin' || d.txncode == 'perfectInformation' || d.txncode == 'resetPassword'){
+              wx.hideLoading()
+              wx.showModal({
+                title: '',
+                showCancel: false,
+                content: txninfo.resultMessage
+              })
+            }else{
+              typeof cb == "function" && cb(txninfo);
+            }
+          } else {
+            typeof cb == "function" && cb(txninfo);
+          }
+
+        } else if (res.statusCode == 502) {
+          wx.hideLoading()
+          wx.showModal({
+            title: '',
+            showCancel: false,
+            content: util.errCode()['000003']
+          })
+        } else if (res.statusCode == 504) {
+          wx.hideLoading()
+          wx.showModal({
+            title: '',
+            showCancel: false,
+            content: util.errCode()['000005']
+          })
+        } else {
+          wx.hideLoading()
+          wx.showModal({
+            title: '',
+            showCancel: false,
+            content: util.errCode()['000001']
+          })
+        }
+      },
+      fail: function (res) {
+        wx.hideLoading()
+        util.zhw_log(res)
+        wx.showModal({
+          title: '',
+          showCancel: false,
+          content: res.errMsg
+        })
+      }
+    })
+
+  },
+
+  decode_package: function (res) {},
+
   globalData: {
     userInfo: null,
     userRule:3,//1为管理员,2为店长,3为普通员工

@@ -28,6 +28,7 @@
 
 }
 .user-avatar image{
+	border-radius:50%;
 	width: 120rpx;
 	height: 120rpx;
 }

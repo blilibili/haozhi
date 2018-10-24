@@ -1,4 +1,7 @@
-// pages/home/editUser.js
+// pages/home/editUser.
+var util = require("../../utils/util.js");
+var app = getApp()
+var that
 Page({
 
   /**
@@ -8,14 +11,21 @@ Page({
     items: [
       {value: '1', name: '男', checked: 'true'},
       {value: '2', name: '女'},
-    ]
+    ],
+    sexIndex:1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    that = this
+    if (wx.getStorageSync('wx_user')) {
+      this.setData({
+        hasAvatar:true,
+        avatar:wx.getStorageSync('wx_user').avatarUrl
+      })
+    }
   },
 
   /**
@@ -68,26 +78,60 @@ Page({
   },
 
   radioChange: function(e) {
-    console.log('radio发生change事件，携带value值为：', e.detail.value)
-
-    var items = this.data.items;
+    var items = this.data.items
+    var value = e.detail.value;
     for (var i = 0, len = items.length; i < len; ++i) {
-      items[i].checked = items[i].value == e.detail.value
+      items[i].checked = items[i].value == value
     }
 
     this.setData({
-      items: items
+      items: items,
+      sexIndex:value
     });
   },
 
   doEdit:function()
   {
-    wx.switchTab({
-      url:"/pages/my/index"
+    if(this.data.name == undefined || this.data.name.length < 1){
+      app.showModal('姓名不能为空')
+      return
+    }
+    var sendata = app.perfectInformation(this.data.name,this.data.sexIndex)
+    wx.showLoading();
+    app.send_data(sendata, util.config.url.perfectInformation, function (res) {
+      if(res.resultCode == '10000'){
+        //如果不是管理员则本地保存信息
+        app.globalData.userInfo.name = that.data.name
+        app.globalData.userInfo.sex = that.data.sexIndex
+        if(app.globalData.userInfo.grade != 1){
+          wx.setStorageSync('userinfo',app.globalData.userInfo)
+        }
+        wx.switchTab({
+          url:"/pages/my/index"
+        })
+      }
     })
     return;
     wx.redirectTo({
       url:"/pages/home/index"
+    })
+  },
+
+  getName:function(options)
+  {
+    this.setData({
+      name:options.detail.value
+    })
+  },
+
+  getUserInfo:function(options)
+  {
+    util.zhw_log(options)
+    var wx_user = JSON.parse(options.detail.rawData);
+    wx.setStorageSync('wx_user',wx_user)
+    this.setData({
+      hasAvatar:true,
+      avatar:wx_user.avatarUrl
     })
   },
 })

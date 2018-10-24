@@ -1,12 +1,20 @@
-<import src="head.wxml"/>
-<template is="head"/>
+<image class="head-topbg" src="/image/login_bg.png"/>
+<view class="head-content">
+	<view class="head-user">
+		<button open-type="getUserInfo" bindgetuserinfo="getUserInfo" hover-class="none" wx:if="{{!hasAvatar}}">授权</button>
+		<image src="{{avatar}}" wx:if="{{hasAvatar}}"/>
+	</view>
+	<view class="head-nick">
+		<open-data type="userNickName"></open-data>
+	</view>
+</view>
 <view class="form-input">
 	<view class="weui-flex form-input-item">
 		<view class="left-icon">
 			<text>*</text>姓名
 		</view>
 		<view class="weui-flex__item">
-			<input type="text" placeholder="请输入您的姓名" name="name" maxlength="15"/>
+			<input type="text" placeholder="请输入您的姓名" name="name" maxlength="15" bindinput="getName"/>
 		</view>
 	</view>
 	<view class="weui-flex form-input-item item-list">
