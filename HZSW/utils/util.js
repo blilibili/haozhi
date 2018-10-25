@@ -16,6 +16,7 @@ var config = {
   url : {
     checkout:'index/checkout',
     login:'index/login',
+    smsCode:'index/smsCode',
     perfectInformation:'index/perfectInformation',
     resetPassword:'index/resetPassword',
     addImg:'index/addImg',
@@ -99,6 +100,9 @@ function isPoneAvailable(pone) {
   }
 }
 
+function getPhone(phone,num) {
+  return phone.substr(0,3)+'****'+phone.substr(7,9)
+}
 
 
 module.exports = {
@@ -111,4 +115,5 @@ module.exports = {
   str_repeat:str_repeat,
   config:config,
   isPoneAvailable:isPoneAvailable,
+  getPhone:getPhone,
 }

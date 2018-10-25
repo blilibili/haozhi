@@ -1,11 +1,12 @@
 <image class="head-topbg" src="/image/login_bg.png"/>
 <view class="head-content">
 	<view class="head-user">
-		<button open-type="getUserInfo" bindgetuserinfo="getUserInfo" hover-class="none" wx:if="{{!hasAvatar}}">授权</button>
+		<image src="/image/login_touxiang_moren.png" wx:if="{{!hasAvatar}}"/>
 		<image src="{{avatar}}" wx:if="{{hasAvatar}}"/>
 	</view>
 	<view class="head-nick">
-		<open-data type="userNickName"></open-data>
+		<button open-type="getUserInfo" bindgetuserinfo="getUserInfo" hover-class="none" wx:if="{{!hasAvatar}}">点击授权</button>
+		<open-data type="userNickName" wx:if="{{hasAvatar}}"></open-data>
 	</view>
 </view>
 <view class="form-input">

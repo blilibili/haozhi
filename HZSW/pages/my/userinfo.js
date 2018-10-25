@@ -1,4 +1,7 @@
 // pages/my/userinfo.js
+var util = require("../../utils/util.js");
+var app = getApp()
+var that
 Page({
 
   /**
@@ -6,14 +9,22 @@ Page({
    */
   data: {
     sexItem:['男','女'],
-    sexIndex:1,
+    sexIndex:'',
+    userinfo:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    that = this
+    var user = app.globalData.userInfo
+    user.phone = util.getPhone(user.phone,4)
+    util.zhw_log(user)
+    this.setData({
+      userinfo:user,
+      sexIndex:(user.sex-1)
+    })
   },
 
   /**
@@ -67,9 +78,19 @@ Page({
 
   bindSexChange:function(e)
   {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      sexIndex: e.detail.value
+    var sex = (parseInt(e.detail.value)+1);
+    var sendata = app.updateSex(this.data.userinfo.id,sex)
+    app.send_data(sendata, util.config.url.updateSex, function (res) {
+      if(res.resultCode == '10000'){
+        //如果不是管理员则本地保存信息
+        app.globalData.userInfo.sex = sex
+        if(app.globalData.userInfo.grade != 1){
+          wx.setStorageSync('userinfo',app.globalData.userInfo)
+        }
+        that.setData({
+          sexIndex:sex-1
+        })
+      }
     })
   },
 })

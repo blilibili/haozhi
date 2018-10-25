@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userinfo:app.globalData.userInfo
+    userinfo:'',
   },
 
   /**
@@ -62,13 +62,23 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    app.globalData.userInfo.avatar = wx.getStorageSync('wx_user').avatarUrl;
-    wx.getStorageSync('userinfo',app.globalData.userInfo)
+    if(!wx.getStorageSync('wx_user')){
+      app.globalData.userInfo.avatar = '/image/huiyuan_touxiang_moren.png';
+    }else{
+      app.globalData.userInfo.avatar = wx.getStorageSync('wx_user').avatarUrl;
+      var sendata = app.addImg(app.globalData.userInfo.phone,app.globalData.userInfo.avatar)
+      app.send_data(sendata, util.config.url.addImg, function (res) {
+        if(res.resultCode == '10000'){
+          //如果不是管理员则本地保存信息
+          if(app.globalData.userInfo.grade != 1){
+            wx.setStorageSync('userinfo',app.globalData.userInfo)
+          }
+        }
+      })
+    }
     this.setData({
       userinfo:app.globalData.userInfo
     })
-    var sendata = app.addImg(app.globalData.userInfo.phone,app.globalData.userInfo.avatar)
-    app.send_data(sendata, util.config.url.addImg, function (res) {})
   },
 
   /**

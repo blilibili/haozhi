@@ -1,7 +1,6 @@
 <view class="weui-flex user-head">
 	<view class="weui-flex__item">
-		<view class="head-name">周梓轩<text class="user-local">天河门店</text></view>
-		<view class="head-id">ID:256321456</view>
+		ID:{{memberId}}
 	</view>
 	<view class="right-item">
 		<text>趋势图</text>
@@ -13,7 +12,7 @@
 	<view class="weui-flex__item">
 		<text class="list-title">理疗记录</text>
 	</view>
-	<view>
+	<view wx:if="{{hasdata}}">
 		<button class="eidt-btn" wx:if="{{isEdit}}" bindtap="doCancle">取消</button>
 		<button class="eidt-btn" wx:if="{{!isEdit}}" bindtap="doEdit">编辑</button>
 	</view>
@@ -27,8 +26,8 @@
                 <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
                 <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}" color="#ff9cb8"></icon>
             </view>
-            <view class="weui-cell__bd">{{item.name}}</view>
-            <view class="weui-cell__ft weui-cell__ft_in-access user-weight">50kg</view>
+            <view class="weui-cell__bd">{{item.detectionTime}}</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access user-weight">{{item.weight}}kg</view>
         </label>
     </checkbox-group>
 </view>

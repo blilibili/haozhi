@@ -1,21 +1,14 @@
 // pages/physical/detail.js
+var util = require("../../utils/util.js");
+var app = getApp()
+var that
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    checkboxItems: [
-        {name: '18/09/15 10:50', value: '0', checked: true},
-        {name: '18/09/10 10:50', value: '1'},
-        {name: '18/09/10 10:50', value: '2'},
-        {name: '18/08/25 10:50', value: '3'},
-        {name: '18/08/25 10:50', value: '4'},
-        {name: '18/08/25 10:50', value: '5'},
-        {name: '18/08/25 10:50', value: '6'},
-        {name: '18/08/25 10:50', value: '7'},
-        {name: '18/08/25 10:50', value: '8'},
-    ],
+    checkboxItems: [],
     isEdit:false,
   },
 
@@ -23,8 +16,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.userid)
-    
+    that = this
+    util.zhw_log(options.memberId)
+    this.setData({
+      memberId:memberId
+    })
+    var sendata = app.getDetectionRecordList(options.memberId)
+    app.send_data(sendata, util.config.url.getStaffList, function (res) {
+      if(res.resultCode == '10000' && res.resultData.length > 0){
+        that.setData({
+          hasdata:true,
+          checkboxItems:res.resultData
+        })
+      }else{
+        that.setData({
+          hasdata:false
+        })
+      }
+    })
   },
 
   /**

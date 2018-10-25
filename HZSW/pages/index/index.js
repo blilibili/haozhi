@@ -10,7 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title:"扫膜",
+    title:"扫设备",
     step:1,
     checkboxItems: [
         {name: '员工姓名', value: '0'},
@@ -91,10 +91,10 @@ Page({
       })
     }else if(app.globalData.userRule == 2){
       //店长页面
-      this.forScan()
+      // this.forScan()
     }else{
       //普通员工页面
-      this.forScan()
+      // this.forScan()
     }
     this.setData({
       userRule:app.globalData.userRule
@@ -189,7 +189,7 @@ Page({
         mask:true
       })
       this.setData({
-        title:'扫设备',
+        title:'扫膜',
         step:2
       })
     }else if(this.data.step == 2){
@@ -209,7 +209,7 @@ Page({
         mask:true
       })
       this.setData({
-        title:'扫膜',
+        title:'扫设备',
         step:1
       })
     }

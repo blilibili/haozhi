@@ -117,27 +117,32 @@ Page({
       app.showModal('请输入正确的手机号码');return;
     }
     if(this.data.getCode)return;
-    that.setData({
-      codeText:"(60)",
-      codeTime:60,
-      getCode:true
-    })
-    var c = setInterval(function(){
-      if(that.data.codeTime < 1){
+    var sendata = app.smsCode(this.data.phone)
+    app.send_data(sendata, util.config.url.smsCode, function (res) {
+      if(res.resultCode == '10000'){
         that.setData({
-          codeText:"",
+          codeText:"(60)",
           codeTime:60,
-          getCode:false
-        })
-        clearInterval(c);
-      }else{
-        that.setData({
-          codeText:"("+(--that.data.codeTime)+")",
-          codeTime:that.data.codeTime,
           getCode:true
         })
+        var c = setInterval(function(){
+          if(that.data.codeTime < 1){
+            that.setData({
+              codeText:"",
+              codeTime:60,
+              getCode:false
+            })
+            clearInterval(c);
+          }else{
+            that.setData({
+              codeText:"("+(--that.data.codeTime)+")",
+              codeTime:that.data.codeTime,
+              getCode:true
+            })
+          }
+        },1000)
       }
-    },1000)
+    })
   },
 
   doLogin:function()
@@ -145,8 +150,9 @@ Page({
     // var sendata = app.userLogin(this.data.phone,this.data.pwd,this.data.code)
     //管理员 17263465234 1234567
     //店长 13533738749 m7t279
+    //店长 13341234535   k1w2ii
     //店员 13533738741 Mv55m4
-    var sendata = app.userLogin(13533738749,'m7t279',1111)
+    var sendata = app.userLogin(13341234535,'k1w2ii',1111)
     wx.showLoading();
     app.send_data(sendata, util.config.url.login, function (res) {
       if(res.resultCode == '10000'){

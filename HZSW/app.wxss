@@ -209,13 +209,19 @@ page{
 	overflow:hidden;  
 	display: block;  
 }
-.head-user button ,.head-user image{
-  font-size: 15px;
-  line-height: 4em;
-  width: 59px;
-  height: 59px;
+.head-user image{
+  width: 70px;
+  height: 70px;
+  display:inline;
 }
 .head-nick{
 	font-size: 32rpx;
 	color: #ffffff
+}
+.head-nick button{
+  width: 170rpx;
+  border:none;
+  background:none;
+  color: #ffffff;
+  font-size: 26rpx;
 }

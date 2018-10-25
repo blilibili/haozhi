@@ -1,5 +1,5 @@
 // pages/physical/index.js
-var utils = require("../../utils/util.js");
+var util = require("../../utils/util.js");
 var app = getApp()
 var that
 var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
@@ -24,7 +24,9 @@ Page({
     activeIndex: 0,
     sliderOffset: 0,
     inputShowed: false,
-    inputVal: ""
+    inputVal: "",
+    isPhysical:app.globalData.isPhysical,
+    userList:[],
   },
 
   /**
@@ -41,31 +43,40 @@ Page({
             });
         }
     });
-    //status 1:空闲 2:使用中 3:故障
-    var store = [{latitude: 23.099994,longitude: 113.324520,status:1,name:'空闲',id:1,icon:"/image/shebei_icon_dingwei_kongxian.png",color:"#009944",borderColor:"#009944"},{latitude: 23.099994,longitude: 113.344520,status:2,name:'使用中',id:2,icon:"/image/mendian_icon_dingwei.png",color:"#ff9cb8",borderColor:"#ff9cb8"},{latitude: 23.099994,longitude: 113.345520,status:3,name:'故障',id:3,icon:"/image/shebei_icon_dingwei_guzhang.png",color:"#f43531",borderColor:"#f43531"}];
-    var markers = [];
-    for (var i = store.length - 1; i >= 0; i--) {
-      markers.push({id:store[i].id,latitude: store[i].latitude,longitude: store[i].longitude,iconPath: store[i].icon,width:18,height:21,callout:{content:store[i].name,fontSize:10,color:store[i].color,display:'ALWAYS',borderRadius:3,borderColor:store[i].borderColor,bgColor:"#ffffff",padding:2,textAlign:"center"
-        }})
-    }
+    if(this.data.isPhysical){
+      //理疗记录
+      var sendata = app.getStaffList(wx.getStorageSync('userinfo').storeId)
+      app.send_data(sendata, util.config.url.getStaffList, function (res) {
+        if(res.resultCode == '10000' && res.resultData.length > 0){
+          that.setData({
+            hasdata:true,
+            userList:res.resultData
+          })
 
-    that.setData({
-      userList:[1,2,3,4,5,6],
-      latitude: 23.099994,
-      longitude: 113.324520,
-      markers:markers,
-    })
-
-    this.setData({
-      hasdata:false
-    })
-    setTimeout(function(){
-      app.globalData.userList = [1,2,3,4,5,6]
-      that.setData({
-        hasdata:true,
-        userList:app.globalData.userList
+        }else{
+          that.setData({
+            hasdata:false
+          })
+        }
       })
-    },1000)
+
+    }else{
+      //设备
+      //status 1:空闲 2:使用中 3:故障
+      var store = [{latitude: 23.099994,longitude: 113.324520,status:1,name:'空闲',id:1,icon:"/image/shebei_icon_dingwei_kongxian.png",color:"#009944",borderColor:"#009944"},{latitude: 23.099994,longitude: 113.344520,status:2,name:'使用中',id:2,icon:"/image/mendian_icon_dingwei.png",color:"#ff9cb8",borderColor:"#ff9cb8"},{latitude: 23.099994,longitude: 113.345520,status:3,name:'故障',id:3,icon:"/image/shebei_icon_dingwei_guzhang.png",color:"#f43531",borderColor:"#f43531"}];
+      var markers = [];
+      for (var i = store.length - 1; i >= 0; i--) {
+        markers.push({id:store[i].id,latitude: store[i].latitude,longitude: store[i].longitude,iconPath: store[i].icon,width:18,height:21,callout:{content:store[i].name,fontSize:10,color:store[i].color,display:'ALWAYS',borderRadius:3,borderColor:store[i].borderColor,bgColor:"#ffffff",padding:2,textAlign:"center"
+          }})
+      }
+
+      that.setData({
+        userList:[1,2,3,4,5,6],
+        latitude: 23.099994,
+        longitude: 113.324520,
+        markers:markers,
+      })
+    }
   },
 
   /**
@@ -79,8 +90,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log(app.globalData.isPhysical)
-    if(app.globalData.isPhysical){
+    if(this.data.isPhysical){
       this.setData({
         isPhysical:true
       })

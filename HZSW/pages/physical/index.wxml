@@ -21,12 +21,11 @@
                 </view>
                 <view class="weui-search-bar__cancel-btn btn-color" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
             </view>
-            <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
-            	<block wx:for="{{userList}}" wx:key="*this">
-    	            <navigator url="/pages/physical/detail?userid={{item}}" class="weui-cell" hover-class="none">
+            <view class="weui-cells searchbar-result">
+            	<block wx:for="{{userList}}" wx:key="value">
+    	            <navigator url="/pages/physical/detail?memberId={{item.memberId}}" class="weui-cell" hover-class="none">
     	                <view class="user-head">
-    						<view class="head-name">周梓轩<text class="user-local">天河门店</text></view>
-    						<view class="head-id">ID:256321456</view>
+    						ID:{{item.memberId}}
     					</view>
                         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     	            </navigator>

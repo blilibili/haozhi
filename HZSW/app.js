@@ -135,6 +135,43 @@ App({
     return data;
   },
 
+  smsCode:function(phone)
+  {
+    var data = JSON.stringify({
+      "phone":phone,
+      "txncode":"smsCode"
+    })
+    return data;
+  },
+
+  getStaffList:function(storeId)
+  {
+    var data = JSON.stringify({
+      "storeId":storeId,
+      "txncode":"getStaffList"
+    })
+    return data;
+  },
+
+  updateSex:function(userId,sex)
+  {
+    var data = JSON.stringify({
+      "userId":userId,
+      "sex":sex,
+      "txncode":"updateSex"
+    })
+    return data;
+  },
+
+  getDetectionRecordList:function(memberId)
+  {
+    var data = JSON.stringify({
+      "memberId":memberId,
+      "txncode":"getDetectionRecordList"
+    })
+    return data;
+  },
+
   showModal:function(content,title='',showCancel = false,cancelText = '',cancelColor = '',confirmText = '确定',confirmColor = '')
   {
     wx.showModal({
@@ -190,8 +227,8 @@ App({
           var txninfo = res.data;
           //Memo 响应信息
           if(txninfo.resultCode != '10000'){
-            if(d.txncode == 'userLogin' || d.txncode == 'perfectInformation' || d.txncode == 'resetPassword'){
-              wx.hideLoading()
+            wx.hideLoading()
+            if(['userLogin','perfectInformation','resetPassword','smsCode','updateSex'].indexOf(d.txncode) != -1){
               wx.showModal({
                 title: '',
                 showCancel: false,

@@ -5,6 +5,7 @@ page{
 .user-avatar{
 	width: 120rpx;
 	height: 120rpx;
+	border-radius: 50%;
 }
 .weui-cells{
 	margin-top: 0rpx;

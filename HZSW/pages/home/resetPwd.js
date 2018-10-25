@@ -94,27 +94,32 @@ Page({
       app.showModal('请输入正确的手机号码');return;
     }
     if(this.data.getCode)return;
-    that.setData({
-      codeText:"(60)",
-      codeTime:60,
-      getCode:true
-    })
-    var c = setInterval(function(){
-      if(that.data.codeTime < 1){
+    var sendata = app.smsCode(this.data.phone)
+    app.send_data(sendata, util.config.url.smsCode, function (res) {
+      if(res.resultCode == '10000'){
         that.setData({
-          codeText:"",
+          codeText:"(60)",
           codeTime:60,
-          getCode:false
-        })
-        clearInterval(c);
-      }else{
-        that.setData({
-          codeText:"("+(--that.data.codeTime)+")",
-          codeTime:that.data.codeTime,
           getCode:true
         })
+        var c = setInterval(function(){
+          if(that.data.codeTime < 1){
+            that.setData({
+              codeText:"",
+              codeTime:60,
+              getCode:false
+            })
+            clearInterval(c);
+          }else{
+            that.setData({
+              codeText:"("+(--that.data.codeTime)+")",
+              codeTime:that.data.codeTime,
+              getCode:true
+            })
+          }
+        },1000)
       }
-    },1000)
+    })
   },
 
   doReset:function()
