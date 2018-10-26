@@ -172,6 +172,17 @@ App({
     return data;
   },
 
+  updatePhone:function(userId,phone,code)
+  {
+    var data = JSON.stringify({
+      "userId":userId,
+      "phone":phone,
+      "code":code,
+      "txncode":"updatePhone"
+    })
+    return data;
+  },
+
   showModal:function(content,title='',showCancel = false,cancelText = '',cancelColor = '',confirmText = '确定',confirmColor = '')
   {
     wx.showModal({
@@ -228,7 +239,7 @@ App({
           //Memo 响应信息
           if(txninfo.resultCode != '10000'){
             wx.hideLoading()
-            if(['userLogin','perfectInformation','resetPassword','smsCode','updateSex'].indexOf(d.txncode) != -1){
+            if(['userLogin','perfectInformation','resetPassword','smsCode','updateSex','updatePhone'].indexOf(d.txncode) != -1){
               wx.showModal({
                 title: '',
                 showCancel: false,
@@ -280,8 +291,7 @@ App({
   decode_package: function (res) {},
 
   globalData: {
-    userInfo: null,
-    userRule:3,//1为管理员,2为店长,3为普通员工
+    userInfo: null,//1为管理员,2为店长,3为普通员工
     userList:[],
     isPhysical:true,//true为打开理疗记录页面，false为打开设备管理页面
   }

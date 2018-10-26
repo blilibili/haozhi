@@ -33,8 +33,7 @@ Page({
    */
   onLoad: function (options) {
     that = this
-    // app.globalData.userRule = 1
-    if(app.globalData.userRule == 1){
+    if(app.globalData.userInfo.grade == 1){
       this.setData({
         hasStore:false
       })
@@ -89,7 +88,7 @@ Page({
         iconPath:"image/zhuye_nav_icon_cangku.png",
         selectedIconPath:"image/zhuye_nav_icon_cangku_pre.png",
       })
-    }else if(app.globalData.userRule == 2){
+    }else if(app.globalData.userInfo.grade == 2){
       //店长页面
       // this.forScan()
     }else{
@@ -97,7 +96,7 @@ Page({
       // this.forScan()
     }
     this.setData({
-      userRule:app.globalData.userRule
+      userRule:app.globalData.userInfo.grade
     })
   },
 

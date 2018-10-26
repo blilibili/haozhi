@@ -58,3 +58,10 @@
 		<text class="del-text" bindtap="doCancle">删除</text>
 	</view>
 </view>
+
+<view class="weui-flex problem-text"  wx:if="{{!isEdit}}">
+	<text bindtap="showDispatchBox">设备故障反馈</text>
+</view>
+
+<import src="../component/dispatch/dispatch.wxml" />
+<template is="dispatch" data="{{ showDispatch: showDispatch,title: title,items:dispatchers,cancelbtn:cancelbtn,confirmbtn:confirmbtn}}" />

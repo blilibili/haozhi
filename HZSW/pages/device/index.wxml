@@ -23,13 +23,13 @@
         <view class="search-text" wx:if="{{inputVal.length > 0}}">搜索结果(3)</view>
         <view class="weui-cells searchbar-result">
             <block wx:for="{{checkboxItems}}" wx:key="value">
-                <navigator url="/pages/device/deviceList?storeid={{item.id}}" class="weui-cell" hover-class="none">
-                    <view class="user-head">
+                <view class="weui-cell">
+                    <view class="user-head" bindtap="goDeviceList" data-id="{{item.id}}">
                         <view class="head-name">设备AAA-1234<text class="user-local">天河门店</text></view>
                         <view class="head-id">ID:256321456</view>
                     </view>
-                    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-                </navigator>
+                    <view class="weui-cell__ft weui-cell__ft_in-access"><view class="receive-btn" bindtap="doReceive" data-id="{{item.id}}">确认接收</view></view>
+                </view>
             </block>
         </view>
     </view>

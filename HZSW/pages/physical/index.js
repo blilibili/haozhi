@@ -25,7 +25,6 @@ Page({
     sliderOffset: 0,
     inputShowed: false,
     inputVal: "",
-    isPhysical:app.globalData.isPhysical,
     userList:[],
   },
 
@@ -43,7 +42,7 @@ Page({
             });
         }
     });
-    if(this.data.isPhysical){
+    if(app.globalData.isPhysical){
       //理疗记录
       var sendata = app.getStaffList(wx.getStorageSync('userinfo').storeId)
       app.send_data(sendata, util.config.url.getStaffList, function (res) {
@@ -90,7 +89,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if(this.data.isPhysical){
+    if(app.globalData.isPhysical){
       this.setData({
         isPhysical:true
       })

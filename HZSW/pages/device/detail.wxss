@@ -45,9 +45,6 @@
 .login:after{
 	border:none;
 }
-.radio-box{
-	padding: 20rpx 30rpx;
-}
 
 
 

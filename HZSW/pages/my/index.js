@@ -16,7 +16,8 @@ Page({
    */
   onLoad: function (options) {
     that = this
-    if(app.globalData.userInfo.userRule == 1)
+    util.zhw_log(app.globalData.userInfo)
+    if(app.globalData.userInfo.grade == "1")
     {
       //管理员
       app.globalData.isPhysical = false
@@ -42,14 +43,14 @@ Page({
         selectedIconPath:"image/zhuye_nav_icon_cangku_pre.png",
       })
     }
-    if(app.globalData.userInfo.userRule == 2)
+    if(app.globalData.userInfo.grade == "2")
     {
       //店长
       that.setData({
         userRule:2
       })
     }
-    if(app.globalData.userInfo.userRule == 3)
+    if(app.globalData.userInfo.grade == "3")
     {
       //店员
       that.setData({
@@ -63,12 +64,18 @@ Page({
    */
   onReady: function () {
     if(!wx.getStorageSync('wx_user')){
-      app.globalData.userInfo.avatar = '/image/huiyuan_touxiang_moren.png';
+      //是否已有头像
+      if(app.globalData.userInfo.imgUrl){
+        app.globalData.userInfo.avatar = app.globalData.userInfo.imgUrl
+      }else{
+        app.globalData.userInfo.avatar = '/image/huiyuan_touxiang_moren.png';
+      }
     }else{
       app.globalData.userInfo.avatar = wx.getStorageSync('wx_user').avatarUrl;
       var sendata = app.addImg(app.globalData.userInfo.phone,app.globalData.userInfo.avatar)
       app.send_data(sendata, util.config.url.addImg, function (res) {
         if(res.resultCode == '10000'){
+          util.zhw_log('更新头像')
           //如果不是管理员则本地保存信息
           if(app.globalData.userInfo.grade != 1){
             wx.setStorageSync('userinfo',app.globalData.userInfo)
@@ -85,14 +92,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      userinfo:app.globalData.userInfo
+    })
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    
   },
 
   /**

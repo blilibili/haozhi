@@ -14,7 +14,7 @@
 	        </view>
 	        <view class="weui-flex showInvite-invite-btn">
 	            <view class="weui-flex_item showInvite-ibtn" bindtap="{{cancelbtn}}">取消</view>
-	            <view class="weui-flex_item showInvite-ibtn ibtn-right" bindtap="{{sendbtn}}">发送信息</view>
+	            <view class="weui-flex_item showInvite-ibtn showInvite-ibtn-right" bindtap="{{sendbtn}}">发送信息</view>
 	        </view>
 	    </view>
 	</view>

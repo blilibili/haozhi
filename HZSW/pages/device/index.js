@@ -1,5 +1,5 @@
 // pages/device/index.js
-var utils = require("../../utils/util.js");
+var util = require("../../utils/util.js");
 var app = getApp()
 var that
 Page({
@@ -105,5 +105,30 @@ Page({
       this.setData({
           inputVal: e.detail.value
       });
+  },
+
+  goDeviceList:function(options)
+  {
+    util.zhw_log(options)
+    wx.navigateTo({
+      url:"/pages/device/deviceList?storeid="+options.currentTarget.dataset.id
+    })
+  },
+
+  doReceive:function(options)
+  {
+    wx.showModal({
+      title: '',
+      showCancel: true,
+      cancelText: '否',
+      confirmText: '是',
+      confirmColor: '#ff9cb8',
+      content: '是否确认接收到设备',
+      success:function(res){
+        if (res.confirm) {
+          util.zhw_log(options)
+        }
+      }
+    })
   },
 })

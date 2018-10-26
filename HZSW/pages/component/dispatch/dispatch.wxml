@@ -7,13 +7,13 @@
 	        <view class="weui-flex">
 	            <radio-group class="radio-group" bindchange="radioChange">
 				  <label class="radio" wx:for="{{items}}" wx:key="value">
-				    <view class="radio-box"><radio color="#ff9cb8" value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}</view>
+				    <view class="showInvite-radio-box"><radio color="#ff9cb8" value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}</view>
 				  </label>
 				</radio-group>
 	        </view>
 	        <view class="weui-flex showInvite-invite-btn">
 	            <view class="weui-flex_item showInvite-ibtn" bindtap="{{cancelbtn}}">取消</view>
-	            <view class="weui-flex_item showInvite-ibtn ibtn-right" bindtap="{{confirmbtn}}">确定</view>
+	            <view class="weui-flex_item showInvite-ibtn showInvite-ibtn-right" bindtap="{{confirmbtn}}">确定</view>
 	        </view>
 	    </view>
 	</view>

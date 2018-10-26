@@ -27,13 +27,13 @@ Page({
    */
   onLoad: function (options) {
     that = this
-    if(app.globalData.userRule == 1){
+    if(app.globalData.userInfo.grade == 1){
       wx.setNavigationBarTitle({
         title:"我的仓库"
       })
     }
     this.setData({
-      userRule:app.globalData.userRule
+      userRule:app.globalData.userInfo.grade
     })
   },
 

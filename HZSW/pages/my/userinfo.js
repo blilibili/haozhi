@@ -18,13 +18,6 @@ Page({
    */
   onLoad: function (options) {
     that = this
-    var user = app.globalData.userInfo
-    user.phone = util.getPhone(user.phone,4)
-    util.zhw_log(user)
-    this.setData({
-      userinfo:user,
-      sexIndex:(user.sex-1)
-    })
   },
 
   /**
@@ -38,7 +31,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var user = app.globalData.userInfo
+    user.mobile = util.getPhone(user.phone,4)
+    this.setData({
+      userinfo:user,
+      sexIndex:(user.sex-1)
+    })
   },
 
   /**

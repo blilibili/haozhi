@@ -83,3 +83,13 @@ icon{
 .del-text{
 	color: #f43531;
 }
+.problem-text{
+	background: #ffffff;
+	margin-top: 100rpx;
+	padding: 34rpx 50rpx;
+	color: #f43531;
+	text-align: center;
+}
+.problem-text text{
+	margin: 0 auto;
+}

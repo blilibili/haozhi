@@ -16,18 +16,33 @@
     </navigator>
 </view>
 
-<view class="weui-cells" wx:if="{{userRule > 1}}">
-    <navigator url="/pages/my/vip" class="weui-cell weui-cell_access" hover-class="none">
+<view class="weui-cells">
+    <navigator open-type="switchTab" wx:if="{{userRule == 1}}" url="/pages/index/index" class="weui-cell weui-cell_access" hover-class="none">
+        <image class="my-icon" src="/image/wode_icon_huiyuan.png"/>
+        <view class="weui-cell__bd my-title">我的门店</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+    <navigator open-type="switchTab" wx:if="{{userRule == 1}}" url="/pages/physical/index" class="weui-cell weui-cell_access" hover-class="none">
+        <image class="my-icon" src="/image/wode_icon_shebei.png"/>
+        <view class="weui-cell__bd my-title">我的设备</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+    <navigator open-type="switchTab" wx:if="{{userRule == 1}}" url="/pages/repertory/index" class="weui-cell weui-cell_access" hover-class="none">
+        <image class="my-icon" src="/image/wode_icon_cangku.png"/>
+        <view class="weui-cell__bd my-title">我的仓库</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+    <navigator wx:if="{{userRule == 2 || userRule == 3}}" url="/pages/my/vip" class="weui-cell weui-cell_access" hover-class="none">
         <image class="my-icon" src="/image/wode_icon_huiyuan.png"/>
         <view class="weui-cell__bd my-title">我的会员</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
-    <view class="weui-cell weui-cell_access" bindtap="toDevice">
+    <navigator wx:if="{{userRule == 2 || userRule == 3}}" url="/pages/device/index" class="weui-cell weui-cell_access" hover-class="none">
         <image class="my-icon" src="/image/wode_icon_shebei.png"/>
         <view class="weui-cell__bd my-title">我的设备</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-    </view>
-    <navigator url="/pages/my/employee" class="weui-cell weui-cell_access" hover-class="none">
+    </navigator>
+    <navigator wx:if="{{userRule == 2}}" url="/pages/my/employee" class="weui-cell weui-cell_access" hover-class="none">
         <image class="my-icon" src="/image/wode_icon_yuangong.png"/>
         <view class="weui-cell__bd my-title">我的员工</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>

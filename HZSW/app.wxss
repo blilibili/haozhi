@@ -225,3 +225,6 @@ page{
   color: #ffffff;
   font-size: 26rpx;
 }
+.head-nick button:after{
+  border:none;
+}

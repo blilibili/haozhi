@@ -1,4 +1,7 @@
 // pages/physical/detail.js
+var util = require("../../utils/util.js");
+var app = getApp()
+var that
 Page({
 
   /**
@@ -17,6 +20,11 @@ Page({
         {name: '18/08/25 10:50', value: '8'},
     ],
     isEdit:false,
+    dispatchers: [
+      {name: '1', value: '轻度故障(不影响使用)', checked: 'true'},
+      {name: '2', value: '故障(完全不能使用)'},
+    ],
+    disIndex:1,
   },
 
   /**
@@ -24,6 +32,7 @@ Page({
    */
   onLoad: function (options) {
     console.log(options.userid)
+    that = this
     
   },
 
@@ -118,4 +127,33 @@ Page({
       checkboxItems: checkboxItems
     });
   },
+
+  radioChange: function(e) {
+    this.setData({
+      disIndex:e.detail.value
+    })
+  },
+
+  showDispatchBox:function()
+  {
+    this.setData({
+      showDispatch:true,
+      cancelbtn:"hideDispatchBox",
+      confirmbtn:"doSubmit",
+      title:"选择设备状态",
+    })
+  },
+  hideDispatchBox:function()
+  {
+    this.setData({
+      showDispatch:false
+    })
+  },
+
+  doSubmit:function()
+  {
+    util.zhw_log("设备故障反馈")
+  },
+
+
 })
