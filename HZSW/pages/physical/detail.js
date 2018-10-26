@@ -19,10 +19,10 @@ Page({
     that = this
     util.zhw_log(options.memberId)
     this.setData({
-      memberId:memberId
+      memberId:options.memberId
     })
     var sendata = app.getDetectionRecordList(options.memberId)
-    app.send_data(sendata, util.config.url.getStaffList, function (res) {
+    app.send_data(sendata, util.config.url.getDetectionRecordList, function (res) {
       if(res.resultCode == '10000' && res.resultData.length > 0){
         that.setData({
           hasdata:true,
@@ -93,7 +93,7 @@ Page({
           checkboxItems[i].checked = false;
 
           for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
-              if(checkboxItems[i].value == values[j]){
+              if(checkboxItems[i].id == values[j]){
                   checkboxItems[i].checked = true;
                   break;
               }
@@ -126,5 +126,26 @@ Page({
     this.setData({
       checkboxItems: checkboxItems
     });
+  },
+  doDel:function()
+  {
+    var delList = []
+    var checkboxItems = this.data.checkboxItems
+    var newList = []
+    for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
+      if(checkboxItems[i].checked){
+        delList.push(checkboxItems[i].id)
+      }else{
+        newList.push(checkboxItems[i])
+      }
+    }
+    var sendata = app.deleteDetectionRecord(delList.join(","))
+    app.send_data(sendata, util.config.url.deleteDetectionRecord, function (res) {
+      if(res.resultCode == '10000'){
+        that.setData({
+          checkboxItems:newList
+        })
+      }
+    })
   },
 })

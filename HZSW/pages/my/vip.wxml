@@ -21,7 +21,7 @@
             <view class="weui-search-bar__cancel-btn btn-color" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
         </view>
         <view class="weui-cells searchbar-result">
-        	<block wx:for="{{userList}}" wx:key="*this">
+        	<block wx:for="{{memberList}}" wx:key="value">
 	            <navigator url="/pages/physical/detail?memberId={{item.memberId}}" class="weui-cell" hover-class="none">
 	                <view class="user-head">
 						ID:256321456

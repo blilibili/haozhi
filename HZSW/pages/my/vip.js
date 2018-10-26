@@ -1,5 +1,5 @@
 // pages/my/vip.js
-var utils = require("../../utils/util.js");
+var util = require("../../utils/util.js");
 var app = getApp()
 var that
 Page({
@@ -17,16 +17,21 @@ Page({
    */
   onLoad: function (options) {
     that = this
-    this.setData({
-      hasdata:false
+    var sendata = app.getMemberList(app.globalData.userInfo.id)
+    wx.showLoading();
+    app.send_data(sendata, util.config.url.getMemberList, function (res) {
+      if(res.resultCode == '10000'){
+        that.setData({
+          hasdata:true,
+          memberList:res.resultData
+        })
+      }else{
+        that.setData({
+          hasdata:false
+        })
+      }
+      wx.hideLoading();
     })
-    setTimeout(function(){
-      app.globalData.userList = [1,2,3,4,5,6]
-      that.setData({
-        hasdata:true,
-        userList:app.globalData.userList
-      })
-    },1000)
   },
 
   /**

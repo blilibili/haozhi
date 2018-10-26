@@ -1,4 +1,7 @@
 // pages/index/userDetail.js
+var util = require("../../utils/util.js");
+var app = getApp()
+var that
 Page({
 
   /**
@@ -18,6 +21,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    that = this
+    util.zhw_log(options.memberId)
+    this.setData({
+      memberId:options.memberId
+    })
     let tzlIndex = this.data.tzlIndex;
     this.setData({
       tzlIndex:tzlIndex,

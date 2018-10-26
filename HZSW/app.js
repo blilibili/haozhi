@@ -172,6 +172,15 @@ App({
     return data;
   },
 
+  deleteDetectionRecord:function(idList)
+  {
+    var data = JSON.stringify({
+      "idList":idList,
+      "txncode":"deleteDetectionRecord"
+    })
+    return data;
+  },
+
   updatePhone:function(userId,phone,code)
   {
     var data = JSON.stringify({
@@ -179,6 +188,16 @@ App({
       "phone":phone,
       "code":code,
       "txncode":"updatePhone"
+    })
+    return data;
+  },
+
+  getMemberList:function(userId,memberId = undefined)
+  {
+    var data = JSON.stringify({
+      "id":userId,
+      "memberId":memberId,
+      "txncode":"getMemberList"
     })
     return data;
   },
@@ -239,7 +258,7 @@ App({
           //Memo 响应信息
           if(txninfo.resultCode != '10000'){
             wx.hideLoading()
-            if(['userLogin','perfectInformation','resetPassword','smsCode','updateSex','updatePhone'].indexOf(d.txncode) != -1){
+            if(['userLogin','perfectInformation','resetPassword','smsCode','updateSex','updatePhone','deleteDetectionRecord'].indexOf(d.txncode) != -1){
               wx.showModal({
                 title: '',
                 showCancel: false,

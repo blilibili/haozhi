@@ -1,6 +1,5 @@
 <view class="user-head">
-	<view class="head-name">周梓轩<text class="user-local">天河门店</text></view>
-	<view class="head-id">ID:256321456</view>
+	ID:{{memberId}}
 </view>
 <view class="user-detail">
 	<view class="weui-flex">

@@ -38,7 +38,7 @@ icon{
 	margin-left: 14rpx;
 }
 .right-item{
-	padding: 26rpx 0px;
+
 }
 .right-item text{
 	height: 26rpx;

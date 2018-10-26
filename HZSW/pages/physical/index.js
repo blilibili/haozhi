@@ -44,21 +44,22 @@ Page({
     });
     if(app.globalData.isPhysical){
       //理疗记录
-      var sendata = app.getStaffList(wx.getStorageSync('userinfo').storeId)
-      app.send_data(sendata, util.config.url.getStaffList, function (res) {
+      var sendata = app.getMemberList(app.globalData.userInfo.id)
+      wx.showLoading();
+      app.send_data(sendata, util.config.url.getMemberList, function (res) {
         if(res.resultCode == '10000' && res.resultData.length > 0){
           that.setData({
             hasdata:true,
             userList:res.resultData
           })
-
         }else{
           that.setData({
             hasdata:false
           })
         }
+        wx.hideLoading();
       })
-
+      
     }else{
       //设备
       //status 1:空闲 2:使用中 3:故障

@@ -148,10 +148,16 @@ Page({
   doLogin:function()
   {
     // var sendata = app.userLogin(this.data.phone,this.data.pwd,this.data.code)
-    //管理员 17263465234 1234567
-    //店长 13533738749 m7t279
-    //店长 13341234535   k1w2ii
-    //店员 13533738741 Mv55m4
+    /*
+    1.管理员： 17263465234 / 1234567
+    2.店长： 13341234535 / k1w2ii
+    3.店员： 13533738746 / s369ln
+    -------------
+    扫描接口入参：
+    设备ID： 201983074
+    膜ID： M900001
+    会员ID： 10923900
+     */
     var sendata = app.userLogin(13341234535,'k1w2ii',1111)
     wx.showLoading();
     app.send_data(sendata, util.config.url.login, function (res) {
