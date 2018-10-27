@@ -17,43 +17,48 @@
     
 	<view class="weui-flex list-head">
 		<view class="weui-flex__item">
-			<text class="list-title">使用记录</text>
+			<text class="list-title">仓库设备</text>
 		</view>
-		<view>
-			<button class="eidt-btn" wx:if="{{isEdit}}" bindtap="doCancle">取消</button>
-			<button class="eidt-btn" wx:if="{{!isEdit}}" bindtap="doEdit">编辑</button>
+		<view class="weui-flex__item weui-flex">
+			<view class="weui-flex__item mr16">
+				<button class="eidt-btn" bindtap="addRepertory">手动键入</button>
+			</view>
+			<view class="weui-flex__item">
+				<button class="eidt-btn" wx:if="{{isEdit}}" bindtap="doCancle">取消</button>
+				<button class="eidt-btn" wx:if="{{!isEdit}}" bindtap="doEdit">移除</button>
+			</view>
 		</view>
 	</view>
 
 	<view class="weui-cells weui-cells_after-title" wx:if="{{isEdit}}">
 	    <checkbox-group bindchange="checkboxChange">
-	        <label class="weui-cell weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
-	            <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}"/>
+	        <label class="weui-cell weui-check__label" wx:for="{{devicesList}}" wx:key="value">
+	            <checkbox class="weui-check" value="{{item.id}}" checked="{{item.checked}}"/>
 	            <view class="weui-cell__hd weui-check__hd_in-checkbox">
 	                <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
 	                <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}" color="#ff9cb8"></icon>
 	            </view>
 	            <view class="weui-cell__bd">
 		        	<view>
-						<view class="head-name">周梓轩<text class="user-local">天河门店</text></view>
-						<view class="head-id">ID:256321456</view>
+						<view class="head-name">{{item.equipmentName}}</view>
+						<view class="head-id">ID:{{item.equipmentId}}</view>
 					</view>
 		        </view>
-		        <view class="weui-cell__ft user-weight">7-10 10:50</view>
+		        <view class="weui-cell__ft user-weight">{{item.status}}</view>
 	        </label>
 	    </checkbox-group>
 	</view>
 
 	<view class="weui-cells weui-cells_after-title" wx:if="{{!isEdit}}">
-	    <view class="weui-cell weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
+	    <navigator open-type="redirect" url="/pages/device/detail?deviceName={{item.equipmentName}}"  class="weui-cell weui-check__label" wx:for="{{devicesList}}" wx:key="value" hover-class="none">
 	        <view class="weui-cell__bd">
 	        	<view>
-					<view class="head-name">周梓轩<text class="user-local">天河门店</text></view>
-					<view class="head-id">ID:256321456</view>
+					<view class="head-name">{{item.equipmentName}}</view>
+					<view class="head-id">ID:{{item.equipmentId}}</view>
 				</view>
 	        </view>
-	        <view class="weui-cell__ft weui-cell__ft_in-access user-weight">7-10 10:50</view>
-	    </view>
+	        <view class="weui-cell__ft weui-cell__ft_in-access user-weight">{{item.status}}</view>
+	    </navigator>
 	</view>
 
 	<view class="weui-flex bottom-btn"  wx:if="{{isEdit}}">
@@ -62,6 +67,6 @@
 		</view>
 		<view class="weui-flex__item"></view>
 		<view>
-			<text class="del-text" bindtap="doCancle">删除</text>
+			<text class="del-text" bindtap="doDel">删除</text>
 		</view>
 	</view>

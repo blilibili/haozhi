@@ -1,5 +1,5 @@
 // pages/index/index.js
-var utils = require("../../utils/util.js");
+var util = require("../../utils/util.js");
 var app = getApp()
 var that
 var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
@@ -34,15 +34,9 @@ Page({
   onLoad: function (options) {
     that = this
     if(app.globalData.userInfo.grade == 1){
-      this.setData({
-        hasStore:false
+      wx.setNavigationBarTitle({
+        title:"我的门店"
       })
-      setTimeout(function(){
-        that.setData({
-          hasStore:true,
-        })
-      },1000)
-
       wx.getSystemInfo({
           success: function(res) {
               that.setData({
@@ -52,6 +46,24 @@ Page({
               });
           }
       });
+
+      wx.showLoading()
+      var sendata = app.getStoreList()
+      app.send_data(sendata, util.config.url.getStoreList, function (res) {
+        wx.hideLoading()
+        if(res.resultCode == '10000' && res.resultData.length > 0){
+          that.setData({
+            hasStore:true,
+            checkboxItems:res.resultData
+          })
+        }else{
+          that.setData({
+            hasStore:false,
+          })
+        }
+      })
+
+      
       var store = [{latitude: 23.099994,longitude: 113.324520,name:'番禺门店',id:1},{latitude: 23.099994,longitude: 113.344520,name:'天河门店',id:2}];
       var markers = [];
       for (var i = store.length - 1; i >= 0; i--) {
@@ -66,28 +78,7 @@ Page({
         markers:markers,
       })
 
-      wx.setNavigationBarTitle({
-        title:"我的门店"
-      })
-      //管理员页面
-      wx.setTabBarItem({
-        index:0,
-        text:"门店",
-        iconPath:"image/zhuye_nav_icon_dianpu.png",
-        selectedIconPath:"image/zhuye_nav_icon_dianpu_pre.png",
-      })
-      wx.setTabBarItem({
-        index:1,
-        text:"设备",
-        iconPath:"image/zhuye_nav_icon_shebei.png",
-        selectedIconPath:"image/zhuye_nav_icon_shebei_pre.png",
-      })
-      wx.setTabBarItem({
-        index:2,
-        text:"仓库",
-        iconPath:"image/zhuye_nav_icon_cangku.png",
-        selectedIconPath:"image/zhuye_nav_icon_cangku_pre.png",
-      })
+      
     }else if(app.globalData.userInfo.grade == 2){
       //店长页面
       // this.forScan()

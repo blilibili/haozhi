@@ -1,4 +1,7 @@
 // pages/device/detail.js
+var util = require("../../utils/util.js");
+var app = getApp()
+var that
 Page({
 
   /**
@@ -17,7 +20,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    that = this
+    util.zhw_log(options)
   },
 
   /**

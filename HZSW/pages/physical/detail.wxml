@@ -1,6 +1,6 @@
 <view class="weui-flex user-head">
 	<view class="weui-flex__item">
-		ID:{{memberId}}
+		<text class="ID-title">ID:{{memberId}}</text>
 	</view>
 	<view class="right-item">
 		<text>趋势图</text>

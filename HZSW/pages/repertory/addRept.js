@@ -1,4 +1,4 @@
-// pages/store/addStore.js
+// pages/store/addRept.js
 var util = require("../../utils/util.js");
 var app = getApp()
 var that
@@ -8,8 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    regionIndex: -1,
-    localtext:'立即定位',
+    statuslist:['可用','不可用'],
+    statusIndex:-1,
   },
 
   /**
@@ -17,6 +17,9 @@ Page({
    */
   onLoad: function (options) {
     that = this
+    this.setData({
+      repertoryId:options.id
+    })
   },
 
   /**
@@ -72,71 +75,24 @@ Page({
   {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      regionIndex: 1,
-      region: e.detail.value
+      statusIndex: e.detail.value
     })
   },
 
-  getLocation:function()
+  getDeviceName:function(options)
   {
-    wx.getLocation({
-      success:function(res){
-        console.log(res)
-        that.setData({
-          isLocal:true,
-          localtext:'重新定位'
-        })
-      },
-      fail:function(err){
-        console.log(err)
-      }
+    this.setData({
+      deviceName:options.detail.value
     })
   },
 
-  inviteStoreAdmin:function()
+  getDeviceId:function(options)
   {
     this.setData({
-      showInvite:true,
-      cancelbtn:"hideInviteBox",
-      sendbtn:"sendMessage",
-      phoneInput:"phoneInput"
+      deviceId:options.detail.value
     })
   },
 
-  hideInviteBox:function()
-  {
-    this.setData({
-      showInvite:false
-    })
-  },
-
-  sendMessage:function()
-  {
-    console.log("发送短信")
-    this.setData({
-      inviteSuc:true,
-      showInvite:false
-    })
-  },
-
-  getStoreName:function(options)
-  {
-    this.setData({
-      storeName:options.detail.value
-    })
-  },
-  getStoreId:function(options)
-  {
-    this.setData({
-      storeId:options.detail.value
-    })
-  },
-  getStoreAddr:function(options)
-  {
-    this.setData({
-      storeAddr:options.detail.value
-    })
-  },
   doSave:function()
   {
     if(!this.data.deviceName){
@@ -152,8 +108,8 @@ Page({
       return
     }
     wx.showLoading()
-    var sendata = app.addStoreList(id,storeName,storeId,address,phone)
-    app.send_data(sendata, util.config.url.addStoreList, function (res) {
+    var sendata = app.addHouseEquipment(this.data.repertoryId,this.data.deviceName,this.data.deviceId,(parseInt(this.data.statusIndex)+1))
+    app.send_data(sendata, util.config.url.addHouseEquipment, function (res) {
       if(res.resultCode == '10000'){
         wx.redirectTo({
           url:"/pages/device/detail?deviceName="+that.data.deviceName
@@ -161,5 +117,4 @@ Page({
       }
     })
   },
-  
 })

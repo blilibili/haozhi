@@ -30,7 +30,8 @@
     "pages/device/chooseRepertory",
     "pages/device/disSuccess",
     "pages/device/deviceList",
-    "pages/repertory/index"
+    "pages/repertory/index",
+    "pages/repertory/addRept"
   ],
   "window": {
     "backgroundTextStyle": "light",

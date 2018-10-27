@@ -16,6 +16,10 @@ icon{
 	padding: 28rpx 30rpx;
 	border-bottom: 1rpx solid #eeeeee;
 }
+.ID-title{
+	color: #111111;
+	font-weight: bold;
+}
 .head-name{
 	font-size: 34rpx;
 	color: #111111;

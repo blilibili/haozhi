@@ -202,6 +202,70 @@ App({
     return data;
   },
 
+  getStoreHouseList:function(storeHouseName = undefined)
+  {
+    var data = JSON.stringify({
+      "storeHouseName":storeHouseName,
+      "txncode":"getStoreHouseList"
+    })
+    return data;
+  },
+
+  getHouseEquipment:function(id,name = undefined)
+  {
+    var data = JSON.stringify({
+      "id":id,
+      "name":name,
+      "txncode":"getHouseEquipment"
+    })
+    return data;
+  },
+
+  removeHouseEquipment:function(idList)
+  {
+    var data = JSON.stringify({
+      "idList":idList,
+      "txncode":"removeHouseEquipment"
+    })
+    return data;
+  },
+
+  addHouseEquipment:function(houseId,equipmentName,equipmentId,status)
+  {
+    var data = JSON.stringify({
+      "houseId":houseId,
+      "equipmentName":equipmentName,
+      "equipmentId":equipmentId,
+      "status":status,
+      "txncode":"addHouseEquipment"
+    })
+    return data;
+  },
+
+  addStoreList:function(id,storeName,storeId,address,phone,longitude = undefined,latitude = undefined)
+  {
+    var data = JSON.stringify({
+      "id":id,
+      "storeName":storeName,
+      "storeId":storeId,
+      "address":address,
+      "phone":phone,
+      "longitude":longitude,
+      "latitude":latitude,
+      "txncode":"addStoreList"
+    })
+    return data;
+  },
+
+  getStoreList:function(storeName = undefined)
+  {
+    var data = JSON.stringify({
+      "storeName":storeName,
+      "txncode":"getStoreList"
+    })
+    return data;
+  },
+
   showModal:function(content,title='',showCancel = false,cancelText = '',cancelColor = '',confirmText = '确定',confirmColor = '')
   {
     wx.showModal({
@@ -258,7 +322,7 @@ App({
           //Memo 响应信息
           if(txninfo.resultCode != '10000'){
             wx.hideLoading()
-            if(['userLogin','perfectInformation','resetPassword','smsCode','updateSex','updatePhone','deleteDetectionRecord'].indexOf(d.txncode) != -1){
+            if(['userLogin','perfectInformation','resetPassword','smsCode','updateSex','updatePhone','deleteDetectionRecord','removeHouseEquipment','addHouseEquipment'].indexOf(d.txncode) != -1){
               wx.showModal({
                 title: '',
                 showCancel: false,

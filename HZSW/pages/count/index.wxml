@@ -25,14 +25,14 @@
     </view>
 
     <view class="weui-cells weui-cells_after-title" wx:if="{{!isEdit}}">
-	    <view class="weui-cell weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
+	    <navigator url="/pages/repertory/index?id={{item.id}}" hover-class="none" class="weui-cell weui-check__label" wx:for="{{repertoryList}}" wx:key="value">
 	        <view class="weui-cell__bd">
 	        	<view>
-					<view class="head-name">仓库名称</view>
-					<view class="head-id">ID:256321456</view>
+					<view class="head-name">{{item.houseName}}</view>
+					<view class="head-id">ID:{{item.houseId}}</view>
 				</view>
 	        </view>
-	        <view class="weui-cell__ft weui-cell__ft_in-access user-weight"></view>
-	    </view>
+	        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+	    </navigator>
 	</view>
 </view>

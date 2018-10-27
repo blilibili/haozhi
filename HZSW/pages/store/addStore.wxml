@@ -4,7 +4,7 @@
             <view class="weui-label"><text>*</text>门店名称</view>
         </view>
         <view class="weui-cell__bd">
-            <input class="weui-input" value="{{storeName}}" placeholder="请输入门店名称" placeholder-class="noselect"/>
+            <input class="weui-input" value="{{storeName}}" placeholder="请输入门店名称" placeholder-class="noselect" bindinput="getStoreName"/>
         </view>
     </view>
     <view class="weui-cell weui-cell_input">
@@ -12,7 +12,7 @@
             <view class="weui-label"><text>*</text>门店 ID</view>
         </view>
         <view class="weui-cell__bd">
-            <input class="weui-input" value="{{storeId}}" placeholder="自动生成" placeholder-class="noselect"/>
+            <input class="weui-input" value="{{storeId}}" placeholder="自动生成" placeholder-class="noselect" bindinput="getStoreId"/>
         </view>
     </view>
     <view class="weui-cell weui-cell_input">
@@ -31,7 +31,7 @@
             <view class="weui-label"><text>*</text>详细地址</view>
         </view>
         <view class="weui-cell__bd">
-            <input class="weui-input" value="{{storeAddr}}" placeholder="请输入详细地址" placeholder-class="noselect"/>
+            <input class="weui-input" value="{{storeAddr}}" placeholder="请输入详细地址" placeholder-class="noselect" bindinput="getStoreAddr"/>
         </view>
     </view>
     <!-- <view class="weui-cell weui-cell_input">
@@ -65,6 +65,9 @@
             <radio value="r1" checked="true" color="#ff9cb8"/>已邀请
         </view>
     </view>
+</view>
+<view class="bot-btn">
+    <button class="login" bindtap="doSave">保存</button>
 </view>
 <import src="../component/invite/invite.wxml" />
 <template is="invite" data="{{ showInvite: showInvite,cancelbtn:cancelbtn,sendbtn:sendbtn,phoneInput:phoneInput}}" />

@@ -158,7 +158,7 @@ Page({
     膜ID： M900001
     会员ID： 10923900
      */
-    var sendata = app.userLogin(13341234535,'k1w2ii',1111)
+    var sendata = app.userLogin(17263465234,'1234567',1111)
     wx.showLoading();
     app.send_data(sendata, util.config.url.login, function (res) {
       if(res.resultCode == '10000'){

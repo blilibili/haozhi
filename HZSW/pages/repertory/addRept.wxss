@@ -1,4 +1,4 @@
-/* pages/store/addStore.wxss */
+/* pages/repertory/addRept.wxss */
 .select-box{
 	font-size: 34rpx;
 	margin-top: 32rpx;
@@ -37,7 +37,7 @@
 	width: 100%;
 }
 .login{
-	width: 690rpx;
+	width: 600rpx;
 	border-radius: 42rpx;
 	background: #ff9cb8;
 	/*margin-top: 80rpx;*/

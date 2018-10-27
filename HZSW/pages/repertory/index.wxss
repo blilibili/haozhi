@@ -1,7 +1,6 @@
 /* pages/repertory/index.wxss */
-icon{
-	vertical-align:middle;
-}
+@import '../common/lib/weui.wxss';
+
 
 .user-head{
 	background: white;
@@ -55,8 +54,8 @@ icon{
 	border:none;
 }
 .user-weight{
-	font-size: 26rpx;
-	color: #999999;
+	font-size: 28rpx;
+	color: #f43531;
 }
 .weui-cells:after{
 	border:none;
@@ -74,4 +73,7 @@ icon{
 }
 .del-text{
 	color: #f43531;
+}
+.mr16{
+	margin-right: 16rpx;
 }

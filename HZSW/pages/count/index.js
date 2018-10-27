@@ -1,5 +1,5 @@
 // pages/count/index.js
-var utils = require("../../utils/util.js");
+var util = require("../../utils/util.js");
 var app = getApp()
 var that
 Page({
@@ -8,18 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    checkboxItems: [
-        {name: '18/09/15 10:50', value: '0', checked: true},
-        {name: '18/09/10 10:50', value: '1'},
-        {name: '18/09/10 10:50', value: '2'},
-        {name: '18/08/25 10:50', value: '3'},
-        {name: '18/08/25 10:50', value: '4'},
-        {name: '18/08/25 10:50', value: '5'},
-        {name: '18/08/25 10:50', value: '6'},
-        {name: '18/08/25 10:50', value: '7'},
-        {name: '18/08/25 10:50', value: '8'},
-    ],
     isEdit:false,
+    repertoryList:[],
   },
 
   /**
@@ -27,14 +17,24 @@ Page({
    */
   onLoad: function (options) {
     that = this
+    this.setData({
+      userRule:app.globalData.userInfo.grade
+    })
     if(app.globalData.userInfo.grade == 1){
       wx.setNavigationBarTitle({
         title:"我的仓库"
       })
+      wx.showLoading()
+      var sendata = app.getStoreHouseList()
+      app.send_data(sendata, util.config.url.getStoreHouseList, function (res) {
+        wx.hideLoading()
+        if(res.resultCode == '10000'){
+          that.setData({
+            repertoryList:res.resultData
+          })
+        }
+      })
     }
-    this.setData({
-      userRule:app.globalData.userInfo.grade
-    })
   },
 
   /**
