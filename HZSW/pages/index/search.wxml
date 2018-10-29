@@ -4,16 +4,16 @@
 			<image src="/image/zhuye_ID_icon_shoudongshuru.png"/>
 		</view>
 		<view class="weui-flex__item">
-			<input type="number" placeholder="请输入ID号码" placeholder-class="tip-style" name="phone" maxlength="20"/>
+			<input type="number" placeholder="请输入ID号码" placeholder-class="tip-style" name="phone" maxlength="20" bindinput="getId"/>
 		</view>
 	</view>
 	<view class="sear-btn">
-		<button>确定</button>
+		<button bindtap="searchId">确定</button>
 	</view>
 </view>
-<view class="weui-cells_after-title">
+<!-- <view class="weui-cells_after-title">
 	<radio-group bindchange="radioChange">
-	  <label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.value}}" bindtap="goInfo">
+	  <label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.value}}">
 	    <view class="weui-cell__hd">
 	      <radio value="{{item.value}}" checked="{{item.checked}}" color="#ff9cb8"/>
 	    </view>
@@ -21,4 +21,4 @@
 	    <view class="weui-cell__bd id-style">{{item.id}}</view>
 	  </label>
 	</radio-group>
-</view>
+</view> -->

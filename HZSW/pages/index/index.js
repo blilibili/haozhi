@@ -11,7 +11,8 @@ Page({
    */
   data: {
     title:"扫设备",
-    step:1,
+    step:app.globalData.indexStep,
+    noShow:false,
     checkboxItems: [
         {name: '员工姓名', value: '0'},
         {name: '员工姓名', value: '1'},
@@ -102,7 +103,43 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    if(app.globalData.indexStep == 1){
+      this.setData({
+        title:'扫设备',
+        step:1
+      })
+    }else if(app.globalData.indexStep == 2){
+      if(this.data.noShow)return
+      wx.showModal({
+        title:'',
+        content:'是否继续扫膜？',
+        cancelText:'否',
+        confirmText:'是',
+        confirmColor:'#ff9cb8',
+        success:function(res){
+          if(res.confirm){
+            //点击是
+            that.setData({
+              title:'扫膜',
+              step:2
+            })
+          }
+          if(res.cancel){
+            //点击否
+            app.globalData.indexStep = 3
+            that.setData({
+              title:'扫用户',
+              step:3
+            })
+          }
+        }
+      })
+    }else{
+      this.setData({
+        title:'扫用户',
+        step:3
+      })
+    }
   },
 
   /**
@@ -164,45 +201,167 @@ Page({
 
   goSearch:function()
   {
-    wx.navigateTo({
-      url:"/pages/index/search"
+    wx.redirectTo({
+      url:"/pages/index/search?step="+app.globalData.indexStep
     })
   },
 
   doScan:function()
   {
-    if(this.data.step == 1){
-      wx.showToast({
-        title:'信息比对中',
-        icon:'loading',
-        duration:2000,
-        mask:true
+    var scansionId = ''
+    if(app.globalData.indexStep == 1){
+      wx.scanCode({
+        onlyFromCamera: true,
+        scanType:['qrCode'],
+        success (res) {
+          wx.showToast({
+            title:'信息比对中',
+            icon:'loading',
+            duration:2000,
+            mask:true
+          })
+          util.zhw_log(res.result)
+          setTimeout(function(){
+            that.checkScan(res.result)
+          },1500)
+        },
+        fail(err){
+          util.zhw_log(err)
+        }
       })
-      this.setData({
-        title:'扫膜',
-        step:2
+      // wx.showToast({
+      //   title:'信息比对中',
+      //   icon:'loading',
+      //   duration:2000,
+      //   mask:true
+      // })
+      // this.setData({
+      //   title:'扫膜',
+      //   step:2
+      // })
+    }else if(app.globalData.indexStep == 2){
+      wx.scanCode({
+        onlyFromCamera: true,
+        scanType:['qrCode'],
+        success (res) {
+          wx.showToast({
+            title:'信息比对中',
+            icon:'loading',
+            duration:2000,
+            mask:true
+          })
+          util.zhw_log(res.result)
+          setTimeout(function(){
+            that.checkScan(res.result)
+          },1500)
+        },
+        fail(err){
+          util.zhw_log(err)
+        }
       })
-    }else if(this.data.step == 2){
-      wx.showToast({
-        title:'比对成功',
-        icon:'success',
-        mask:true
-      })
-      this.setData({
-        title:'扫用户',
-        step:3
-      })
+      // wx.showToast({
+      //   title:'比对成功',
+      //   icon:'success',
+      //   mask:true
+      // })
+      // this.setData({
+      //   title:'扫用户',
+      //   step:3
+      // })
     }else{
-      wx.showToast({
-        title:'比对失败',
-        image:'/image/zhuye_zhuangtai_icon_shibai.png',
-        mask:true
+      wx.scanCode({
+        onlyFromCamera: true,
+        scanType:['qrCode'],
+        success (res) {
+          wx.showToast({
+            title:'信息比对中',
+            icon:'loading',
+            duration:2000,
+            mask:true
+          })
+          util.zhw_log(res.result)
+          setTimeout(function(){
+            that.checkScan(res.result)
+          },1500)
+        },
+        fail(err){
+          util.zhw_log(err)
+        }
       })
-      this.setData({
-        title:'扫设备',
-        step:1
-      })
+      // wx.showToast({
+      //   title:'比对失败',
+      //   image:'/image/zhuye_zhuangtai_icon_shibai.png',
+      //   mask:true
+      // })
+      // this.setData({
+      //   title:'扫设备',
+      //   step:1
+      // })
     }
+  },
+
+  checkScan:function(scansionId)
+  {
+    var sendata = app.scansion((app.globalData.indexStep-1),scansionId,app.globalData.userInfo.storeId)
+    app.send_data(sendata, util.config.url.scansion, function (res) {
+      if(res.resultCode == '10000'){
+        wx.showToast({
+          title:'比对成功',
+          icon:'success',
+          mask:true
+        })
+        if(that.data.step == 1){
+          //扫设备
+          wx.showModal({
+            title:'',
+            content:'是否继续扫膜？',
+            cancelText:'否',
+            confirmText:'是',
+            confirmColor:'#ff9cb8',
+            success:function(res){
+              if(res.confirm){
+                //点击是
+                app.globalData.indexStep = 2
+                that.setData({
+                  title:'扫膜',
+                  step:2,
+                  noShow:true
+                })
+              }
+              if(res.cancel){
+                //点击否
+                app.globalData.indexStep = 3
+                that.setData({
+                  title:'扫用户',
+                  step:3,
+                  noShow:true
+                })
+              }
+            }
+          })
+        }
+        if(that.data.step == 2){
+          //扫膜
+          app.globalData.indexStep = 3
+          that.setData({
+            title:'扫用户',
+            step:3
+          })
+        }
+        if(that.data.step == 3){
+          //扫用户
+          wx.navigateTo({
+            url:"/pages/index/userInfo"
+          })
+        }
+      }else{
+        wx.showToast({
+          title:'比对失败',
+          image:'/image/zhuye_zhuangtai_icon_shibai.png',
+          mask:true
+        })
+      }
+    })
   },
 
   /*-----------------------------我的门店---------------------------*/

@@ -28,6 +28,7 @@ Page({
           hasdata:true,
           checkboxItems:res.resultData
         })
+        app.globalData.memberPhysicalList = res.resultData
       }else{
         that.setData({
           hasdata:false

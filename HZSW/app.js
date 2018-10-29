@@ -266,6 +266,17 @@ App({
     return data;
   },
 
+  scansion:function(typeId,scansionId,storeId)
+  {
+    var data = JSON.stringify({
+      "typeId":typeId,
+      "scansionId":scansionId,
+      "storeId":storeId,
+      "txncode":"scansion"
+    })
+    return data;
+  },
+
   showModal:function(content,title='',showCancel = false,cancelText = '',cancelColor = '',confirmText = '确定',confirmColor = '')
   {
     wx.showModal({
@@ -377,5 +388,8 @@ App({
     userInfo: null,//1为管理员,2为店长,3为普通员工
     userList:[],
     isPhysical:true,//true为打开理疗记录页面，false为打开设备管理页面
+    indexStep:1,//1扫设备，2扫膜，3扫用户
+    memberPhysicalList:[],//会员的理疗记录列表，getDetectionRecordList接口返回
+
   }
 })

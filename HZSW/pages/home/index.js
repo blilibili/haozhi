@@ -147,7 +147,21 @@ Page({
 
   doLogin:function()
   {
-    // var sendata = app.userLogin(this.data.phone,this.data.pwd,this.data.code)
+    /*
+    if(!this.data.phone){
+      app.showModal('手机号码不能为空')
+      return
+    }
+    if(!this.data.code){
+      app.showModal('验证码不能为空')
+      return
+    }
+    if(!this.data.pwd){
+      app.showModal('密码不能为空')
+      return
+    }
+    var sendata = app.userLogin(this.data.phone,this.data.pwd,this.data.code)
+    */
     /*
     1.管理员： 17263465234 / 1234567
     2.店长： 13341234535 / k1w2ii
@@ -158,7 +172,7 @@ Page({
     膜ID： M900001
     会员ID： 10923900
      */
-    var sendata = app.userLogin(17263465234,'1234567',1111)
+    var sendata = app.userLogin(13341234535,'k1w2ii',1111)
     wx.showLoading();
     app.send_data(sendata, util.config.url.login, function (res) {
       if(res.resultCode == '10000'){

@@ -9,12 +9,14 @@ Page({
    */
   data: {
     tzlList:['危险','优良','良好','警戒','超标','严重'],
-    tzlIndex:4,
+    tzlListCode:{'a':0,'b':1,'c':2,'d':3,'e':4,'f':5},
+    tzlIndex:0,
     tzlEffect:4,
     zflList:['低','标准','偏高','高'],
-    zflIndex:3,
+    zflListCode:{'a':0,'b':1,'c':2,'d':3},
+    zflIndex:0,
     zflEffect:24,
-    zfhdEffect:450,//0<=x<=528
+    zfhdEffect:0,//0<=x<=528
   },
 
   /**
@@ -22,20 +24,29 @@ Page({
    */
   onLoad: function (options) {
     that = this
-    util.zhw_log(options.memberId)
+    util.zhw_log(options)
     this.setData({
-      memberId:options.memberId
+      memberId:options.memberId,
+      id:options.id,
     })
-    let tzlIndex = this.data.tzlIndex;
+    var list = app.globalData.memberPhysicalList
+    var userinfo = ''
+    for (var i = 0; i < list.length; i++) {
+      if(list[i].id == options.id){
+        userinfo = list[i]
+        break
+      }
+    }
+    util.zhw_log(userinfo)
+    let tzlIndex = this.data.tzlListCode[userinfo.bodyFatCode];
+    let zflIndex = this.data.zflListCode[userinfo.fatRateCode];
     this.setData({
-      tzlIndex:tzlIndex,
-      tzlEffect:this.data.tzlEffect+90*tzlIndex,//体脂率每格相差90rpx
-    })
-
-    let zflIndex = this.data.zflIndex;
-    this.setData({
+      userinfo:userinfo,
       zflIndex:zflIndex,
       zflEffect:this.data.zflEffect+138*zflIndex+(zflIndex>=2?12:0),//脂肪率相差规律138*zflIndex+(zflIndex>=2?12:0)
+      tzlIndex:tzlIndex,
+      tzlEffect:this.data.tzlEffect+90*tzlIndex,//体脂率每格相差90rpx
+      zfhdEffect:528*(userinfo.fat/40),//脂肪厚度
     })
   },
 

@@ -33,7 +33,7 @@
 </view>
 
 <view class="weui-cells weui-cells_after-title" wx:if="{{!isEdit}}">
-    <navigator url="/pages/index/userDetail?memberId={{item.memberId}}" class="weui-cell weui-check__label" wx:for="{{checkboxItems}}" wx:key="value" hover-class="none">
+    <navigator url="/pages/index/userDetail?memberId={{item.memberId}}&id={{item.id}}" class="weui-cell weui-check__label" wx:for="{{checkboxItems}}" wx:key="value" hover-class="none">
         <view class="weui-cell__bd">{{item.detectionTime}}</view>
         <view class="weui-cell__ft weui-cell__ft_in-access user-weight">{{item.weight}}kg</view>
     </navigator>

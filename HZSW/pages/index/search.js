@@ -1,23 +1,39 @@
 // pages/index/search.js
+var util = require("../../utils/util.js");
+var app = getApp()
+var that
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    items: [
-      {value: '256321456', name: '周梓轩',id:'ID:256321456'},
-      {value: '256321457', name: '张小睿',id:'ID:256321457'},
-      {value: '256321458', name: '周梓轩',id:'ID:256321458'},
-      {value: '256321459', name: '张小睿',id:'ID:256321459'},
-    ]
+    items: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    that = this
+    util.zhw_log(options.step)
+    var typeId = 0;
+    if(options.step == 1){
+      //扫设备
+      typeId = 0
+    }
+    if(options.step == 2){
+      //扫膜
+      typeId = 1
+    }
+    if(options.step == 3){
+      //扫用户
+      typeId = 2
+    }
+    this.setData({
+      typeId:typeId
+    })
+    
   },
 
   /**
@@ -87,6 +103,49 @@ Page({
   {
     wx.navigateTo({
       url:"/pages/index/userInfo?id="
+    })
+  },
+
+  getId:function(options)
+  {
+    this.setData({
+      scansionId:options.detail.value
+    })
+  },
+
+  searchId:function()
+  {
+    /*
+    扫描接口入参：
+    设备ID：201983074
+    膜ID：M900001
+    会员ID：10923900
+     */
+    wx.showToast({
+      title:'信息比对中',
+      icon:'loading',
+      mask:true
+    })
+    var sendata = app.scansion(this.data.typeId,this.data.scansionId,app.globalData.userInfo.storeId)
+    app.send_data(sendata, util.config.url.scansion, function (res) {
+      if(res.resultCode == '10000'){
+        if(that.data.typeId == 0){
+          //扫设备
+          app.globalData.indexStep = 2
+          wx.navigateBack()
+        }
+        if(that.data.typeId == 1){
+          //扫膜
+          app.globalData.indexStep = 3
+          wx.navigateBack()
+        }
+        if(that.data.typeId == 3){
+          //扫用户
+          wx.navigateTo({
+            url:"/pages/index/userInfo"
+          })
+        }
+      }
     })
   },
 })

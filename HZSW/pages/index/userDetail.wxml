@@ -4,33 +4,33 @@
 <view class="user-detail">
 	<view class="weui-flex">
 		<view class="detail-hd">膜ID：</view>
-		<view class="weui-flex__item detail-bd">256321456</view>
+		<view class="weui-flex__item detail-bd">{{userinfo.membranceId}}</view>
 	</view>
 	<view class="weui-flex">
 		<view class="detail-hd">设备ID：</view>
-		<view class="weui-flex__item detail-bd">151487411</view>
+		<view class="weui-flex__item detail-bd">{{userinfo.equipmentId}}</view>
 	</view>
 	<view class="weui-flex">
 		<view class="detail-hd">检测时间：</view>
-		<view class="weui-flex__item detail-bd">2018-10-21 10:50</view>
+		<view class="weui-flex__item detail-bd">{{userinfo.detectionTime}}</view>
 	</view>
 	<view class="weui-flex">
 		<view class="detail-hd">用户年龄段：</view>
-		<view class="weui-flex__item detail-bd">80后</view>
+		<view class="weui-flex__item detail-bd">{{userinfo.age}}</view>
 	</view>
 	<view class="weui-flex">
 		<view class="detail-hd">治疗部位：</view>
-		<view class="weui-flex__item detail-bd">大腿</view>
+		<view class="weui-flex__item detail-bd">{{userinfo.part}}</view>
 	</view>
 </view>
 <view class="body-detail">
 	<view class="weui-flex user-body">
 		<view class="body-hd"></view>
-		<view class="weui-flex__item body-bd">当前体重：50.0kg</view>
+		<view class="weui-flex__item body-bd">当前体重：{{userinfo.weight}}kg</view>
 	</view>
 	<view class="weui-flex user-body">
 		<view class="body-hd body-hd-color"></view>
-		<view class="weui-flex__item body-bd">当前三围：胸围81cm、腰围54cm、臀围86cm</view>
+		<view class="weui-flex__item body-bd">当前三围：胸围{{userinfo.bust}}cm、腰围{{userinfo.waist}}cm、臀围{{userinfo.hipline}}cm</view>
 	</view>
 	<view class="weui-flex mt86">
 		<view class="result-lf">
@@ -44,7 +44,7 @@
 				</block>
 			</view>
 			<view class="ruler-tip">
-				<text style="margin-left: {{tzlEffect}}rpx;">28.8%</text>
+				<text style="margin-left: {{tzlEffect}}rpx;">{{userinfo.bodyFat}}%</text>
 			</view>
 			<view class="ruler-text">（建议保持在21.0%-24.0%之间）</view>
 		</view>
@@ -61,7 +61,7 @@
 				</block>
 			</view>
 			<view class="ruler-tip1">
-				<text style="margin-left: {{zflEffect}}rpx;">35.2%</text>
+				<text style="margin-left: {{zflEffect}}rpx;">{{userinfo.fatRate}}%</text>
 			</view>
 			<view class="ruler-text1">（建议保持在18.5%-23.9%之间）</view>
 		</view>
@@ -76,7 +76,7 @@
 				<text class="select2" style="margin-left: {{zfhdEffect}}rpx;">|</text>
 			</view>
 			<view class="ruler-tip2">
-				<text style="margin-left: {{zfhdEffect-36}}rpx;">25mm</text>
+				<text style="margin-left: {{zfhdEffect-36}}rpx;">{{userinfo.fat}}mm</text>
 			</view>
 			<view class="ruler-text2">（建议保持在12-20mm之间）</view>
 		</view>
