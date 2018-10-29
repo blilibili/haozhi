@@ -25,29 +25,41 @@ Page({
   onLoad: function (options) {
     that = this
     util.zhw_log(options)
-    this.setData({
-      memberId:options.memberId,
-      id:options.id,
-    })
-    var list = app.globalData.memberPhysicalList
-    var userinfo = ''
-    for (var i = 0; i < list.length; i++) {
-      if(list[i].id == options.id){
-        userinfo = list[i]
-        break
+    if(options.id){
+      this.setData({
+        memberId:options.memberId,
+        id:options.id,
+      })
+      var list = app.globalData.memberPhysicalList
+      var userinfo = ''
+      for (var i = 0; i < list.length; i++) {
+        if(list[i].id == options.id){
+          userinfo = list[i]
+          break
+        }
       }
+      util.zhw_log(userinfo)
+      let tzlIndex = this.data.tzlListCode[userinfo.bodyFatCode];
+      let zflIndex = this.data.zflListCode[userinfo.fatRateCode];
+      this.setData({
+        userinfo:userinfo,
+        zflIndex:zflIndex,
+        zflEffect:this.data.zflEffect+138*zflIndex+(zflIndex>=2?12:0),//脂肪率相差规律138*zflIndex+(zflIndex>=2?12:0)
+        tzlIndex:tzlIndex,
+        tzlEffect:this.data.tzlEffect+90*tzlIndex,//体脂率每格相差90rpx
+        zfhdEffect:528*(userinfo.fat/40),//脂肪厚度
+      })
+    }else{
+      var sendata = app.getDetectionRecordList(app.globalData.memberUserInfo.memberId)
+      app.send_data(sendata, util.config.url.getDetectionRecordList, function (res) {
+        if(res.resultCode == '10000' && res.resultData.length > 0){
+          
+        }else{
+          
+        }
+      })
     }
-    util.zhw_log(userinfo)
-    let tzlIndex = this.data.tzlListCode[userinfo.bodyFatCode];
-    let zflIndex = this.data.zflListCode[userinfo.fatRateCode];
-    this.setData({
-      userinfo:userinfo,
-      zflIndex:zflIndex,
-      zflEffect:this.data.zflEffect+138*zflIndex+(zflIndex>=2?12:0),//脂肪率相差规律138*zflIndex+(zflIndex>=2?12:0)
-      tzlIndex:tzlIndex,
-      tzlEffect:this.data.tzlEffect+90*tzlIndex,//体脂率每格相差90rpx
-      zfhdEffect:528*(userinfo.fat/40),//脂肪厚度
-    })
+    
   },
 
   /**

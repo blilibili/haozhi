@@ -22,6 +22,7 @@ var config = {
     addImg:'index/addImg',
     scansion:'index/scansion',
     addDetectionRecord:'statistics/addDetectionRecord',
+    confirmUnlock:'statistics/confirmUnlock',
     getStaffList:'myData/getStaffList',
     getTendency:'statistics/getTendency',
     getMenuEquipment:'menu/getMenuEquipment',
@@ -60,6 +61,18 @@ function formatTime(date) {
   const second = date.getSeconds()
 
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+}
+
+function getDetectionTime() {
+  var date = new Date()
+  let year = date.getFullYear().toString().substring(2,4)
+  let month = date.getMonth() + 1
+  let day = date.getDate()
+  let hour = date.getHours()
+  let minute = date.getMinutes()
+  let second = date.getSeconds()
+
+  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute].map(formatNumber).join(':')
 }
 
 function formatNumber(n) {
@@ -107,6 +120,7 @@ function getPhone(phone,num) {
 
 module.exports = {
   formatTime: formatTime,
+  getDetectionTime: getDetectionTime,
   ajaxUrl:ajaxUrl,
   errCode:errCode,
   domain:domain,

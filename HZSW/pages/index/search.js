@@ -117,34 +117,36 @@ Page({
   {
     /*
     扫描接口入参：
-    设备ID：201983074
-    膜ID：M900001
-    会员ID：10923900
+    设备ID:201983074
+    膜ID:M900001
+    会员ID:10923900
      */
-    wx.showToast({
-      title:'信息比对中',
-      icon:'loading',
-      mask:true
-    })
+    wx.showLoading()
     var sendata = app.scansion(this.data.typeId,this.data.scansionId,app.globalData.userInfo.storeId)
     app.send_data(sendata, util.config.url.scansion, function (res) {
       if(res.resultCode == '10000'){
         if(that.data.typeId == 0){
           //扫设备
           app.globalData.indexStep = 2
+          app.globalData.memberUserInfo.equipmentId = that.data.scansionId
           wx.navigateBack()
         }
         if(that.data.typeId == 1){
           //扫膜
           app.globalData.indexStep = 3
+          app.globalData.memberUserInfo.membranceId = that.data.scansionId
           wx.navigateBack()
         }
-        if(that.data.typeId == 3){
+        if(that.data.typeId == 2){
           //扫用户
-          wx.navigateTo({
+          app.globalData.memberUserInfo.memberId = that.data.scansionId
+          wx.redirectTo({
             url:"/pages/index/userInfo"
           })
         }
+      }else{
+        wx.hideLoading()
+        app.showModal(res.resultMessage)
       }
     })
   },

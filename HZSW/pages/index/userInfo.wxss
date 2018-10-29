@@ -5,6 +5,7 @@
 	background: white;
 	padding: 27rpx 30rpx;
 	border-bottom: 1rpx solid #eeeeee;
+	font-weight: bold;
 }
 .head-name{
 	font-size: 34rpx;

@@ -201,7 +201,7 @@ Page({
 
   goSearch:function()
   {
-    wx.redirectTo({
+    wx.navigateTo({
       url:"/pages/index/search?step="+app.globalData.indexStep
     })
   },

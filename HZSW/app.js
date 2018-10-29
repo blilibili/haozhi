@@ -277,6 +277,39 @@ App({
     return data;
   },
 
+  confirmUnlock:function(equipmentId,memberId)
+  {
+    var data = JSON.stringify({
+      "equipmentId":equipmentId,
+      "memberId":memberId,
+      "txncode":"confirmUnlock"
+    })
+    return data;
+  },
+
+  addDetectionRecord:function(user)
+  {
+    var data = JSON.stringify({
+      "userId":user.userId,
+      "memberId":user.memberId,
+      "membranceId":user.membranceId,
+      "equipmentId":user.equipmentId,
+      "storeId":user.storeId,
+      "detectionTime":user.detectionTime,
+      "age":user.age,
+      "part":user.part,
+      "weight":user.weight,
+      "bust":user.bust,
+      "waist":user.waist,
+      "hipline":user.hipline,
+      "bodyFat":user.bodyFat,
+      "fatRate":user.fatRate,
+      "fat":user.fat,
+      "txncode":"addDetectionRecord"
+    })
+    return data;
+  },
+
   showModal:function(content,title='',showCancel = false,cancelText = '',cancelColor = '',confirmText = '确定',confirmColor = '')
   {
     wx.showModal({
@@ -333,7 +366,7 @@ App({
           //Memo 响应信息
           if(txninfo.resultCode != '10000'){
             wx.hideLoading()
-            if(['userLogin','perfectInformation','resetPassword','smsCode','updateSex','updatePhone','deleteDetectionRecord','removeHouseEquipment','addHouseEquipment'].indexOf(d.txncode) != -1){
+            if(['userLogin','perfectInformation','resetPassword','smsCode','updateSex','updatePhone','deleteDetectionRecord','removeHouseEquipment','addHouseEquipment','addDetectionRecord'].indexOf(d.txncode) != -1){
               wx.showModal({
                 title: '',
                 showCancel: false,
@@ -390,6 +423,6 @@ App({
     isPhysical:true,//true为打开理疗记录页面，false为打开设备管理页面
     indexStep:1,//1扫设备，2扫膜，3扫用户
     memberPhysicalList:[],//会员的理疗记录列表，getDetectionRecordList接口返回
-
+    memberUserInfo:{},
   }
 })
