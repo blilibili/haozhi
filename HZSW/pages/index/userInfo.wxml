@@ -12,7 +12,7 @@
 	</view>
 	<view class="weui-flex">
 		<view class="detail-hd">检测时间：</view>
-		<view class="weui-flex__item detail-bd">{{userinfo.detectionTime}}</view>
+		<view class="weui-flex__item detail-bd">{{userinfo.detectionTimeShow}}</view>
 	</view>
 </view>
 <view class="weui-cells weui-cells_after-title select-box">

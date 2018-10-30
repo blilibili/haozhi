@@ -24,7 +24,7 @@
         	<block wx:for="{{memberList}}" wx:key="value">
 	            <navigator url="/pages/physical/detail?memberId={{item.memberId}}" class="weui-cell" hover-class="none">
 	                <view class="user-head">
-						ID:256321456
+						ID:{{item.memberId}}
 					</view>
                     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
 	            </navigator>

@@ -8,17 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    checkboxItems: [
-        {name: '员工姓名', value: '0'},
-        {name: '员工姓名', value: '1'},
-        {name: '员工姓名', value: '2'},
-        {name: '员工姓名', value: '3'},
-        {name: '员工姓名', value: '4'},
-        {name: '员工姓名', value: '5'},
-        {name: '员工姓名', value: '6'},
-        {name: '员工姓名', value: '7'},
-        {name: '员工姓名', value: '8'},
-    ],
+    
   },
 
   /**
@@ -26,14 +16,21 @@ Page({
    */
   onLoad: function (options) {
     that = this
-    this.setData({
-      hasStore:false
+
+    var sendata = app.getEquipmentList(app.globalData.userInfo.grade,app.globalData.userInfo.storeId,app.globalData.userInfo.id)
+    app.send_data(sendata, util.config.url.getEquipmentList, function (res) {
+      if(res.resultCode == '10000' && res.resultData.length > 0){
+        app.globalData.deviceList = res.resultData
+        that.setData({
+          hasdata:true,
+          deviceList:res.resultData
+        })
+      }else{
+        that.setData({
+          hasdata:false
+        })
+      }
     })
-    setTimeout(function(){
-      that.setData({
-        hasStore:true,
-      })
-    },1000)
   },
 
   /**
@@ -111,7 +108,7 @@ Page({
   {
     util.zhw_log(options)
     wx.navigateTo({
-      url:"/pages/device/deviceList?storeid="+options.currentTarget.dataset.id
+      url:"/pages/device/deviceList?equipmentId="+options.currentTarget.dataset.id
     })
   },
 
@@ -127,6 +124,25 @@ Page({
       success:function(res){
         if (res.confirm) {
           util.zhw_log(options)
+          wx.showLoading()
+          var sendata = app.confirmReception(options.currentTarget.dataset.id)
+          app.send_data(sendata, util.config.url.confirmReception, function (res) {
+            if(res.resultCode == '10000'){
+              wx.hideLoading()
+              var deviceList = that.data.deviceList
+              for (var i = 0; i < deviceList.length; i++) {
+                if(deviceList[i].equipmentId == options.currentTarget.dataset.id){
+                  deviceList[i].stateCode = '1'
+                  deviceList[i].stateName = '空闲'
+                  break;
+                }
+              }
+              app.globalData.deviceList = deviceList
+              that.setData({
+                deviceList:deviceList
+              })
+            }
+          })
         }
       }
     })

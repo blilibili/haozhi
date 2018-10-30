@@ -1,5 +1,5 @@
 <view class="user-head">
-	ID:{{memberId}}
+	ID:{{userinfo.memberId}}
 </view>
 <view class="user-detail">
 	<view class="weui-flex">

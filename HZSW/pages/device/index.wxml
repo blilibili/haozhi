@@ -15,20 +15,20 @@
         </view>
         <view class="weui-search-bar__cancel-btn btn-color" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
     </view>
-    <view class="nobody" wx:if="{{!hasStore}}">
+    <view class="nobody" wx:if="{{!hasdata}}">
         <image class="nothing" src="/image/kong_icon.png"/>
         <view class="nothing-text">暂无设备</view>
     </view>
-    <view class="store-list"  wx:if="{{hasStore}}">
+    <view class="store-list"  wx:if="{{hasdata}}">
         <view class="search-text" wx:if="{{inputVal.length > 0}}">搜索结果(3)</view>
         <view class="weui-cells searchbar-result">
-            <block wx:for="{{checkboxItems}}" wx:key="value">
+            <block wx:for="{{deviceList}}" wx:key="value">
                 <view class="weui-cell">
-                    <view class="user-head" bindtap="goDeviceList" data-id="{{item.id}}">
-                        <view class="head-name">设备AAA-1234<text class="user-local">天河门店</text></view>
-                        <view class="head-id">ID:256321456</view>
+                    <view class="user-head" bindtap="goDeviceList" data-id="{{item.equipmentId}}">
+                        <view class="head-name">{{item.equipmentName}}<text class="user-local">{{item.storeName}}</text></view>
+                        <view class="head-id">ID:{{item.equipmentId}}</view>
                     </view>
-                    <view class="weui-cell__ft weui-cell__ft_in-access"><view class="receive-btn" bindtap="doReceive" data-id="{{item.id}}">确认接收</view></view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access"><view class="receive-btn" bindtap="doReceive" data-id="{{item.equipmentId}}" wx:if="{{item.stateCode == '5'}}">确认接收</view></view>
                 </view>
             </block>
         </view>

@@ -8,32 +8,45 @@ Page({
    * 页面的初始数据
    */
   data: {
-    checkboxItems: [
-        {name: '18/09/15 10:50', value: '0', checked: true},
-        {name: '18/09/10 10:50', value: '1'},
-        {name: '18/09/10 10:50', value: '2'},
-        {name: '18/08/25 10:50', value: '3'},
-        {name: '18/08/25 10:50', value: '4'},
-        {name: '18/08/25 10:50', value: '5'},
-        {name: '18/08/25 10:50', value: '6'},
-        {name: '18/08/25 10:50', value: '7'},
-        {name: '18/08/25 10:50', value: '8'},
-    ],
+    checkboxItems: [],
     isEdit:false,
     dispatchers: [
-      {name: '1', value: '轻度故障(不影响使用)', checked: 'true'},
-      {name: '2', value: '故障(完全不能使用)'},
+      {name: '4', value: '轻度故障(不影响使用)', checked: 'true'},
+      {name: '3', value: '故障(完全不能使用)'},
     ],
-    disIndex:1,
+    disIndex:4,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.userid)
+    util.zhw_log(options.equipmentId)
     that = this
-    
+    var devices = app.globalData.deviceList
+    for (var i = 0; i < devices.length; i++) {
+      if(devices[i].equipmentId == options.equipmentId){
+        this.setData({
+          device:devices[i]
+        })
+        break
+      }
+    }
+    util.zhw_log(this.data.device)
+    var sendata = app.getEquipmentDetail(this.data.device.equipmentId)
+    app.send_data(sendata, util.config.url.getEquipmentDetail, function (res) {
+      if(res.resultCode == '10000' && res.resultData.length > 0){
+        app.globalData.deviceListItem = res.resultData
+        that.setData({
+          hasdata:true,
+          checkboxItems:res.resultData
+        })
+      }else{
+        that.setData({
+          hasdata:false
+        })
+      }
+    })
   },
 
   /**
@@ -93,7 +106,7 @@ Page({
           checkboxItems[i].checked = false;
 
           for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
-              if(checkboxItems[i].value == values[j]){
+              if(checkboxItems[i].id == values[j]){
                   checkboxItems[i].checked = true;
                   break;
               }
@@ -116,6 +129,29 @@ Page({
     this.setData({
       isEdit:true
     })
+  },
+  doDel:function()
+  {
+    var delList = []
+    var checkboxItems = this.data.checkboxItems
+    var newList = []
+    for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
+      if(checkboxItems[i].checked){
+        delList.push(checkboxItems[i].id)
+      }else{
+        newList.push(checkboxItems[i])
+      }
+    }
+    var sendata = app.deleteDetectionRecord(delList.join(","))
+    app.send_data(sendata, util.config.url.deleteDetectionRecord, function (res) {
+      if(res.resultCode == '10000'){
+        app.globalData.deviceListItem = newList
+        that.setData({
+          checkboxItems:newList
+        })
+      }
+    })
+    
   },
   selectAll:function()
   {
@@ -153,6 +189,20 @@ Page({
   doSubmit:function()
   {
     util.zhw_log("设备故障反馈")
+    var device = this.data.device
+    wx.showLoading()
+    var sendata = app.breakdownFeedback(device.equipmentId,this.data.disIndex)
+    app.send_data(sendata, util.config.url.breakdownFeedback, function (res) {
+      if(res.resultCode == '10000'){
+        wx.hideLoading()
+        device.stateCode = that.data.disIndex
+        device.stateName = that.data.disIndex == 3?'故障':'轻度故障';
+        that.setData({
+          device:device,
+          hasFeedback:true
+        })
+      }
+    })
   },
 
 

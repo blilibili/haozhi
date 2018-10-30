@@ -57,7 +57,7 @@ icon{
 	border:1rpx solid #ff9cb8;
 	border-radius: 6rpx;
 	font-size: 22rpx;
-	line-height: 2.2em;
+	line-height: 2em;
 }
 .eidt-btn:after{
 	border:none;

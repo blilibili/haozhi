@@ -109,30 +109,9 @@ Page({
         step:1
       })
     }else if(app.globalData.indexStep == 2){
-      if(this.data.noShow)return
-      wx.showModal({
-        title:'',
-        content:'是否继续扫膜？',
-        cancelText:'否',
-        confirmText:'是',
-        confirmColor:'#ff9cb8',
-        success:function(res){
-          if(res.confirm){
-            //点击是
-            that.setData({
-              title:'扫膜',
-              step:2
-            })
-          }
-          if(res.cancel){
-            //点击否
-            app.globalData.indexStep = 3
-            that.setData({
-              title:'扫用户',
-              step:3
-            })
-          }
-        }
+      that.setData({
+        title:'扫膜',
+        step:2
       })
     }else{
       this.setData({
@@ -208,96 +187,25 @@ Page({
 
   doScan:function()
   {
-    var scansionId = ''
-    if(app.globalData.indexStep == 1){
-      wx.scanCode({
-        onlyFromCamera: true,
-        scanType:['qrCode'],
-        success (res) {
-          wx.showToast({
-            title:'信息比对中',
-            icon:'loading',
-            duration:2000,
-            mask:true
-          })
-          util.zhw_log(res.result)
-          setTimeout(function(){
-            that.checkScan(res.result)
-          },1500)
-        },
-        fail(err){
-          util.zhw_log(err)
-        }
-      })
-      // wx.showToast({
-      //   title:'信息比对中',
-      //   icon:'loading',
-      //   duration:2000,
-      //   mask:true
-      // })
-      // this.setData({
-      //   title:'扫膜',
-      //   step:2
-      // })
-    }else if(app.globalData.indexStep == 2){
-      wx.scanCode({
-        onlyFromCamera: true,
-        scanType:['qrCode'],
-        success (res) {
-          wx.showToast({
-            title:'信息比对中',
-            icon:'loading',
-            duration:2000,
-            mask:true
-          })
-          util.zhw_log(res.result)
-          setTimeout(function(){
-            that.checkScan(res.result)
-          },1500)
-        },
-        fail(err){
-          util.zhw_log(err)
-        }
-      })
-      // wx.showToast({
-      //   title:'比对成功',
-      //   icon:'success',
-      //   mask:true
-      // })
-      // this.setData({
-      //   title:'扫用户',
-      //   step:3
-      // })
-    }else{
-      wx.scanCode({
-        onlyFromCamera: true,
-        scanType:['qrCode'],
-        success (res) {
-          wx.showToast({
-            title:'信息比对中',
-            icon:'loading',
-            duration:2000,
-            mask:true
-          })
-          util.zhw_log(res.result)
-          setTimeout(function(){
-            that.checkScan(res.result)
-          },1500)
-        },
-        fail(err){
-          util.zhw_log(err)
-        }
-      })
-      // wx.showToast({
-      //   title:'比对失败',
-      //   image:'/image/zhuye_zhuangtai_icon_shibai.png',
-      //   mask:true
-      // })
-      // this.setData({
-      //   title:'扫设备',
-      //   step:1
-      // })
-    }
+    wx.scanCode({
+      onlyFromCamera: true,
+      scanType:['qrCode'],
+      success (res) {
+        wx.showToast({
+          title:'信息比对中',
+          icon:'loading',
+          duration:2000,
+          mask:true
+        })
+        util.zhw_log(res.result)
+        setTimeout(function(){
+          that.checkScan(res.result)
+        },1500)
+      },
+      fail(err){
+        util.zhw_log(err)
+      }
+    })
   },
 
   checkScan:function(scansionId)
@@ -310,45 +218,25 @@ Page({
           icon:'success',
           mask:true
         })
-        if(that.data.step == 1){
+        if(app.globalData.indexStep == 1){
           //扫设备
-          wx.showModal({
-            title:'',
-            content:'是否继续扫膜？',
-            cancelText:'否',
-            confirmText:'是',
-            confirmColor:'#ff9cb8',
-            success:function(res){
-              if(res.confirm){
-                //点击是
-                app.globalData.indexStep = 2
-                that.setData({
-                  title:'扫膜',
-                  step:2,
-                  noShow:true
-                })
-              }
-              if(res.cancel){
-                //点击否
-                app.globalData.indexStep = 3
-                that.setData({
-                  title:'扫用户',
-                  step:3,
-                  noShow:true
-                })
-              }
-            }
+          app.globalData.indexStep = 2
+          app.globalData.memberUserInfo.equipmentId = scansionId
+          that.setData({
+            title:'扫膜',
+            step:2
           })
-        }
-        if(that.data.step == 2){
+        }else if(app.globalData.indexStep == 2){
           //扫膜
           app.globalData.indexStep = 3
+          app.globalData.memberUserInfo.membranceId = scansionId
           that.setData({
             title:'扫用户',
             step:3
           })
-        }
-        if(that.data.step == 3){
+        }else{
+          app.globalData.indexStep = 1
+          app.globalData.memberUserInfo.memberId = scansionId
           //扫用户
           wx.navigateTo({
             url:"/pages/index/userInfo"

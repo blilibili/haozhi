@@ -18,7 +18,8 @@ Page({
    */
   onLoad: function (options) {
     that = this
-    app.globalData.memberUserInfo.detectionTime = util.getDetectionTime()
+    app.globalData.memberUserInfo.detectionTime = util.formatTime()
+    app.globalData.memberUserInfo.detectionTimeShow = util.getDetectionTime()
     util.zhw_log(app.globalData.memberUserInfo)
     this.setData({
       userinfo:app.globalData.memberUserInfo
@@ -190,10 +191,10 @@ Page({
                     mask:true,
                   })
                   setTimeout(function(){
-                    wx.navigateTo({
+                    wx.redirectTo({
                       url:"/pages/index/userDetail"
                     })
-                  },2000)
+                  },1500)
                 }else{
                   wx.showToast({
                     title:'解锁失败',

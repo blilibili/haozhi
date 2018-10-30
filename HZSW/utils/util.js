@@ -22,7 +22,7 @@ var config = {
     addImg:'index/addImg',
     scansion:'index/scansion',
     addDetectionRecord:'statistics/addDetectionRecord',
-    confirmUnlock:'statistics/confirmUnlock',
+    confirmUnlock:'index/confirmUnlock',
     getStaffList:'myData/getStaffList',
     getTendency:'statistics/getTendency',
     getMenuEquipment:'menu/getMenuEquipment',
@@ -35,7 +35,10 @@ var config = {
     getDetectionRecordList:'myData/getDetectionRecordList',
     deleteDetectionRecord:'myData/deleteDetectionRecord',
     getEquipmentList:'myData/getEquipmentList',
+    getEquipmentDetail:'myData/getEquipmentDetail',
     addStaff:'myData/addStaff',
+    confirmReception:'myData/confirmReception',
+    breakdownFeedback:'equipment/breakdownFeedback',
     getStoreList:'store/getStoreList',
     removeStoreList:'store/removeStoreList',
     addStoreList:'store/addStoreList',
@@ -52,7 +55,8 @@ var config = {
   }
 }
 
-function formatTime(date) {
+function formatTime() {
+  var date = new Date()
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
@@ -60,7 +64,7 @@ function formatTime(date) {
   const minute = date.getMinutes()
   const second = date.getSeconds()
 
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
 function getDetectionTime() {
