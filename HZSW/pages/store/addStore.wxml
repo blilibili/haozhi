@@ -12,7 +12,7 @@
             <view class="weui-label"><text>*</text>门店 ID</view>
         </view>
         <view class="weui-cell__bd">
-            <input class="weui-input" value="{{storeId}}" placeholder="自动生成" placeholder-class="noselect" bindinput="getStoreId"/>
+            <input class="weui-input" value="{{storeId}}" placeholder="自动生成" placeholder-class="noselect" bindinput="getStoreId" disabled="disabled" />
         </view>
     </view>
     <view class="weui-cell weui-cell_input">
@@ -20,7 +20,7 @@
             <view class="weui-label"><text>*</text>门店地址</view>
         </view>
         <view class="weui-cell__bd">
-            <picker mode="region" bindchange="bindAdressChange">
+            <picker mode="region" bindchange="bindAdressChange" value="{{regionDefault}}">
                 <view wx:if="{{regionIndex == -1}}" class="weui-select weui-select_in-select-after noselect">请选择省市区</view>
                 <view wx:else class="weui-select weui-select_in-select-after">{{region}}</view>
             </picker>

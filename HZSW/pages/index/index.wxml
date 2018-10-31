@@ -52,7 +52,7 @@
 				<view class="store-list" hidden="{{activeIndex != 0}}" wx:if="{{hasStore}}">
                 	<view class="weui-cells searchbar-result" wx:if="{{!isRemove}}">
 			        	<block wx:for="{{checkboxItems}}" wx:key="value">
-				            <navigator url="/pages/store/detail?storeName={{item.storeName}}" class="weui-cell" hover-class="none">
+				            <navigator url="/pages/store/detail?storeId={{item.storeId}}" class="weui-cell" hover-class="none">
 				                <view class="user-head">
 									<view class="head-name">{{item.storeName}}<text class="user-local">店长-{{item.userName}}</text></view>
 									<view class="head-id">ID:{{item.storeId}}</view>
@@ -94,6 +94,8 @@
 				        markers="{{markers}}"
 				        bindmarkertap="goStore"
 				        bindcallouttap="goStore"
+				        include-points:="{{points}}"
+				        enable-zoom="false"
 				        >
 				      </map>
                 </view>

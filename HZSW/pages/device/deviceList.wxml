@@ -53,9 +53,9 @@
 	</view>
 </view>
 
-<view class="weui-flex problem-text"  wx:if="{{!isEdit&&hasFeedback}}">
+<view class="weui-flex problem-text"  wx:if="{{!isEdit&&!hasFeedback}}">
 	<text bindtap="showDispatchBox">设备故障反馈</text>
-</view>z
+</view>
 
 <import src="../component/dispatch/dispatch.wxml" />
 <template is="dispatch" data="{{ showDispatch: showDispatch,title: title,items:dispatchers,cancelbtn:cancelbtn,confirmbtn:confirmbtn}}" />

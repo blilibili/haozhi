@@ -3,7 +3,7 @@ page{
 	background: white;
 }
 .form-input{
-	margin: 50rpx 0 56rpx 0;
+	padding: 50rpx 0 56rpx 0;
 }
 .form-input-item{
 	height: 88rpx;

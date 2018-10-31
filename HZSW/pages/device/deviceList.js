@@ -32,6 +32,11 @@ Page({
         break
       }
     }
+    if(this.data.device.stateCode == 3||this.data.device.stateCode == 4){
+      this.setData({
+        hasFeedback:true
+      })
+    }
     util.zhw_log(this.data.device)
     var sendata = app.getEquipmentDetail(this.data.device.equipmentId)
     app.send_data(sendata, util.config.url.getEquipmentDetail, function (res) {
@@ -195,12 +200,25 @@ Page({
     app.send_data(sendata, util.config.url.breakdownFeedback, function (res) {
       if(res.resultCode == '10000'){
         wx.hideLoading()
+
         device.stateCode = that.data.disIndex
         device.stateName = that.data.disIndex == 3?'故障':'轻度故障';
         that.setData({
           device:device,
           hasFeedback:true
         })
+
+        var deviceList = app.globalData.deviceList
+        for (var i = 0; i < deviceList.length; i++) {
+          if(deviceList[i].equipmentId == device.equipmentId){
+            deviceList[i].stateCode = device.stateCode
+            deviceList[i].stateName = device.stateName
+            break;
+          }
+        }
+        app.globalData.deviceList = deviceList
+        
+        that.hideDispatchBox()
       }
     })
   },

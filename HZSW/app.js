@@ -153,6 +153,15 @@ App({
     return data;
   },
 
+  deleteStaffList:function(idList)
+  {
+    var data = JSON.stringify({
+      "idList":idList,
+      "txncode":"deleteStaffList"
+    })
+    return data;
+  },
+
   updateSex:function(userId,sex)
   {
     var data = JSON.stringify({
@@ -327,6 +336,35 @@ App({
     return data;
   },
 
+  addStaff:function(storeId,phone)
+  {
+    var data = JSON.stringify({
+      "storeId":storeId,
+      "phone":phone,
+      "txncode":"addStaff"
+    })
+    return data;
+  },
+
+  inviteShopowner:function(phone,id=undefined)
+  {
+    var data = JSON.stringify({
+      "phone":phone,
+      "id":id,
+      "txncode":"inviteShopowner"
+    })
+    return data;
+  },
+
+  getEquipmentArray:function(equipmentName=undefined)
+  {
+    var data = JSON.stringify({
+      "equipmentName":equipmentName,
+      "txncode":"getEquipmentArray"
+    })
+    return data;
+  },
+
   addDetectionRecord:function(user)
   {
     var data = JSON.stringify({
@@ -406,7 +444,7 @@ App({
           //Memo 响应信息
           if(txninfo.resultCode != '10000'){
             wx.hideLoading()
-            if(['userLogin','perfectInformation','resetPassword','smsCode','updateSex','updatePhone','deleteDetectionRecord','removeHouseEquipment','addHouseEquipment','addDetectionRecord','confirmReception','breakdownFeedback'].indexOf(d.txncode) != -1){
+            if(['userLogin','perfectInformation','resetPassword','smsCode','updateSex','updatePhone','deleteDetectionRecord','removeHouseEquipment','addHouseEquipment','addDetectionRecord','confirmReception','breakdownFeedback','deleteStaffList','addStaff','inviteShopowner'].indexOf(d.txncode) != -1){
               wx.showModal({
                 title: '',
                 showCancel: false,
@@ -464,7 +502,8 @@ App({
     indexStep:1,//1扫设备，2扫膜，3扫用户
     memberPhysicalList:[],//会员的理疗记录列表，getDetectionRecordList接口返回
     memberUserInfo:{},
-    deviceList:[],
-    deviceListItem:[],
+    deviceList:[],//设备信息
+    deviceListItem:[],//某个设备下的理疗记录信息
+    storeList:[],//门店信息
   }
 })

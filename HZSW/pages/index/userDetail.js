@@ -37,6 +37,9 @@ Page({
       userinfo.memberId = options.memberId
       this.setDetail(userinfo)
     }else if(options.equipmentId){
+      wx.setNavigationBarTitle({
+        title:'设备详情'
+      })
       var list = app.globalData.deviceListItem
       for (var i = 0; i < list.length; i++) {
         if(list[i].id == options.id){

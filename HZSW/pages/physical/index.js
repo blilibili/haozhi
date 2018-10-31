@@ -9,17 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    checkboxItems: [
-        {name: '员工姓名', value: '0'},
-        {name: '员工姓名', value: '1'},
-        {name: '员工姓名', value: '2'},
-        {name: '员工姓名', value: '3'},
-        {name: '员工姓名', value: '4'},
-        {name: '员工姓名', value: '5'},
-        {name: '员工姓名', value: '6'},
-        {name: '员工姓名', value: '7'},
-        {name: '员工姓名', value: '8'},
-    ],
+    deviceList: [],
     tabs: ["列表", "地图"],
     activeIndex: 0,
     sliderOffset: 0,
@@ -61,20 +51,41 @@ Page({
       })
       
     }else{
-      //设备
-      //status 1:空闲 2:使用中 3:故障
-      var store = [{latitude: 23.099994,longitude: 113.324520,status:1,name:'空闲',id:1,icon:"/image/shebei_icon_dingwei_kongxian.png",color:"#009944",borderColor:"#009944"},{latitude: 23.099994,longitude: 113.344520,status:2,name:'使用中',id:2,icon:"/image/mendian_icon_dingwei.png",color:"#ff9cb8",borderColor:"#ff9cb8"},{latitude: 23.099994,longitude: 113.345520,status:3,name:'故障',id:3,icon:"/image/shebei_icon_dingwei_guzhang.png",color:"#f43531",borderColor:"#f43531"}];
-      var markers = [];
-      for (var i = store.length - 1; i >= 0; i--) {
-        markers.push({id:store[i].id,latitude: store[i].latitude,longitude: store[i].longitude,iconPath: store[i].icon,width:18,height:21,callout:{content:store[i].name,fontSize:10,color:store[i].color,display:'ALWAYS',borderRadius:3,borderColor:store[i].borderColor,bgColor:"#ffffff",padding:2,textAlign:"center"
-          }})
-      }
+      //设备列表
+      //status 1:空闲 2:使用中 3:故障 4:轻度故障 5:在途
+      
+      var sendata = app.getEquipmentArray()
+      app.send_data(sendata, util.config.url.getEquipmentArray, function (res) {
+        if(res.resultCode == '10000' && res.resultData.length > 0){
+          var list = res.resultData
+          app.globalData.deviceList = res.resultData
+          that.setData({
+            hasdata:true,
+            deviceList:list
+          })
 
-      that.setData({
-        userList:[1,2,3,4,5,6],
-        latitude: 23.099994,
-        longitude: 113.324520,
-        markers:markers,
+          //地图模式的门店列表
+          var markers = []
+          var points = []
+          var iconList = {'空闲':"/image/shebei_icon_dingwei_kongxian.png",'使用中':"/image/mendian_icon_dingwei.png",'故障':"/image/shebei_icon_dingwei_guzhang.png",'轻度故障':"/image/shebei_icon_dingwei_kongxian.png",'在途':"/image/shebei_icon_dingwei_kongxian.png",}
+          var colorList = {'空闲':"#009944",'使用中':"#ff9cb8",'故障':"#f43531",'轻度故障':"#000000",'在途':"#000000",}
+          for (var i =  0; i < list.length; i++) {
+            markers.push({latitude: list[i].latitude,longitude: list[i].longitude,name:list[i].status,id:list[i].equipmentId,icon:iconList[list[i].status],color:colorList[list[i].status],borderColor:colorList[list[i].status]})
+
+            points.push({latitude: list[i].latitude,longitude: list[i].longitude})
+          }
+          that.setData({
+            latitude: list[0].latitude,
+            longitude: list[0].longitude,
+            markers:markers,
+            points:points
+          })
+
+        }else{
+          that.setData({
+            hasdata:false
+          })
+        }
       })
     }
   },
@@ -107,15 +118,6 @@ Page({
       this.setData({
         isPhysical:false
       })
-      this.setData({
-        hasStore:true
-        // hasStore:false
-      })
-      setTimeout(function(){
-        that.setData({
-          hasStore:true,
-        })
-      },1000)
     }
   },
 

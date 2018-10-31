@@ -1,4 +1,4 @@
-var utils = require("../../utils/util.js");
+var util = require("../../utils/util.js");
 var app = getApp()
 var that
 Page({
@@ -7,15 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    checkboxItems: [
-        {name: '员工姓名', value: '0'},
-        {name: '员工姓名', value: '1'},
-        {name: '员工姓名', value: '2'},
-        {name: '员工姓名', value: '3'},
-        {name: '员工姓名', value: '4'},
-        {name: '员工姓名', value: '5'},
-        {name: '员工姓名', value: '6'},
-    ],
+    checkboxItems: [],
     inputShowed: false,
     inputVal: ""
   },
@@ -25,14 +17,21 @@ Page({
    */
   onLoad: function (options) {
     that = this
-    this.setData({
-      hasdata:false
+    wx.showLoading();
+    var sendata = app.getStaffList(app.globalData.userInfo.storeId)
+    app.send_data(sendata, util.config.url.getStaffList, function (res) {
+      wx.hideLoading();
+      if(res.resultCode == '10000' && res.resultData.length > 0){
+        that.setData({
+          hasdata:true,
+          checkboxItems:res.resultData
+        })
+      }else{
+        that.setData({
+          hasdata:false
+        })
+      }
     })
-    setTimeout(function(){
-      that.setData({
-        hasdata:true,
-      })
-    },1000)
   },
 
   /**
@@ -123,14 +122,28 @@ Page({
   },
   sendMessage:function()
   {
-    console.log("发送短信")
-    this.setData({
-      showInvite:false
+    util.zhw_log(this.data.phone)
+    if(this.data.phone == undefined || this.data.phone.length < 11){
+      app.showModal('请输入完整的手机号码');return;
+    }
+    if(!util.isPoneAvailable(this.data.phone)){
+      app.showModal('请输入正确的手机号码');return;
+    }
+    var sendata = app.addStaff(app.globalData.userInfo.storeId,this.data.phone)
+    app.send_data(sendata, util.config.url.addStaff, function (res) {
+      if(res.resultCode == '10000'){
+        wx.showToast({title: "邀请成功"})
+        that.setData({
+          showInvite:false
+        })
+      }
     })
   },
-  phoneInput:function(res)
+  phoneInput:function(options)
   {
-    console.log(res)
+    this.setData({
+      phone:options.detail.value
+    })
   },
 
   removeMember:function()
@@ -142,20 +155,36 @@ Page({
 
   doRemove:function()
   {
-    this.setData({
-      isRemove:false
+    var delList = []
+    var checkboxItems = this.data.checkboxItems
+    var newList = []
+    for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
+      if(checkboxItems[i].checked){
+        delList.push(checkboxItems[i].id)
+      }else{
+        newList.push(checkboxItems[i])
+      }
+    }
+    wx.showLoading()
+    var sendata = app.deleteStaffList(delList.join(","))
+    app.send_data(sendata, util.config.url.deleteStaffList, function (res) {
+      wx.hideLoading()
+      if(res.resultCode == '10000'){
+        that.setData({
+          checkboxItems:newList,
+          isRemove:false
+        })
+      }
     })
   },
 
   checkboxChange: function (e) {
-      console.log('checkbox发生change事件，携带value值为：', e.detail.value);
-
       var checkboxItems = this.data.checkboxItems, values = e.detail.value;
       for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
           checkboxItems[i].checked = false;
 
           for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
-              if(checkboxItems[i].value == values[j]){
+              if(checkboxItems[i].id == values[j]){
                   checkboxItems[i].checked = true;
                   break;
               }
@@ -177,8 +206,4 @@ Page({
       checkboxItems: checkboxItems
     });
   },
-
-
-
-
 })

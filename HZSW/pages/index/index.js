@@ -53,39 +53,41 @@ Page({
       app.send_data(sendata, util.config.url.getStoreList, function (res) {
         wx.hideLoading()
         if(res.resultCode == '10000' && res.resultData.length > 0){
+          var list = res.resultData
+          app.globalData.storeList = res.resultData
           that.setData({
             hasStore:true,
-            checkboxItems:res.resultData
+            checkboxItems:list
           })
+
+          //地图模式的门店列表
+          var markers = []
+          var points = []
+          for (var i =  0; i < list.length; i++) {
+            markers.push({id:list[i].storeId,latitude: list[i].latitude,longitude: list[i].longitude,iconPath: '/image/mendian_icon_dingwei.png',width:18,height:21,callout:{content:list[i].storeName,fontSize:10,color:'#ff9cb8',display:'ALWAYS',borderRadius:3,borderColor:'#ff9cb8',bgColor:"#ffffff",padding:2,textAlign:"center"
+              }})
+            points.push({latitude: list[i].latitude,longitude: list[i].longitude})
+
+          }
+          that.setData({
+            latitude: list[0].latitude,
+            longitude: list[0].longitude,
+            markers:markers,
+            points:points
+          })
+
         }else{
           that.setData({
             hasStore:false,
           })
         }
       })
-
-      
-      var store = [{latitude: 23.099994,longitude: 113.324520,name:'番禺门店',id:1},{latitude: 23.099994,longitude: 113.344520,name:'天河门店',id:2}];
-      var markers = [];
-      for (var i = store.length - 1; i >= 0; i--) {
-        markers.push({id:store[i].id,latitude: store[i].latitude,longitude: store[i].longitude,iconPath: '/image/mendian_icon_dingwei.png',width:18,height:21,callout:{content:store[i].name,fontSize:10,color:'#ff9cb8',display:'ALWAYS',borderRadius:3,borderColor:'#ff9cb8',bgColor:"#ffffff",padding:2,textAlign:"center"
-          }})
-      }
-
-      that.setData({
-        userList:[1,2,3,4,5,6],
-        latitude: 23.099994,
-        longitude: 113.324520,
-        markers:markers,
-      })
-
-      
     }else if(app.globalData.userInfo.grade == 2){
       //店长页面
-      // this.forScan()
+      
     }else{
       //普通员工页面
-      // this.forScan()
+      
     }
     this.setData({
       userRule:app.globalData.userInfo.grade
@@ -337,10 +339,8 @@ Page({
 
   goStore:function(res)
   {
-    console.log(res)
-    console.log(res.markerId)
     wx.navigateTo({
-      url:'/pages/store/detail?storeid='+res.markerId
+      url:'/pages/store/detail?storeId='+res.markerId
     })
   },
 

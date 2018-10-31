@@ -45,7 +45,7 @@
             <view class="weui-label">体重/kg</view>
         </view>
         <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入当前体重" placeholder-class="noselect" bindinput="getweight"/>
+            <input type="digit" class="weui-input" placeholder="请输入当前体重" placeholder-class="noselect" bindinput="getweight"/>
         </view>
     </view>
     <view class="weui-cell weui-cell_input">
@@ -53,7 +53,7 @@
             <view class="weui-label">胸围/cm</view>
         </view>
         <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入胸围大小" placeholder-class="noselect" bindinput="getbust"/>
+            <input type="digit" class="weui-input" placeholder="请输入胸围大小" placeholder-class="noselect" bindinput="getbust"/>
         </view>
     </view>
     <view class="weui-cell weui-cell_input">
@@ -61,7 +61,7 @@
             <view class="weui-label">腰围/cm</view>
         </view>
         <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入腰围大小" placeholder-class="noselect" bindinput="getwaist"/>
+            <input type="digit" class="weui-input" placeholder="请输入腰围大小" placeholder-class="noselect" bindinput="getwaist"/>
         </view>
     </view>
     <view class="weui-cell weui-cell_input">
@@ -69,7 +69,7 @@
             <view class="weui-label">臀围/cm</view>
         </view>
         <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入臀围大小" placeholder-class="noselect" bindinput="gethipline"/>
+            <input type="digit" class="weui-input" placeholder="请输入臀围大小" placeholder-class="noselect" bindinput="gethipline"/>
         </view>
     </view>
 </view>
@@ -79,7 +79,7 @@
             <view class="weui-label">体脂率/%</view>
         </view>
         <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入体脂率" placeholder-class="noselect" bindinput="getbodyFat"/>
+            <input type="digit" class="weui-input" placeholder="请输入体脂率" placeholder-class="noselect" bindinput="getbodyFat"/>
         </view>
     </view>
     <view class="weui-cell weui-cell_input">
@@ -87,7 +87,7 @@
             <view class="weui-label">脂肪率/%</view>
         </view>
         <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入脂肪率" placeholder-class="noselect" bindinput="getfatRate"/>
+            <input type="digit" class="weui-input" placeholder="请输入脂肪率" placeholder-class="noselect" bindinput="getfatRate"/>
         </view>
     </view>
     <view class="weui-cell weui-cell_input">
@@ -95,7 +95,7 @@
             <view class="weui-label label-other">脂肪厚度/mm</view>
         </view>
         <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入脂肪厚度" placeholder-class="noselect" bindinput="getfat"/>
+            <input type="digit"  class="weui-input" placeholder="请输入脂肪厚度" placeholder-class="noselect" bindinput="getfat"/>
         </view>
     </view>
 </view>

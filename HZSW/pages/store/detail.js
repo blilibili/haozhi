@@ -1,4 +1,7 @@
 // pages/store/detail.js
+var util = require("../../utils/util.js");
+var app = getApp()
+var that
 Page({
 
   /**
@@ -12,7 +15,36 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    that = this
+    util.zhw_log(options)
+    if(options.storeId){
+      var list = app.globalData.storeList
+      for (var i = 0; i < list.length; i++) {
+        if(options.storeId == list[i].storeId){
+          this.setData({
+            store:list[i]
+          })
+          break;
+        }
+      }
+    }else if(options.storeName){
+      //没有找到该门店
+      wx.showLoading()
+      var sendata = app.getStoreList(options.storeName)
+      app.send_data(sendata, util.config.url.getStoreList, function (res) {
+        wx.hideLoading()
+        if(res.resultCode == '10000'){
+          app.globalData.storeList.push(res.resultData[0])
+          that.setData({
+            store:res.resultData
+          })
+        }else{
 
+        }
+      })
+    }else{
+
+    }
   },
 
   /**
@@ -67,7 +99,7 @@ Page({
   doChange:function()
   {
     wx.navigateTo({
-      url:"/pages/store/addStore"
+      url:"/pages/store/addStore?storeId="+this.data.store.storeId
     })
   },
 })

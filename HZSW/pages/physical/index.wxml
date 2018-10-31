@@ -63,18 +63,18 @@
             </view>
             <view class="weui-tab__panel">
                 <!--选项一的内容-->
-                <view class="nobody" wx:if="{{!hasStore}}">
+                <view class="nobody" wx:if="{{!hasdata}}">
                     <image class="nothing" src="/image/kong_icon.png"/>
                     <view class="nothing-text">暂无设备</view>
                 </view>
-                <view class="store-list" hidden="{{activeIndex != 0}}" wx:if="{{hasStore}}">
+                <view class="store-list" hidden="{{activeIndex != 0}}" wx:if="{{hasdata}}">
                     <view class="search-text" wx:if="{{inputVal.length > 0}}">搜索结果(3)</view>
                     <view class="weui-cells searchbar-result">
-                        <block wx:for="{{checkboxItems}}" wx:key="value">
-                            <navigator url="/pages/device/detail?storeid={{item.id}}" class="weui-cell" hover-class="none">
+                        <block wx:for="{{deviceList}}" wx:key="value">
+                            <navigator url="/pages/device/detail?equipmentId={{item.equipmentId}}" class="weui-cell" hover-class="none">
                                 <view class="user-head">
-                                    <view class="head-name">设备AAA-1234<text class="user-local">天河门店</text></view>
-                                    <view class="head-id">ID:256321456</view>
+                                    <view class="head-name">{{item.equipmentName}}<text class="user-local">{{item.storeName}}</text></view>
+                                    <view class="head-id">ID:{{item.equipmentId}}</view>
                                 </view>
                                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
                             </navigator>
@@ -90,6 +90,8 @@
                         markers="{{markers}}"
                         bindmarkertap="goDetail"
                         bindcallouttap="goDetail"
+                        include-points:="{{points}}"
+                        enable-zoom="false"
                         >
                       </map>
                 </view>

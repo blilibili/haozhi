@@ -36,6 +36,7 @@ var config = {
     deleteDetectionRecord:'myData/deleteDetectionRecord',
     getEquipmentList:'myData/getEquipmentList',
     getEquipmentDetail:'myData/getEquipmentDetail',
+    deleteStaffList:'myData/deleteStaffList',
     addStaff:'myData/addStaff',
     confirmReception:'myData/confirmReception',
     breakdownFeedback:'equipment/breakdownFeedback',

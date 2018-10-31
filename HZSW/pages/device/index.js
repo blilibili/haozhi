@@ -16,6 +16,9 @@ Page({
    */
   onLoad: function (options) {
     that = this
+    this.setData({
+      userRule:app.globalData.userInfo.grade
+    })
 
     var sendata = app.getEquipmentList(app.globalData.userInfo.grade,app.globalData.userInfo.storeId,app.globalData.userInfo.id)
     app.send_data(sendata, util.config.url.getEquipmentList, function (res) {
