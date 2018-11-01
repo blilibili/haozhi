@@ -106,14 +106,23 @@ Page({
   {
     wx.getLocation({
       success:function(res){
-        console.log(res)
-        that.setData({
-          isLocal:true,
-          localtext:'重新定位'
+        wx.chooseLocation({
+          success:function(res){
+            util.zhw_log(res)
+            that.setData({
+              latitude:res.latitude,
+              longitude:res.longitude,
+              isLocal:true,
+              localtext:'重新定位'
+            })
+          },
+          fail:function(err){
+            util.zhw_log(err)
+          }
         })
       },
       fail:function(err){
-        console.log(err)
+        util.zhw_log(err)
       }
     })
   },
@@ -197,6 +206,10 @@ Page({
     }
     if(!this.data.storeAddr){
       app.showModal('请输入详细地址')
+      return
+    }
+    if(!this.data.isLocal){
+      app.showModal('请先进行地图定位')
       return
     }
     if(!this.data.inviteSuc){

@@ -34,9 +34,11 @@ Page({
       app.send_data(sendata, util.config.url.getStoreList, function (res) {
         wx.hideLoading()
         if(res.resultCode == '10000'){
+          if(!res.resultData[0].imgUrl)res.resultData[0].imgUrl = '/image/huiyuan_touxiang_moren.png';
+          if(!res.resultData[0].userName)res.resultData[0].userName = res.resultData[0].phone;
           app.globalData.storeList.push(res.resultData[0])
           that.setData({
-            store:res.resultData
+            store:res.resultData[0]
           })
         }else{
 

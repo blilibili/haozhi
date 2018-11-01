@@ -34,7 +34,7 @@
             <input class="weui-input" value="{{storeAddr}}" placeholder="请输入详细地址" placeholder-class="noselect" bindinput="getStoreAddr"/>
         </view>
     </view>
-    <!-- <view class="weui-cell weui-cell_input">
+    <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
             <view class="weui-label"><text>*</text>地图定位</view>
         </view>
@@ -45,7 +45,7 @@
             {{localtext}}
         </view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-    </view> -->
+    </view>
 </view>
 <view class="weui-cells weui-cells_after-title select-box">
     <view class="weui-cell weui-cell_input" wx:if="{{!inviteSuc}}">

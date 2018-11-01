@@ -365,6 +365,23 @@ App({
     return data;
   },
 
+  getHelpList:function()
+  {
+    var data = JSON.stringify({
+      "txncode":"getHelpList"
+    })
+    return data;
+  },
+
+  removeStoreList:function(idList)
+  {
+    var data = JSON.stringify({
+      "idList":idList,
+      "txncode":"removeStoreList"
+    })
+    return data;
+  },
+
   addDetectionRecord:function(user)
   {
     var data = JSON.stringify({
@@ -444,7 +461,7 @@ App({
           //Memo 响应信息
           if(txninfo.resultCode != '10000'){
             wx.hideLoading()
-            if(['userLogin','perfectInformation','resetPassword','smsCode','updateSex','updatePhone','deleteDetectionRecord','removeHouseEquipment','addHouseEquipment','addDetectionRecord','confirmReception','breakdownFeedback','deleteStaffList','addStaff','inviteShopowner'].indexOf(d.txncode) != -1){
+            if(['userLogin','perfectInformation','resetPassword','smsCode','updateSex','updatePhone','deleteDetectionRecord','removeHouseEquipment','addHouseEquipment','addDetectionRecord','confirmReception','breakdownFeedback','deleteStaffList','addStaff','inviteShopowner','removeStoreList'].indexOf(d.txncode) != -1){
               wx.showModal({
                 title: '',
                 showCancel: false,
@@ -505,5 +522,6 @@ App({
     deviceList:[],//设备信息
     deviceListItem:[],//某个设备下的理疗记录信息
     storeList:[],//门店信息
+    helpList:[],//帮助中心
   }
 })

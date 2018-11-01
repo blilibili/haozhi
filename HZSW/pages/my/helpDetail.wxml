@@ -1,6 +1,6 @@
 <view url="/pages/my/helpDetail" class="weui-cell weui-cell_access" hover-class="none">
-    <view class="weui-cell__bd">忘记密码如何找回？</view>
+    <view class="weui-cell__bd">{{helpList.title}}</view>
 </view>
 <view url="/pages/my/helpDetail" class="weui-cell weui-cell_access" hover-class="none">
-    <view class="weui-cell__bd content">账号密码是平台管理员分配给您的，所以如果忘记密码的话，就联系平台管理员找回或修改密码！</view>
+    <view class="weui-cell__bd content">{{helpList.content}}</view>
 </view>

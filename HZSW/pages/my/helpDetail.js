@@ -1,11 +1,12 @@
 // pages/my/helpDetail.js
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    helpList:[]
   },
 
   /**
@@ -13,6 +14,15 @@ Page({
    */
   onLoad: function (options) {
 
+    var list = app.globalData.helpList
+    for (var i = 0; i < list.length; i++) {
+      if(options.id == list[i].id){
+        this.setData({
+          helpList:list[i]
+        })
+        break;
+      }
+    }
   },
 
   /**

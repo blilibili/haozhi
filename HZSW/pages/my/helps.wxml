@@ -1,18 +1,6 @@
-<view class="helps-box">
-	<navigator url="/pages/my/helpDetail" class="weui-cell weui-cell_access" hover-class="none">
-	    <view class="weui-cell__bd ">热线电话</view>
-	    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-	</navigator>
-	<navigator url="/pages/my/helpDetail" class="weui-cell weui-cell_access" hover-class="none">
-	    <view class="weui-cell__bd ">忘记密码如何找回？</view>
-	    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-	</navigator>
-	<navigator url="/pages/my/helpDetail" class="weui-cell weui-cell_access" hover-class="none">
-	    <view class="weui-cell__bd ">设备治疗后的效果</view>
-	    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-	</navigator>
-	<navigator url="/pages/my/helpDetail" class="weui-cell weui-cell_access" hover-class="none">
-	    <view class="weui-cell__bd ">注意事项</view>
+<view class="helps-box" wx:for="{{helpList}}" wx:key="value">
+	<navigator url="/pages/my/helpDetail?id={{item.id}}" class="weui-cell weui-cell_access" hover-class="none">
+	    <view class="weui-cell__bd ">{{item.title}}</view>
 	    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
 	</navigator>
 </view>

@@ -105,21 +105,41 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if(app.globalData.indexStep == 1){
+    if(app.globalData.userInfo.grade == 1){
       this.setData({
-        title:'扫设备',
-        step:1
+        checkboxItems:app.globalData.storeList
       })
-    }else if(app.globalData.indexStep == 2){
-      that.setData({
-        title:'扫膜',
-        step:2
+
+      //地图模式的门店列表
+      var list = app.globalData.storeList
+      var markers = []
+      var points = []
+      for (var i =  0; i < list.length; i++) {
+        markers.push({id:list[i].storeId,latitude: list[i].latitude,longitude: list[i].longitude,iconPath: '/image/mendian_icon_dingwei.png',width:18,height:21,callout:{content:list[i].storeName,fontSize:10,color:'#ff9cb8',display:'ALWAYS',borderRadius:3,borderColor:'#ff9cb8',bgColor:"#ffffff",padding:2,textAlign:"center"
+          }})
+        points.push({latitude: list[i].latitude,longitude: list[i].longitude})
+      }
+      this.setData({
+        markers:markers,
+        points:points
       })
     }else{
-      this.setData({
-        title:'扫用户',
-        step:3
-      })
+      if(app.globalData.indexStep == 1){
+        this.setData({
+          title:'扫设备',
+          step:1
+        })
+      }else if(app.globalData.indexStep == 2){
+        that.setData({
+          title:'扫膜',
+          step:2
+        })
+      }else{
+        this.setData({
+          title:'扫用户',
+          step:3
+        })
+      }
     }
   },
 
@@ -294,8 +314,27 @@ Page({
 
   doRemove:function()
   {
-    this.setData({
-      isRemove:false
+    var delList = []
+    var checkboxItems = this.data.checkboxItems
+    var newList = []
+    for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
+      if(checkboxItems[i].checked){
+        delList.push(checkboxItems[i].id)
+      }else{
+        newList.push(checkboxItems[i])
+      }
+    }
+    wx.showLoading()
+    var sendata = app.removeStoreList(delList.join(","))
+    app.send_data(sendata, util.config.url.removeStoreList, function (res) {
+      wx.hideLoading()
+      if(res.resultCode == '10000'){
+        app.globalData.storeList = newList
+        that.setData({
+          checkboxItems:newList,
+          isRemove:false
+        })
+      }
     })
   },
 
@@ -314,7 +353,7 @@ Page({
           checkboxItems[i].checked = false;
 
           for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
-              if(checkboxItems[i].value == values[j]){
+              if(checkboxItems[i].id == values[j]){
                   checkboxItems[i].checked = true;
                   break;
               }
