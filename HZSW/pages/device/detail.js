@@ -22,6 +22,18 @@ Page({
   onLoad: function (options) {
     that = this
     util.zhw_log(options)
+    if(options.equipmentId){
+      var list = app.globalData.deviceList
+      for (var i = 0; i < list.length; i++) {
+        if(list[i].equipmentId == options.equipmentId){
+          this.setData({
+            device:list[i]
+          })
+        }
+      }
+    }else{
+
+    }
   },
 
   /**
@@ -97,14 +109,15 @@ Page({
   chooseDispatch:function()
   {
     console.log(this.data.disIndex)
+    this.hideDispatchBox()
     if(this.data.disIndex == 1){
       wx.navigateTo({
-        url:"/pages/device/chooseStore"
+        url:"/pages/device/chooseStore?id="+this.data.device.id
       })
     }
     if(this.data.disIndex == 2){
       wx.navigateTo({
-        url:"/pages/device/chooseRepertory"
+        url:"/pages/device/chooseRepertory?id="+this.data.device.id
       })
     }
   },

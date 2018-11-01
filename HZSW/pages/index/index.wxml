@@ -76,15 +76,15 @@
 			            </label>
 			            </checkbox-group>
 			        </view>
+			        <view class="weui-flex btm-box" wx:if="{{!isRemove}}">
+					    <view class="weui-flex_item btn" bindtap="removeStore">移除门店</view>
+					    <view class="weui-flex_item btn btn-right" bindtap="addStore">增加门店</view>
+					</view>
+					<view class="weui-flex btm-box" wx:if="{{isRemove}}">
+					    <view class="weui-flex_item btn" bindtap="selectAll">全选</view>
+					    <view class="weui-flex_item btn btn-right" bindtap="doRemove">移除</view>
+					</view>
 	            </view>
-                <view class="weui-flex btm-box" wx:if="{{!isRemove}}">
-				    <view class="weui-flex_item btn" bindtap="removeStore">移除门店</view>
-				    <view class="weui-flex_item btn btn-right" bindtap="addStore">增加门店</view>
-				</view>
-				<view class="weui-flex btm-box" wx:if="{{isRemove}}">
-				    <view class="weui-flex_item btn" bindtap="selectAll">全选</view>
-				    <view class="weui-flex_item btn btn-right" bindtap="doRemove">移除</view>
-				</view>
                 <!--选项二的内容-->
                 <view class="map-box" hidden="{{activeIndex != 1}}">
                 	<map
@@ -94,7 +94,7 @@
 				        markers="{{markers}}"
 				        bindmarkertap="goStore"
 				        bindcallouttap="goStore"
-				        include-points:="{{points}}"
+				        include-points="{{points}}"
 				        enable-zoom="false"
 				        >
 				      </map>

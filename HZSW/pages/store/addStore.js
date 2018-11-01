@@ -23,9 +23,16 @@ Page({
       var list = app.globalData.storeList
       for (var i = 0; i < list.length; i++) {
         if(options.storeId == list[i].storeId){
+          util.zhw_log(list[i])
           var addrs = list[i].address.split(',')
           util.zhw_log(addrs)
           this.setData({
+            isUpdate:true,
+            latitude:list[i].latitude,
+            longitude:list[i].longitude,
+            isLocal:true,
+            localtext:'重新定位',
+            id:list[i].id,
             storeId:list[i].storeId,
             storeName:list[i].storeName,
             regionIndex:-2,
@@ -113,6 +120,7 @@ Page({
               latitude:res.latitude,
               longitude:res.longitude,
               isLocal:true,
+              isLocalAgain:true,
               localtext:'重新定位'
             })
           },
@@ -163,6 +171,26 @@ Page({
     var sendata = app.inviteShopowner(this.data.phone)
     app.send_data(sendata, util.config.url.inviteShopowner, function (res) {
       if(res.resultCode == '10000'){
+        if(that.data.isUpdate){
+          //如果是更换店长的话，本地数据也要更换
+          var list = app.globalData.storeList
+          for (var i = 0; i < list.length; i++) {
+            if(list[i].id == that.data.id){
+              list[i].phone = that.data.phone
+              var sendata = app.getStoreList(list[i].storeName)
+              app.send_data(sendata, util.config.url.getStoreList, function (res) {
+                if(res.resultCode == '10000'){
+                  if(!res.resultData[0].imgUrl)res.resultData[0].imgUrl = '/image/huiyuan_touxiang_moren.png';
+                  if(!res.resultData[0].userName)res.resultData[0].userName = res.resultData[0].phone;
+                  list[i].userName = res.resultData[0].userName
+                  list[i].imgUrl = res.resultData[0].imgUrl
+                  app.globalData.storeList = list
+                }
+              })
+              break
+            }
+          }
+        }
         wx.showToast({title: "邀请成功"})
         that.setData({
           inviteSuc:true,
@@ -212,19 +240,48 @@ Page({
       app.showModal('请先进行地图定位')
       return
     }
-    if(!this.data.inviteSuc){
+    if(!this.data.inviteSuc && !this.data.isUpdate){
       app.showModal('请邀请新店长')
       return
     }
-    wx.showLoading()
-    var sendata = app.addStoreList(app.globalData.userInfo.id,this.data.storeName,this.data.storeId,(this.data.region+','+this.data.storeAddr),this.data.phone)
-    app.send_data(sendata, util.config.url.addStoreList, function (res) {
-      if(res.resultCode == '10000'){
-        wx.redirectTo({
-          url:'/pages/store/detail?storeName='+that.data.storeName
-        })
+    if(this.data.isUpdate){
+      wx.showLoading()
+      let longitude = this.data.longitude
+      let latitude = this.data.latitude
+      if(this.data.isLocalAgain){
+        longitude = longitude.toFixed(2).toString()
+        latitude = latitude.toFixed(2).toString()
       }
-    })
+      var sendata = app.updateStoreDetail(this.data.id,this.data.storeId,this.data.storeName,(this.data.region+','+this.data.storeAddr),longitude,latitude)
+      app.send_data(sendata, util.config.url.updateStoreDetail, function (res) {
+        if(res.resultCode == '10000'){
+          var list = app.globalData.storeList
+          for (var i = 0; i < list.length; i++) {
+            if(list[i].id == that.data.id){
+              list[i].storeName = that.data.storeName
+              list[i].address = that.data.region+','+that.data.storeAddr
+              list[i].longitude = longitude
+              list[i].latitude = latitude
+              break
+            }
+          }
+          app.globalData.storeList = list
+          wx.redirectTo({
+            url:'/pages/store/detail?storeId='+that.data.storeId
+          })
+        }
+      })
+    }else{
+      wx.showLoading()
+      var sendata = app.addStoreList(app.globalData.userInfo.id,this.data.storeName,this.data.storeId,(this.data.region+','+this.data.storeAddr),this.data.phone,this.data.longitude.toFixed(2).toString(),this.data.latitude.toFixed(2).toString())
+      app.send_data(sendata, util.config.url.addStoreList, function (res) {
+        if(res.resultCode == '10000'){
+          wx.redirectTo({
+            url:'/pages/store/detail?storeName='+that.data.storeName
+          })
+        }
+      })
+    }
   },
   
 })

@@ -21,6 +21,8 @@ Page({
       var list = app.globalData.storeList
       for (var i = 0; i < list.length; i++) {
         if(options.storeId == list[i].storeId){
+          if(!list[i].imgUrl)list[i].imgUrl = '/image/huiyuan_touxiang_moren.png';
+          if(!list[i].userName)list[i].userName = list[i].phone;
           this.setData({
             store:list[i]
           })
@@ -100,7 +102,7 @@ Page({
 
   doChange:function()
   {
-    wx.navigateTo({
+    wx.redirectTo({
       url:"/pages/store/addStore?storeId="+this.data.store.storeId
     })
   },

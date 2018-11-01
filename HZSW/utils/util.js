@@ -47,6 +47,7 @@ var config = {
     removeStoreList:'store/removeStoreList',
     addStoreList:'store/addStoreList',
     inviteShopowner:'store/inviteShopowner',
+    updateStoreDetail:'store/updateStoreDetail',
     getEquipmentArray:'equipment/getEquipmentArray',
     dispatchEquipment:'equipment/dispatchEquipment',
     getStoreHouseList:'store/getStoreHouseList',

@@ -41,7 +41,7 @@ Page({
       wx.getSystemInfo({
           success: function(res) {
               that.setData({
-                  height:res.screenHeight,
+                  height:res.screenHeight-200,
                   width:res.screenWidth,
                   sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
               });
@@ -323,6 +323,12 @@ Page({
       }else{
         newList.push(checkboxItems[i])
       }
+    }
+    if(delList.length == 0){
+      this.setData({
+        isRemove:false
+      })
+      return
     }
     wx.showLoading()
     var sendata = app.removeStoreList(delList.join(","))

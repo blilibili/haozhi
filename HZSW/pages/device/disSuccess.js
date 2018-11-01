@@ -1,4 +1,7 @@
 // pages/device/disSuccess.js
+var util = require("../../utils/util.js");
+var app = getApp()
+var that
 Page({
 
   /**
@@ -13,6 +16,8 @@ Page({
    */
   onLoad: function (options) {
     if(options.type == "store"){
+      util.zhw_log(app.globalData.deviceList)
+      util.zhw_log(app.globalData.deviceListItem)
       this.setData({
         content:"调度到白云门店",
         showText:1

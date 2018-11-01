@@ -1,26 +1,37 @@
 // pages/device/chooseStore.js
+var util = require("../../utils/util.js");
+var app = getApp()
+var that
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    checkboxItems: [
-        {name: '员工姓名', value: '0'},
-        {name: '员工姓名', value: '1'},
-        {name: '员工姓名', value: '2'},
-        {name: '员工姓名', value: '3'},
-        {name: '员工姓名', value: '4'},
-        {name: '员工姓名', value: '5'},
-        {name: '员工姓名', value: '6'},
-    ],
+    checkboxItems: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    that = this
+    util.zhw_log(options)
+    this.setData({
+      equipmentId:options.id
+    })
+    wx.showLoading()
+    var sendata = app.getStoreList()
+    app.send_data(sendata, util.config.url.getStoreList, function (res) {
+      wx.hideLoading()
+      if(res.resultCode == '10000' && res.resultData.length > 0){
+        that.setData({
+          checkboxItems:res.resultData
+        })
+      }else{
+        
+      }
+    })
   },
 
   /**
@@ -77,21 +88,29 @@ Page({
 
       var checkboxItems = this.data.checkboxItems, values = e.detail.value;
       for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
-          if(checkboxItems[i].value == values){
+          if(checkboxItems[i].id == values){
               checkboxItems[i].checked = true;
           }else{
               checkboxItems[i].checked = false;
           }
       }
       this.setData({
-          checkboxItems: checkboxItems
+          checkboxItems: checkboxItems,
+          id:values
       });
   },
 
   selectStore:function()
   {
-    wx.navigateTo({
-      url:"/pages/device/disSuccess?type=store"
+    wx.showLoading()
+    var sendata = app.dispatchEquipment("1",this.data.id,this.data.equipmentId)
+    app.send_data(sendata, util.config.url.dispatchEquipment, function (res) {
+      wx.hideLoading()
+      if(res.resultCode == '10000'){
+        wx.redirectTo({
+          url:"/pages/device/disSuccess?type=store"
+        })
+      }
     })
   },
 })

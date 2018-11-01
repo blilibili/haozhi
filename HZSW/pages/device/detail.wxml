@@ -1,10 +1,10 @@
 <view class="weui-flex user-head">
 	<view class="weui-flex__item">
-		<view class="head-name">设备AAA-1234<text class="user-local">天河门店</text></view>
-		<view class="head-id">ID:256321456</view>
+		<view class="head-name">{{device.equipmentName}}<text class="user-local">{{device.storeName}}</text></view>
+		<view class="head-id">ID:{{device.equipmentId}}</view>
 	</view>
 	<view class="right-item">
-		<text>使用中</text>
+		<text>{{device.stateName}}</text>
 	</view>
 </view>
 <button class="login" bindtap="showDispatchBox">调度</button>
