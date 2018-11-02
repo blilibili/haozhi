@@ -90,7 +90,7 @@
                         markers="{{markers}}"
                         bindmarkertap="goDetail"
                         bindcallouttap="goDetail"
-                        include-points:="{{points}}"
+                        include-points="{{points}}"
                         enable-zoom="false"
                         >
                       </map>

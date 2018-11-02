@@ -26,7 +26,7 @@ Page({
     wx.getSystemInfo({
         success: function(res) {
             that.setData({
-                height:res.screenHeight,
+                height:res.screenHeight-200,
                 width:res.screenWidth,
                 sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
             });
@@ -67,11 +67,38 @@ Page({
           //地图模式的门店列表
           var markers = []
           var points = []
-          var iconList = {'空闲':"/image/shebei_icon_dingwei_kongxian.png",'使用中':"/image/mendian_icon_dingwei.png",'故障':"/image/shebei_icon_dingwei_guzhang.png",'轻度故障':"/image/shebei_icon_dingwei_kongxian.png",'在途':"/image/shebei_icon_dingwei_kongxian.png",}
-          var colorList = {'空闲':"#009944",'使用中':"#ff9cb8",'故障':"#f43531",'轻度故障':"#000000",'在途':"#000000",}
           for (var i =  0; i < list.length; i++) {
-            markers.push({latitude: list[i].latitude,longitude: list[i].longitude,name:list[i].status,id:list[i].equipmentId,icon:iconList[list[i].status],color:colorList[list[i].status],borderColor:colorList[list[i].status]})
-
+            let icon,text_color
+            switch(list[i].stateName){
+              case '空闲':
+              icon = "/image/shebei_icon_dingwei_kongxian.png";
+              text_color = "#009944";
+              break;
+              case '使用中':
+              icon = "/image/mendian_icon_dingwei.png";
+              text_color = "#ff9cb8";
+              break;
+              case '故障':
+              icon = "/image/shebei_icon_dingwei_guzhang.png";
+              text_color = "#f43531";
+              break;
+              case '轻度故障':
+              icon = "/image/shebei_icon_dingwei_qingduguzhang.png";
+              text_color = "#f39801";
+              break;
+              case '在途':
+              icon = "/image/shebei_icon_dingwei_zaitu.png";
+              text_color = "#00b8ee";
+              break;
+              default:
+              case '空闲':
+              icon = "/image/shebei_icon_dingwei_kongxian.png";
+              text_color = "#009944";
+              break;
+            }
+            markers.push({id:list[i].equipmentId,latitude: list[i].latitude,longitude: list[i].longitude,iconPath:icon,width:18,height:21,callout:{content:list[i].stateName,fontSize:10,color:text_color,display:'ALWAYS',borderRadius:3,borderColor:text_color,bgColor:"#ffffff",padding:2,textAlign:"center"
+              }})
+            /*markers.push({latitude: list[i].latitude,longitude: list[i].longitude,name:list[i].stateName,id:list[i].equipmentId,iconPath:icon,width:18,height:21,color:text_color,borderColor:text_color})*/
             points.push({latitude: list[i].latitude,longitude: list[i].longitude})
           }
           that.setData({
@@ -116,7 +143,8 @@ Page({
         selectedIconPath:"image/zhuye_nav_icon_shebei_pre.png",
       })
       this.setData({
-        isPhysical:false
+        isPhysical:false,
+        deviceList:app.globalData.deviceList
       })
     }
   },
@@ -186,10 +214,11 @@ Page({
           activeIndex: e.currentTarget.id
       });
   },
-  goDetail:function()
+  goDetail:function(res)
   {
+    util.zhw_log(res)
     wx.navigateTo({
-      url:"/pages/device/detail"
+      url:"/pages/device/detail?equipmentId="+res.markerId
     })
   },
 })

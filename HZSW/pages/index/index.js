@@ -13,17 +13,7 @@ Page({
     title:"扫设备",
     step:app.globalData.indexStep,
     noShow:false,
-    checkboxItems: [
-        {name: '员工姓名', value: '0'},
-        {name: '员工姓名', value: '1'},
-        {name: '员工姓名', value: '2'},
-        {name: '员工姓名', value: '3'},
-        {name: '员工姓名', value: '4'},
-        {name: '员工姓名', value: '5'},
-        {name: '员工姓名', value: '6'},
-        {name: '员工姓名', value: '7'},
-        {name: '员工姓名', value: '8'},
-    ],
+    checkboxItems: [],
     tabs: ["列表", "地图"],
     activeIndex: 0,
     sliderOffset: 0,
@@ -53,6 +43,9 @@ Page({
       app.send_data(sendata, util.config.url.getStoreList, function (res) {
         wx.hideLoading()
         if(res.resultCode == '10000' && res.resultData.length > 0){
+          for (var i = 0; i < res.resultData.length; i++) {
+            if(!res.resultData[i].userName)res.resultData[i].userName = res.resultData[i].phone;
+          }
           var list = res.resultData
           app.globalData.storeList = res.resultData
           that.setData({
@@ -105,7 +98,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    util.zhw_log('onShow')
     if(app.globalData.userInfo.grade == 1){
+      util.zhw_log(app.globalData.storeList)
       this.setData({
         checkboxItems:app.globalData.storeList
       })

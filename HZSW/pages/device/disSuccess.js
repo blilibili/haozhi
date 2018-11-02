@@ -16,18 +16,30 @@ Page({
    */
   onLoad: function (options) {
     if(options.type == "store"){
-      util.zhw_log(app.globalData.deviceList)
-      util.zhw_log(app.globalData.deviceListItem)
-      this.setData({
-        content:"调度到白云门店",
-        showText:1
-      })
+      var list = app.globalData.deviceList
+      for (var i = 0; i < list.length; i++) {
+        if(list[i].id == options.equipmentId){
+          this.setData({
+            msg:list[i],
+            content:list[i].storeName,
+            showText:1
+          })
+          break
+        }
+      }
     }
     if(options.type == "repertory"){
-      this.setData({
-        content:"调度到某某仓库",
-        showText:2
-      })
+      var list = app.globalData.deviceList
+      for (var i = 0; i < list.length; i++) {
+        if(list[i].id == options.equipmentId){
+          this.setData({
+            msg:list[i],
+            content:list[i].houseName,
+            showText:2
+          })
+          break
+        }
+      }
     }
   },
 

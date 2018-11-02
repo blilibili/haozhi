@@ -7,8 +7,8 @@
             <view class="weui-msg__title">调度成功</view>
         </view>
         <view class="user-head">
-            <view class="head-name">设备AAA-1234<text class="user-local">天河门店</text></view>
-            <view class="head-id">ID:256321456<text>{{content}}</text></view>
+            <view class="head-name">{{msg.equipmentName}}<text class="user-local">{{msg.storeName}}</text></view>
+            <view class="head-id">ID:{{msg.equipmentId}}<text>调度到{{content}}</text></view>
         </view>
     </view>
 </view>

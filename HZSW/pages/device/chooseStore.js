@@ -25,6 +25,9 @@ Page({
     app.send_data(sendata, util.config.url.getStoreList, function (res) {
       wx.hideLoading()
       if(res.resultCode == '10000' && res.resultData.length > 0){
+        for (var i = 0; i < res.resultData.length; i++) {
+          if(!res.resultData[i].userName)res.resultData[i].userName = res.resultData[i].phone;
+        }
         that.setData({
           checkboxItems:res.resultData
         })
@@ -107,8 +110,25 @@ Page({
     app.send_data(sendata, util.config.url.dispatchEquipment, function (res) {
       wx.hideLoading()
       if(res.resultCode == '10000'){
+        //替换设备的门店
+        var storeList = that.data.checkboxItems
+        var storeName = ''
+        for (var i = 0; i < storeList.length; i++) {
+          if(storeList[i].id == that.data.id){
+            storeName = storeList[i].storeName
+          }
+        }
+        util.zhw_log('修改后的门店名称是：'+storeName)
+        //拿到该设备信息
+        var list = app.globalData.deviceList
+        for (var i = 0; i < list.length; i++) {
+          if(list[i].id == that.data.equipmentId){
+            list[i].storeName = storeName
+          }
+        }
+        app.globalData.deviceList = list
         wx.redirectTo({
-          url:"/pages/device/disSuccess?type=store"
+          url:"/pages/device/disSuccess?type=store&equipmentId="+that.data.equipmentId
         })
       }
     })

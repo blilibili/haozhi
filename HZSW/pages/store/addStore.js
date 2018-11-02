@@ -168,6 +168,12 @@ Page({
     if(!util.isPoneAvailable(this.data.phone)){
       app.showModal('请输入正确的手机号码');return;
     }
+    // wx.showToast({title: "邀请成功"})
+    that.setData({
+      inviteSuc:true,
+      showInvite:false
+    })
+    return
     var sendata = app.inviteShopowner(this.data.phone)
     app.send_data(sendata, util.config.url.inviteShopowner, function (res) {
       if(res.resultCode == '10000'){
@@ -240,11 +246,27 @@ Page({
       app.showModal('请先进行地图定位')
       return
     }
-    if(!this.data.inviteSuc && !this.data.isUpdate){
+    if(!this.data.inviteSuc){
       app.showModal('请邀请新店长')
       return
     }
     if(this.data.isUpdate){
+      wx.showLoading()
+      var longitude = this.data.longitude
+      var latitude = this.data.latitude
+      if(this.data.isLocalAgain){
+        longitude = longitude.toFixed(2).toString()
+        latitude = latitude.toFixed(2).toString()
+      }
+      var sendata = app.addStoreList(app.globalData.userInfo.id,this.data.storeName,this.data.storeId,(this.data.region+','+this.data.storeAddr),this.data.phone,longitude,latitude,this.data.id)
+      app.send_data(sendata, util.config.url.addStoreList, function (res) {
+        if(res.resultCode == '10000'){
+          wx.redirectTo({
+            url:'/pages/store/detail?storeName='+that.data.storeName
+          })
+        }
+      })
+      return
       wx.showLoading()
       let longitude = this.data.longitude
       let latitude = this.data.latitude

@@ -111,12 +111,12 @@ Page({
     console.log(this.data.disIndex)
     this.hideDispatchBox()
     if(this.data.disIndex == 1){
-      wx.navigateTo({
+      wx.redirectTo({
         url:"/pages/device/chooseStore?id="+this.data.device.id
       })
     }
     if(this.data.disIndex == 2){
-      wx.navigateTo({
+      wx.redirectTo({
         url:"/pages/device/chooseRepertory?id="+this.data.device.id
       })
     }

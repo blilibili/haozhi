@@ -251,10 +251,11 @@ App({
     return data;
   },
 
-  addStoreList:function(id,storeName,storeId,address,phone,longitude,latitude)
+  addStoreList:function(userId,storeName,storeId,address,phone,longitude,latitude,id=undefined)
   {
     var data = JSON.stringify({
       "id":id,
+      "userId":userId,
       "storeName":storeName,
       "storeId":storeId,
       "address":address,

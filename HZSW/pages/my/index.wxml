@@ -52,7 +52,7 @@
 <view class="weui-cells">
     <navigator url="/pages/my/feedback" class="weui-cell weui-cell_access" hover-class="none">
         <image class="my-icon" src="/image/wode_icon_fankui.png"/>
-        <view class="weui-cell__bd my-title">意见反馈</view>
+        <view class="weui-cell__bd my-title">客诉反馈</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
     <navigator url="/pages/my/helps" class="weui-cell weui-cell_access" hover-class="none">

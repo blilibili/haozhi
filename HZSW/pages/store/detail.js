@@ -30,17 +30,35 @@ Page({
         }
       }
     }else if(options.storeName){
-      //没有找到该门店
       wx.showLoading()
       var sendata = app.getStoreList(options.storeName)
       app.send_data(sendata, util.config.url.getStoreList, function (res) {
         wx.hideLoading()
         if(res.resultCode == '10000'){
-          if(!res.resultData[0].imgUrl)res.resultData[0].imgUrl = '/image/huiyuan_touxiang_moren.png';
-          if(!res.resultData[0].userName)res.resultData[0].userName = res.resultData[0].phone;
-          app.globalData.storeList.push(res.resultData[0])
+          var storeinfo = res.resultData[0]
+          if(!storeinfo.imgUrl)storeinfo.imgUrl = '/image/huiyuan_touxiang_moren.png';
+          if(!storeinfo.userName)storeinfo.userName = storeinfo.phone;
+          var isUpdate = false
+          //是否是更新本地数据
+          var list = app.globalData.storeList
+          for (var i = 0; i < list.length; i++) {
+            if(storeinfo.storeId == list[i].storeId){
+              //更新
+              util.zhw_log('更新门店')
+              isUpdate = true
+              list[i].phone = storeinfo.phone;
+              list[i].imgUrl = storeinfo.imgUrl;
+              list[i].userName = storeinfo.userName;
+              break;
+            }
+          }
+          util.zhw_log(list)
+          app.globalData.storeList = list
+          if(!isUpdate){
+            app.globalData.storeList.push(storeinfo)
+          }
           that.setData({
-            store:res.resultData[0]
+            store:storeinfo
           })
         }else{
 
