@@ -21,16 +21,6 @@ Page({
     this.setData({
       repertoryId:options.id
     })
-    wx.showLoading()
-    var sendata = app.getHouseEquipment(options.id)
-    app.send_data(sendata, util.config.url.getHouseEquipment, function (res) {
-      wx.hideLoading()
-      if(res.resultCode == '10000'){
-        that.setData({
-          devicesList:res.resultData
-        })
-      }
-    })
   },
 
   /**
@@ -44,7 +34,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var sendata = app.getHouseEquipment(this.data.repertoryId)
+    app.send_data(sendata, util.config.url.getHouseEquipment, function (res) {
+      if(res.resultCode == '10000' && res.resultData.length > 0){
+        app.globalData.repertoryList = res.resultData
+        that.setData({
+          devicesList:res.resultData
+        })
+      }else{
+        that.setData({
+          devicesList:[]
+        })
+      }
+    })
   },
 
   /**
@@ -159,9 +161,15 @@ Page({
         newList.push(devicesList[i])
       }
     }
+    if(delList.length == 0){
+      app.showModal('请至少选择一项')
+      return
+    }
+    wx.showLoading()
     var sendata = app.removeHouseEquipment(delList.join(","))
     app.send_data(sendata, util.config.url.removeHouseEquipment, function (res) {
       if(res.resultCode == '10000'){
+        wx.hideLoading()
         that.setData({
           devicesList:newList
         })
@@ -170,7 +178,7 @@ Page({
   },
   addRepertory:function()
   {
-    wx.redirectTo({
+    wx.navigateTo({
       url:"/pages/repertory/addRept?id="+this.data.repertoryId
     })
   },

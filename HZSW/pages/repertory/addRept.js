@@ -112,7 +112,7 @@ Page({
     app.send_data(sendata, util.config.url.addHouseEquipment, function (res) {
       if(res.resultCode == '10000'){
         wx.redirectTo({
-          url:"/pages/device/detail?deviceName="+that.data.deviceName
+          url:"/pages/repertory/detail?id="+that.data.repertoryId+"&deviceName="+that.data.deviceName
         })
       }
     })

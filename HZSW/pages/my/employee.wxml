@@ -25,7 +25,7 @@
         	<block wx:for="{{checkboxItems}}" wx:key="value">
 	            <view class="weui-cell">
 	                <view class="user-head">
-                        <image src="/image/wode_touxiang.png"/>
+                        <image src="{{item.imgUrl}}"/>
 						<view class="head-name">{{item.name}}<text class="user-local">{{item.storeName}}</text></view>
 						<view class="head-id">{{item.phone}}</view>
 					</view>
@@ -40,7 +40,7 @@
                     <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
                     <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}" color="#ff9cb8"></icon>
                     <view class="user-head">
-                        <image src="/image/wode_touxiang.png"/>
+                        <image src="{{item.imgUrl}}"/>
                         <view class="head-name">{{item.name}}<text class="user-local">{{item.storeName}}</text></view>
                         <view class="head-id">{{item.phone}}</view>
                     </view>

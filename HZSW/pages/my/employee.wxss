@@ -37,6 +37,7 @@
 	height: 100rpx;
 	float: left;
 	margin-right: 24rpx;
+	border-radius: 50%;
 }
 .head-name{
 	font-size: 34rpx;

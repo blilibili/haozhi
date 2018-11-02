@@ -31,7 +31,11 @@
     "pages/device/disSuccess",
     "pages/device/deviceList",
     "pages/repertory/index",
-    "pages/repertory/addRept"
+    "pages/repertory/addRept",
+    "pages/repertory/detail",
+    "pages/repertory/chooseRepertory",
+    "pages/repertory/chooseStore",
+    "pages/repertory/disSuccess"
   ],
   "window": {
     "backgroundTextStyle": "light",

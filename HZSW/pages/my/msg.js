@@ -1,4 +1,6 @@
 // pages/my/msg.js
+var util = require("../../utils/util.js");
+var app = getApp()
 var that
 var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
 
@@ -25,14 +27,39 @@ Page({
             });
         }
     });
-    this.setData({
-      hasNews:false
+    //获取最新资讯
+    wx.showLoading()
+    var sendata = app.getMessageList(app.globalData.userInfo.id,"1")
+    app.send_data(sendata, util.config.url.getMessageList, function (res) {
+      wx.hideLoading()
+      if(res.resultCode == '10000' && res.resultData.length > 0){
+        that.setData({
+          hasNews:false,
+          NewList:res.resultData
+        })
+      }else{
+        that.setData({
+          hasNews:false
+        })
+      }
     })
-    setTimeout(function(){
-      that.setData({
-        hasNews:true,
-      })
-    },1000)
+
+    //获取系统消息
+    wx.showLoading()
+    var sendata = app.getMessageList(app.globalData.userInfo.id,"2")
+    app.send_data(sendata, util.config.url.getMessageList, function (res) {
+      wx.hideLoading()
+      if(res.resultCode == '10000' && res.resultData.length > 0){
+        that.setData({
+          hasSys:false,
+          NewList:res.resultData
+        })
+      }else{
+        that.setData({
+          hasSys:false
+        })
+      }
+    })
   },
   tabClick: function (e) {
       this.setData({
@@ -41,24 +68,10 @@ Page({
       });
 
       if(e.currentTarget.id == 0){
-        this.setData({
-          hasNews:false
-        })
-        setTimeout(function(){
-          that.setData({
-            hasNews:true,
-          })
-        },1000)
+        
       }
       if(e.currentTarget.id == 1){
-        this.setData({
-          hasSys:false
-        })
-        setTimeout(function(){
-          that.setData({
-            hasSys:true,
-          })
-        },1000)
+        
       }
 
       

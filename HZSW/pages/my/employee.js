@@ -22,9 +22,14 @@ Page({
     app.send_data(sendata, util.config.url.getStaffList, function (res) {
       wx.hideLoading();
       if(res.resultCode == '10000' && res.resultData.length > 0){
+        var list = res.resultData
+        for (var i = 0; i < list.length; i++) {
+          list[i].name = list[i].name?list[i].name:list[i].phone
+          list[i].imgUrl = list[i].imgUrl?list[i].imgUrl:"/image/wode_touxiang.png"
+        }
         that.setData({
           hasdata:true,
-          checkboxItems:res.resultData
+          checkboxItems:list
         })
       }else{
         that.setData({

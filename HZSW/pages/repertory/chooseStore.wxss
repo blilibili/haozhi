@@ -1,0 +1,59 @@
+/* pages/device/chooseStore.wxss */
+.searchbar-result{
+    margin-top: 0;
+    font-size: 14px;
+}
+.searchbar-result:before{
+    display: none;
+}
+.user-head{
+	background: white;
+	width: 100%;
+}
+.user-head image{
+	width: 100rpx;
+	height: 100rpx;
+	float: left;
+	margin-right: 24rpx;
+}
+.head-name{
+	font-size: 34rpx;
+	color: #111111;
+}
+.user-local{
+	font-size: 22rpx;
+	color: #ffffff;
+	border-radius: 6rpx;
+	background: #cbcbcb;
+	margin-left: 16rpx;
+	padding: 8rpx 14rpx;
+}
+.head-id{
+	font-size: 30rpx;
+	color: #999999;
+	margin-top: 8rpx;
+}
+.weui-cells:after{
+	border:none;
+}
+.weui-cells:before {
+	border:none;
+}
+.weui-cell:before {
+	border-top: 1rpx solid #e5e5e5;
+}
+.sel-btn{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 100rpx;
+	background: #ffffff;
+	text-align: right;
+}
+.sel-btn text{
+	position: relative;
+	top: 30rpx;
+	right: 48rpx;
+	font-size: 34rpx;
+	color: #ff9cb8;
+}

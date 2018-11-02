@@ -28,7 +28,7 @@ Page({
       var sendata = app.getStoreHouseList()
       app.send_data(sendata, util.config.url.getStoreHouseList, function (res) {
         wx.hideLoading()
-        if(res.resultCode == '10000'){
+        if(res.resultCode == '10000' && res.resultData.length > 0){
           that.setData({
             repertoryList:res.resultData
           })

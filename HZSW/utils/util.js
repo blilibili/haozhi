@@ -126,6 +126,18 @@ function getPhone(phone,num) {
   return phone.substr(0,3)+'****'+phone.substr(7,9)
 }
 
+function searchList(paramName,key,list){
+  var reList = []
+  for (var i = 0; i < list.length; i++) {
+    if (key == "memberId"&&paramName == list[i].memberId) {
+      reList.push(list[i])
+    }else{
+
+    }
+  }
+  return reList;
+}
+
 
 module.exports = {
   formatTime: formatTime,
@@ -139,4 +151,5 @@ module.exports = {
   config:config,
   isPoneAvailable:isPoneAvailable,
   getPhone:getPhone,
+  searchList:searchList,
 }

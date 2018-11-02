@@ -172,6 +172,16 @@ App({
     return data;
   },
 
+  getMessageList:function(userId,typeId)
+  {
+    var data = JSON.stringify({
+      "userId":userId,
+      "typeId":typeId,
+      "txncode":"getMessageList"
+    })
+    return data;
+  },
+
   getDetectionRecordList:function(memberId)
   {
     var data = JSON.stringify({
@@ -549,5 +559,6 @@ App({
     deviceListItem:[],//某个设备下的理疗记录信息
     storeList:[],//门店信息
     helpList:[],//帮助中心
+    repertoryList:[],//仓库列表
   }
 })

@@ -50,7 +50,7 @@
 	</view>
 
 	<view class="weui-cells weui-cells_after-title" wx:if="{{!isEdit}}">
-	    <navigator open-type="redirect" url="/pages/device/detail?deviceName={{item.equipmentName}}"  class="weui-cell weui-check__label" wx:for="{{devicesList}}" wx:key="value" hover-class="none">
+	    <navigator open-type="redirect" url="/pages/repertory/detail?id={{item.id}}&detail=true"  class="weui-cell weui-check__label" wx:for="{{devicesList}}" wx:key="value" hover-class="none">
 	        <view class="weui-cell__bd">
 	        	<view>
 					<view class="head-name">{{item.equipmentName}}</view>

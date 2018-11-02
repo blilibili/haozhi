@@ -1,0 +1,61 @@
+/* pages/device/detail.wxss */
+
+/*管理员-设备详情*/
+.user-head{
+	background: white;
+	padding: 28rpx 30rpx;
+	border-bottom: 1rpx solid #eeeeee;
+}
+.head-name{
+	font-size: 34rpx;
+	color: #111111;
+}
+.user-local{
+	font-size: 22rpx;
+	color: #ffffff;
+	border-radius: 6rpx;
+	background: #cbcbcb;
+	margin-left: 16rpx;
+	padding: 8rpx 14rpx;
+}
+.head-id{
+	font-size: 30rpx;
+	color: #999999;
+}
+.right-icon{
+	width: 16rpx;
+	height: 26rpx;
+	margin-left: 14rpx;
+}
+.right-item{
+	padding: 26rpx 0px;
+}
+.right-item text{
+	font-size: 28rpx;
+	color: #ff9cb8;
+}
+.login{
+	width: 600rpx;
+	border-radius: 42rpx;
+	background: #ff9cb8;
+	margin-top: 80rpx;
+	font-size: 36rpx;
+	color: #ffffff;
+}
+.login:after{
+	border:none;
+}
+
+
+
+
+
+.weui-cells:after{
+	border:none;
+}
+.weui-cells:before {
+	border:none;
+}
+.weui-cell:before {
+	border-top: 1rpx solid #e5e5e5;
+}

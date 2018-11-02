@@ -7,6 +7,8 @@ Page({
    */
   data: {
     imageList: [],
+    list:['设备轻度故障(不影响使用)','设备故障(完全不能使用)','其他问题反馈'],
+    index:-1,
   },
 
   /**
@@ -63,6 +65,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  bindPickerChange: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
   },
 
   chooseImage: function () {
