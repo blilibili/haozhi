@@ -38,6 +38,32 @@ Page({
           }
       });
 
+     
+    }else if(app.globalData.userInfo.grade == 2){
+      //店长页面
+      
+    }else{
+      //普通员工页面
+      
+    }
+    this.setData({
+      userRule:app.globalData.userInfo.grade
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    util.zhw_log('onShow')
+    if(app.globalData.userInfo.grade == 1){
       wx.showLoading()
       var sendata = app.getStoreList()
       app.send_data(sendata, util.config.url.getStoreList, function (res) {
@@ -75,31 +101,7 @@ Page({
           })
         }
       })
-    }else if(app.globalData.userInfo.grade == 2){
-      //店长页面
-      
-    }else{
-      //普通员工页面
-      
-    }
-    this.setData({
-      userRule:app.globalData.userInfo.grade
-    })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    util.zhw_log('onShow')
-    if(app.globalData.userInfo.grade == 1){
+      return
       util.zhw_log(app.globalData.storeList)
       this.setData({
         checkboxItems:app.globalData.storeList

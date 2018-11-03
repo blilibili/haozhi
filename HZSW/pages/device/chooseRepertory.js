@@ -103,7 +103,7 @@ Page({
   selectRepertory:function()
   {
     wx.showLoading()
-    var sendata = app.dispatchEquipment("1",this.data.id,this.data.equipmentId)
+    var sendata = app.dispatchEquipment("2",this.data.id,this.data.equipmentId)
     app.send_data(sendata, util.config.url.dispatchEquipment, function (res) {
       wx.hideLoading()
       if(res.resultCode == '10000'){

@@ -501,7 +501,7 @@ App({
               wx.showModal({
                 title: '',
                 showCancel: false,
-                content: txninfo.resultMessage
+                content: util.errCode()[txninfo.resultCode]
               })
             }else{
               typeof cb == "function" && cb(txninfo);
