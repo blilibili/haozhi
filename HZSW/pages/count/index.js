@@ -24,16 +24,6 @@ Page({
       wx.setNavigationBarTitle({
         title:"我的仓库"
       })
-      wx.showLoading()
-      var sendata = app.getStoreHouseList()
-      app.send_data(sendata, util.config.url.getStoreHouseList, function (res) {
-        wx.hideLoading()
-        if(res.resultCode == '10000' && res.resultData.length > 0){
-          that.setData({
-            repertoryList:res.resultData
-          })
-        }
-      })
     }
   },
 
@@ -48,7 +38,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if(app.globalData.userInfo.grade == 1){
+      wx.showLoading()
+      var sendata = app.getStoreHouseList()
+      app.send_data(sendata, util.config.url.getStoreHouseList, function (res) {
+        wx.hideLoading()
+        if(res.resultCode == '10000' && res.resultData.length > 0){
+          that.setData({
+            repertoryList:res.resultData
+          })
+        }
+      })
+    }
   },
 
   /**

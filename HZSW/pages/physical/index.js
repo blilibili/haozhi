@@ -51,11 +51,44 @@ Page({
       })
       
     }else{
+      //设备
+      this.setData({
+        isPhysical:false
+      })
+    }
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    if(app.globalData.isPhysical){
+      this.setData({
+        isPhysical:true
+      })
+    }else{
+      wx.setNavigationBarTitle({
+        title:"我的设备"
+      })
+      wx.setTabBarItem({
+        index:1,
+        text:"设备",
+        iconPath:"image/zhuye_nav_icon_shebei.png",
+        selectedIconPath:"image/zhuye_nav_icon_shebei_pre.png",
+      })
       //设备列表
       //status 1:空闲 2:使用中 3:故障 4:轻度故障 5:在途
-      
+      wx.showLoading()
       var sendata = app.getEquipmentArray()
       app.send_data(sendata, util.config.url.getEquipmentArray, function (res) {
+        wx.hideLoading()
         if(res.resultCode == '10000' && res.resultData.length > 0){
           var list = res.resultData
           app.globalData.deviceList = res.resultData
@@ -67,7 +100,11 @@ Page({
           //地图模式的门店列表
           var markers = []
           var points = []
+          var latitude,longitude = ''
           for (var i =  0; i < list.length; i++) {
+            if(!list[i].latitude||!list[i].longitude){
+              continue;
+            }
             let icon,text_color
             switch(list[i].stateName){
               case '空闲':
@@ -98,12 +135,13 @@ Page({
             }
             markers.push({id:list[i].equipmentId,latitude: list[i].latitude,longitude: list[i].longitude,iconPath:icon,width:18,height:21,callout:{content:list[i].stateName,fontSize:10,color:text_color,display:'ALWAYS',borderRadius:3,borderColor:text_color,bgColor:"#ffffff",padding:2,textAlign:"center"
               }})
-            /*markers.push({latitude: list[i].latitude,longitude: list[i].longitude,name:list[i].stateName,id:list[i].equipmentId,iconPath:icon,width:18,height:21,color:text_color,borderColor:text_color})*/
             points.push({latitude: list[i].latitude,longitude: list[i].longitude})
+            latitude = list[i].latitude
+            longitude = list[i].longitude
           }
           that.setData({
-            latitude: list[0].latitude,
-            longitude: list[0].longitude,
+            latitude: latitude,
+            longitude: longitude,
             markers:markers,
             points:points
           })
@@ -113,38 +151,6 @@ Page({
             hasdata:false
           })
         }
-      })
-    }
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    if(app.globalData.isPhysical){
-      this.setData({
-        isPhysical:true
-      })
-    }else{
-      wx.setNavigationBarTitle({
-        title:"我的设备"
-      })
-      wx.setTabBarItem({
-        index:1,
-        text:"设备",
-        iconPath:"image/zhuye_nav_icon_shebei.png",
-        selectedIconPath:"image/zhuye_nav_icon_shebei_pre.png",
-      })
-      this.setData({
-        isPhysical:false,
-        deviceList:app.globalData.deviceList
       })
     }
   },

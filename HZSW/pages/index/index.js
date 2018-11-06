@@ -82,15 +82,20 @@ Page({
           //地图模式的门店列表
           var markers = []
           var points = []
+          var latitude,longitude = ''
           for (var i =  0; i < list.length; i++) {
+            if(!list[i].latitude||!list[i].longitude){
+              continue;
+            }
             markers.push({id:list[i].storeId,latitude: list[i].latitude,longitude: list[i].longitude,iconPath: '/image/mendian_icon_dingwei.png',width:18,height:21,callout:{content:list[i].storeName,fontSize:10,color:'#ff9cb8',display:'ALWAYS',borderRadius:3,borderColor:'#ff9cb8',bgColor:"#ffffff",padding:2,textAlign:"center"
               }})
             points.push({latitude: list[i].latitude,longitude: list[i].longitude})
-
+            latitude = list[i].latitude
+            longitude = list[i].longitude
           }
           that.setData({
-            latitude: list[0].latitude,
-            longitude: list[0].longitude,
+            latitude: latitude,
+            longitude: longitude,
             markers:markers,
             points:points
           })
