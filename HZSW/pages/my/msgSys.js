@@ -1,4 +1,5 @@
 // pages/my/msgSys.js
+var app = getApp()
 Page({
 
   /**
@@ -12,7 +13,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var list = app.globalData.SysList
+    for (var i = 0; i < list.length; i++) {
+      if(list[i].id == options.id){
+        this.setData({
+          newInfo:list[i]
+        })
+      }
+    }
   },
 
   /**

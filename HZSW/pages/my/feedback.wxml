@@ -1,5 +1,5 @@
-<view class="weui-flex QA-title">
-  <view class="weui-flex__item">问题和意见</view>
+<view class="weui-flex QA">
+  <view class="weui-flex__item">反馈类型</view>
   <view class="weui-flex__item tr">
     <picker bindchange="bindPickerChange" value="{{index}}" range="{{list}}">
       <view wx:if="{{index == -1}}">请选择 ></view>
@@ -8,6 +8,9 @@
       </view>
     </picker>
   </view>
+</view>
+<view class="QA-title">
+  问题和意见
 </view>
 <view class="QA">
 	<textarea placeholder="请详细描述你的问题和意见..." placeholder-class="QA-tip" />

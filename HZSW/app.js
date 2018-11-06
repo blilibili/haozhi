@@ -560,5 +560,7 @@ App({
     storeList:[],//门店信息
     helpList:[],//帮助中心
     repertoryList:[],//仓库列表
+    NewList:[],//最新资讯列表
+    SysList:[],//系统消息列表
   }
 })

@@ -33,8 +33,9 @@ Page({
     app.send_data(sendata, util.config.url.getMessageList, function (res) {
       wx.hideLoading()
       if(res.resultCode == '10000' && res.resultData.length > 0){
+        app.globalData.NewList = res.resultData
         that.setData({
-          hasNews:false,
+          hasNews:true,
           NewList:res.resultData
         })
       }else{
@@ -50,9 +51,10 @@ Page({
     app.send_data(sendata, util.config.url.getMessageList, function (res) {
       wx.hideLoading()
       if(res.resultCode == '10000' && res.resultData.length > 0){
+        app.globalData.SysList = res.resultData
         that.setData({
-          hasSys:false,
-          NewList:res.resultData
+          hasSys:true,
+          SysList:res.resultData
         })
       }else{
         that.setData({

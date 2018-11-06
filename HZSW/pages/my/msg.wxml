@@ -16,50 +16,16 @@
 						<image class="nothing" src="/image/kong_icon.png"/>
 						<view class="nothing-text">暂无消息</view>
 					</view>
-					<view wx:if="{{hasNews}}">
-	                	<navigator url="/pages/my/msgNews" class="" hover-class="none">
+					<view wx:if="{{hasNews}}" wx:for="{{NewList}}" wx:key="value">
+	                	<navigator url="/pages/my/msgNews?id={{item.id}}" class="" hover-class="none">
 					        <view class="weui-flex user-info">
 					        	<view class="msg-icon">
-									<image src="/image/xiaoxi_img_touxiang1.png"/>
-									<view class="weui-badge weui-badge_dot noread" ></view>
+									<image src="{{item.imgurl}}"/>
+									<!-- <view class="weui-badge weui-badge_dot noread" ></view> -->
 								</view>
 								<view class="weui-flex_item user-head">
-									<view class="head-name">最新资讯标题<text class="user-local">18-09-05 14:51</text></view>
-									<view class="head-id">最新资讯内容摘要最新资讯内容摘要最新...</view>
-								</view>
-							</view>
-					    </navigator>
-					    <navigator url="/pages/my/msgNews" class="" hover-class="none">
-					        <view class="weui-flex user-info">
-					        	<view class="msg-icon">
-									<image src="/image/xiaoxi_img_touxiang2.png"/>
-									<view class="weui-badge weui-badge_dot noread" ></view>
-								</view>
-								<view class="weui-flex_item user-head">
-									<view class="head-name">最新资讯标题<text class="user-local">18-09-05 14:51</text></view>
-									<view class="head-id">最新资讯内容摘要最新资讯内容摘要最新...</view>
-								</view>
-							</view>
-					    </navigator>
-					    <navigator url="/pages/my/msgNews" class="" hover-class="none">
-					        <view class="weui-flex user-info">
-					        	<view class="msg-icon">
-									<image src="/image/xiaoxi_img_touxiang3.png"/>
-								</view>
-								<view class="weui-flex_item user-head">
-									<view class="head-name">最新资讯标题<text class="user-local">18-09-05 14:51</text></view>
-									<view class="head-id">最新资讯内容摘要最新资讯内容摘要最新...</view>
-								</view>
-							</view>
-					    </navigator>
-					    <navigator url="/pages/my/msgNews" class="" hover-class="none">
-					        <view class="weui-flex user-info">
-					        	<view class="msg-icon">
-									<image src="/image/xiaoxi_img_touxiang4.png"/>
-								</view>
-								<view class="weui-flex_item user-head">
-									<view class="head-name">最新资讯标题<text class="user-local">18-09-05 14:51</text></view>
-									<view class="head-id">最新资讯内容摘要最新资讯内容摘要最新...</view>
+									<view class="head-name">{{item.title}}<text class="user-local">{{item.dateTime}}</text></view>
+									<view class="head-id">{{item.summary}}</view>
 								</view>
 							</view>
 					    </navigator>
@@ -71,50 +37,16 @@
 						<image class="nothing" src="/image/kong_icon.png"/>
 						<view class="nothing-text">暂无消息</view>
 					</view>
-					<view wx:if="{{hasSys}}">
-	                	<navigator url="/pages/my/msgSys" class="" hover-class="none">
+					<view wx:if="{{hasSys}}" wx:for="{{SysList}}" wx:key="value">
+	                	<navigator url="/pages/my/msgSys?id={{item.id}}" class="" hover-class="none">
 					        <view class="weui-flex user-info">
 					        	<view class="msg-icon">
-									<image src="/image/xiaoxi_img_touxiang_xitong.png"/>
-									<view class="weui-badge weui-badge_dot noread" ></view>
+									<image src="{{item.imgUrl}}"/>
+									<!-- <view class="weui-badge weui-badge_dot noread" ></view> -->
 								</view>
 								<view class="weui-flex_item user-head">
-									<view class="head-name">消息标题<text class="user-local">18-09-05 14:51</text></view>
-									<view class="head-id">消息内容摘要消息内容摘要消息内容摘要...</view>
-								</view>
-							</view>
-					    </navigator>
-					    <navigator url="/pages/my/msgSys" class="" hover-class="none">
-					        <view class="weui-flex user-info">
-					        	<view class="msg-icon">
-									<image src="/image/xiaoxi_img_touxiang_xitong.png"/>
-									<view class="weui-badge weui-badge_dot noread" ></view>
-								</view>
-								<view class="weui-flex_item user-head">
-									<view class="head-name">消息标题<text class="user-local">18-09-05 14:51</text></view>
-									<view class="head-id">消息内容摘要消息内容摘要消息内容摘要...</view>
-								</view>
-							</view>
-					    </navigator>
-					    <navigator url="/pages/my/msgSys" class="" hover-class="none">
-					        <view class="weui-flex user-info">
-					        	<view class="msg-icon">
-									<image src="/image/xiaoxi_img_touxiang_xitong.png"/>
-								</view>
-								<view class="weui-flex_item user-head">
-									<view class="head-name">消息标题<text class="user-local">18-09-05 14:51</text></view>
-									<view class="head-id">消息内容摘要消息内容摘要消息内容摘要...</view>
-								</view>
-							</view>
-					    </navigator>
-					    <navigator url="/pages/my/msgSys" class="" hover-class="none">
-					        <view class="weui-flex user-info">
-					        	<view class="msg-icon">
-									<image src="/image/xiaoxi_img_touxiang_xitong.png"/>
-								</view>
-								<view class="weui-flex_item user-head">
-									<view class="head-name">消息标题<text class="user-local">18-09-05 14:51</text></view>
-									<view class="head-id">消息内容摘要消息内容摘要消息内容摘要...</view>
+									<view class="head-name">{{item.title}}<text class="user-local">{{item.dateTime}}</text></view>
+									<view class="head-id">{{item.summary}}</view>
 								</view>
 							</view>
 					    </navigator>

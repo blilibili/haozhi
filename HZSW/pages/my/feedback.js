@@ -1,4 +1,6 @@
 // pages/my/feedback.js
+var util = require("../../utils/util.js");
+var app = getApp()
 var that
 Page({
 
