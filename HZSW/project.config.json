@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 17,
+			"current": 18,
 			"list": [
 				{
 					"id": -1,
@@ -142,6 +142,11 @@
 					"name": "我的仓库",
 					"pathName": "pages/count/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "统计",
+					"pathName": "pages/count/index"
 				}
 			]
 		}

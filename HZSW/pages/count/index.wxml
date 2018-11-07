@@ -1,8 +1,38 @@
 <view class="tc" wx:if="{{userRule > 1}}">
-	<view class="nobody">
-	    <image class="nothing" src="/image/kong_icon.png"/>
-	    <view class="nothing-text">暂无统计数据</view>
-	</view>
+	<view class="weui-flex select-tab">
+        <view class="weui-flex__item">
+        <picker bindchange="bingDeviceChange" value="{{deviceIndex}}" range="{{devices}}">
+            <view wx:if="{{deviceIndex == -1}}">
+            选择设备 <image src="/image/tongji_icon_jiantou.png"/>
+            </view>
+            <view wx:else>{{devices[deviceIndex]}}</view>
+      </picker>
+        </view>
+        <view class="weui-flex__item">
+        <picker mode="date" value="{{startDate}}" start="" end="" bindchange="bindStartDateChange">
+            <view wx:if="{{!startDate}}">
+            开始时间 <image src="/image/tongji_icon_jiantou.png"/>
+            </view>
+            <view wx:else>
+              {{startDate}}
+            </view>
+          </picker> 
+        </view>
+        <view class="weui-flex__item">
+        <picker mode="date" value="{{endDate}}" start="" end="" bindchange="bindEndDateChange">
+            <view wx:if="{{!endDate}}">
+            结束时间 <image src="/image/tongji_icon_jiantou.png"/>
+            </view>
+            <view wx:else>
+              {{endDate}}
+            </view>
+          </picker> 
+        </view>
+    </view>
+    <view class="count-title">设备闲忙状态</view>
+    <view class="container">
+    <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+    </view>
 </view>
 
 <view wx:if="{{userRule == 1}}">

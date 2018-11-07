@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/home/index",
+    "pages/index/demo",
     "pages/my/index",
     "pages/physical/index",
     "pages/index/index",

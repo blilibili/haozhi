@@ -1,4 +1,59 @@
 // pages/count/index.js
+import * as echarts from '../../ec-canvas/echarts';
+
+let chart = null;
+
+function initChart(canvas, width, height) {
+  chart = echarts.init(canvas, null, {
+    width: width,
+    height: height
+  });
+  canvas.setChart(chart);
+
+  var option = {
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    grid:{
+      left:'20%', 
+    },
+    color:['pink'],
+    xAxis : [
+        {
+            type : 'value',
+            axisTick : {show: false},
+        }
+    ],
+    yAxis : [
+        {
+            type : 'category',
+            axisTick : {show: false},
+            data : ['08~10点','10~12点','08~10点','08~10点','08~10点','08~10点','08~10点','08~10点','其他']
+        }
+    ],
+    series : [
+        {
+            type:'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data:[320, 302, 341, 374, 390, 450, 420, 420, 420]
+        }
+        
+    ]
+};
+
+  chart.setOption(option);
+  return chart;
+}
+
 var util = require("../../utils/util.js");
 var app = getApp()
 var that
@@ -10,6 +65,13 @@ Page({
   data: {
     isEdit:false,
     repertoryList:[],
+    devices:["设备1","设备2","设备3","设备4"],
+    deviceIndex:-1,
+    startDate:'',
+    endDate:'',
+    ec: {
+      onInit: initChart
+    }
   },
 
   /**
@@ -87,7 +149,29 @@ Page({
 
   },
 
-  /*我的仓库===============================================================*/
+  /*统计===========================================================*/
+  bingDeviceChange: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      deviceIndex: e.detail.value
+    })
+  },
+
+  bindStartDateChange: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      startDate: e.detail.value
+    })
+  },
+
+  bindEndDateChange: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      endDate: e.detail.value
+    })
+  },
+
+  /*我的仓库========================================================*/
 
   showInput: function () {
       this.setData({
