@@ -404,6 +404,53 @@ App({
     return data;
   },
 
+  getStatistics:function(equipmentId,startTime=undefined,endTime=undefined)
+  {
+    var data = JSON.stringify({
+      "equipmentId":equipmentId,
+      "startTime":startTime,
+      "endTime":endTime,
+      "txncode":"getStatistics"
+    })
+    return data;
+  },
+
+  getTendency:function(memberId,type)
+  {
+    var data = JSON.stringify({
+      "memberId":memberId,
+      "type":type,
+      "txncode":"getTendency"
+    })
+    return data;
+  },
+
+  getSuggest:function()
+  {
+    var data = JSON.stringify({
+      "txncode":"getSuggest"
+    })
+    return data;
+  },
+
+  getList:function()
+  {
+    var data = JSON.stringify({
+      "txncode":"getList"
+    })
+    return data;
+  },
+
+  getMenuEquipment:function(storeId,userId)
+  {
+    var data = JSON.stringify({
+      "storeId":storeId,
+      "userId":userId,
+      "txncode":"getMenuEquipment"
+    })
+    return data;
+  },
+
   updateStoreDetail:function(id,storeId,storeName,address,longitude,latitude)
   {
     var data = JSON.stringify({
@@ -497,7 +544,7 @@ App({
           //Memo 响应信息
           if(txninfo.resultCode != '10000'){
             wx.hideLoading()
-            if(['userLogin','perfectInformation','resetPassword','smsCode','updateSex','updatePhone','deleteDetectionRecord','removeHouseEquipment','addHouseEquipment','addDetectionRecord','confirmReception','breakdownFeedback','deleteStaffList','addStaff','inviteShopowner','removeStoreList','updateStoreDetail','dispatchEquipment'].indexOf(d.txncode) != -1){
+            if(['userLogin','perfectInformation','resetPassword','smsCode','updateSex','updatePhone','deleteDetectionRecord','removeHouseEquipment','addHouseEquipment','addDetectionRecord','confirmReception','breakdownFeedback','deleteStaffList','addStaff','inviteShopowner','removeStoreList','updateStoreDetail','dispatchEquipment','getStatistics','getTendency'].indexOf(d.txncode) != -1){
               wx.showModal({
                 title: '',
                 showCancel: false,

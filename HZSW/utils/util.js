@@ -57,6 +57,8 @@ var config = {
     dispatchHouseEquipment:'store/dispatchHouseEquipment',
     getStoreArray:'menu/getStoreArray',
     getHouseArray:'menu/getHouseArray',
+    getList:'myData/getList',
+    getSuggest:'myData/getSuggest',
   }
 }
 

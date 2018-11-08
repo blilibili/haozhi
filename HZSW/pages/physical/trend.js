@@ -10,7 +10,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tabIndex:1
+    tabIndex:1,
+    ec: {
+      lazyLoad: true 
+    },
+    ec2: {
+      lazyLoad: true 
+    },
   },
 
   /**
@@ -18,17 +24,56 @@ Page({
    */
   onLoad: function (options) {
     that = this
+    this.getData(1)
+  },
+
+  /**
+   * [getData description]
+   * @param  {[type]} memberId [Id(会员表主键id)]
+   * @param  {[type]} type     [类型：(1:体重 2：体脂率 3：脂肪率 4：脂肪厚度)]
+   * @return {[type]}          [description]
+   */
+  getData:function(type)
+  {
     this.setData({
-      ec: {
-        onInit: function (canvas, width, height) {
-          const barChart = echarts.init(canvas, null, {
-            width: width,
-            height: height
-          });
-          canvas.setChart(barChart);
-          barChart.setOption(that.getBarOption());
-          return barChart;
-        }
+      isShow:false
+    })
+    wx.showLoading()
+    var sendata = app.getTendency(app.globalData.userInfo.id,type)
+    app.send_data(sendata, util.config.url.getTendency, function (res) {
+      if(res.resultCode == '10000'){
+        wx.hideLoading()
+        that.setData({
+          xList:res.resultData.xList,
+          yList:res.resultData.yList,
+          allXList:res.resultData.allXList,
+          allYList:res.resultData.allYList,
+        })
+        that.setData({
+          ec: {
+            onInit: function (canvas, width, height) {
+              var barChart = echarts.init(canvas, null, {
+                width: width,
+                height: height
+              });
+              canvas.setChart(barChart);
+              barChart.setOption(that.getBarOption());
+              return barChart;
+            }
+          },
+          ec2: {
+            onInit: function (canvas, width, height) {
+              var barChart = echarts.init(canvas, null, {
+                width: width,
+                height: height
+              });
+              canvas.setChart(barChart);
+              barChart.setOption(that.getBarOption2());
+              return barChart;
+            }
+          },
+          isShow:true
+        })
       }
     })
   },
@@ -54,6 +99,7 @@ Page({
     this.setData({
       tabIndex:tabIndex
     })
+    this.getData(tabIndex)
   },
 
   /**
@@ -108,54 +154,74 @@ Page({
   getBarOption:function()
   {
     return {
-        tooltip : {
-            trigger: 'axis',
-            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-            }
-        },
         grid:{
-          left:'20%', 
-          top:'10%',
-        },
+              top:'10%',
+            },
         color:['#ff9cb8'],
-        xAxis : [
-            {
-                type : 'value',
-                axisTick : {show: false},
-                splitArea: {
-                    show: true
-                },
-                axisLabel: {
-                    formatter: '{value}次'
-                }
+        xAxis: {
+            type: 'category',
+            data: that.data.xList,
+            boundaryGap: false,
+            axisLine:{
+                show:false
+            },
+            axisTick:{
+                show:false
             }
-        ],
-        yAxis : [
-            {
-                type : 'category',
-                axisTick : {show: false},
-                splitArea: {
-                    show: true
-                },
-                data : ['08~10点','10~12点','08~10点','08~10点','08~10点','08~10点','08~10点','08~10点','其他']
+        },
+        yAxis: {
+            type: 'value',
+            axisLine:{
+                show:false
+            },
+            axisTick:{
+                show:false
+            },
+            min:'dataMin'
+        },
+        series: [{
+            data: that.data.yList,
+            type: 'line',
+            smooth: true,
+            areaStyle: {}
+        }]
+    };
+  },
+
+  getBarOption2:function()
+  {
+    return {
+        grid:{
+              top:'10%',
+            },
+        color:['#ff9cb8'],
+        xAxis: {
+            type: 'category',
+            data: that.data.allXList,
+            boundaryGap: false,
+            axisLine:{
+                show:false
+            },
+            axisTick:{
+                show:false
             }
-        ],
-        series : [
-            {
-                type:'bar',
-                stack: '总量',
-                label: {
-                    normal: {
-                        show: true,
-                        position: 'insideRight',
-                        formatter:'{c}次'
-                    }
-                },
-                data:[32,30, 34, 37,39,45,42,60,52]
-            }
-            
-        ]
+        },
+        yAxis: {
+            type: 'value',
+            axisLine:{
+                show:false
+            },
+            axisTick:{
+                show:false
+            },
+            min:'dataMin'
+        },
+        series: [{
+            data: that.data.allYList,
+            type: 'line',
+            smooth: true,
+            areaStyle: {}
+        }]
     };
   },
 })

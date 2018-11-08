@@ -91,7 +91,28 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var sendata = app.getSuggest()
+    app.send_data(sendata, util.config.url.getSuggest, function (res) {
+      if(res.resultCode == '10000' && res.resultData.length > 0){
+        let bodyTip,fatTip,thickTip
+        for (var i = 0; i < res.resultData.length; i++) {
+          if(res.resultData[i].code == 'body'){
+            bodyTip = res.resultData[i].content
+          }
+          if(res.resultData[i].code == 'fat'){
+            fatTip = res.resultData[i].content
+          }
+          if(res.resultData[i].code == 'thick'){
+            thickTip = res.resultData[i].content
+          }
+        }
+        that.setData({
+          bodyTip:bodyTip,
+          fatTip:fatTip,
+          thickTip:thickTip,
+        })
+      }
+    })
   },
 
   /**

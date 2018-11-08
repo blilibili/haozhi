@@ -12,12 +12,15 @@ Page({
   data: {
     isEdit:false,
     repertoryList:[],
-    devices:["设备1","设备2","设备3","设备4"],
-    timelist:['08~10点','10~12点','08~10点','08~10点','08~10点','08~10点','08~10点','08~10点','其他'],
-    valuelist:[32,30, 34, 37,39,45,42,60,52],
+    devices:[],
+    xList:[],
+    yList:[],
     deviceIndex:-1,
     startDate:'',
     endDate:'',
+    ec: {
+      lazyLoad: true 
+    },
   },
 
   /**
@@ -33,17 +36,20 @@ Page({
         title:"我的仓库"
       })
     }else{
-      this.setData({
-        ec: {
-          onInit: function (canvas, width, height) {
-            const barChart = echarts.init(canvas, null, {
-              width: width,
-              height: height
-            });
-            canvas.setChart(barChart);
-            barChart.setOption(that.getBarOption());
-            return barChart;
+      var sendata = app.getMenuEquipment(app.globalData.userInfo.storeId,app.globalData.userInfo.id)
+      app.send_data(sendata, util.config.url.getMenuEquipment, function (res) {
+        if(res.resultCode == '10000'&&res.resultData.length>0){
+          var list = res.resultData
+          var devices = []
+          for (var i = 0; i < list.length; i++) {
+            devices.push(list[i].equipmentName)
           }
+          that.setData({
+            devices:devices,
+            devicesList:list
+          })
+        }else{
+
         }
       })
     }
@@ -72,17 +78,25 @@ Page({
                 },
                 axisLabel: {
                     formatter: '{value}次'
+                },
+                axisLine:{
+                    show:false
                 }
             }
         ],
         yAxis : [
             {
                 type : 'category',
-                axisTick : {show: false},
                 splitArea: {
                     show: true
                 },
-                data : ['08~10点','10~12点','08~10点','08~10点','08~10点','08~10点','08~10点','08~10点','其他']
+                axisLine:{
+                    show:false
+                },
+                axisTick:{
+                    show:false,
+                },
+                data : that.data.xList
             }
         ],
         series : [
@@ -92,11 +106,11 @@ Page({
                 label: {
                     normal: {
                         show: true,
-                        position: 'insideRight',
+                        position: 'right',
                         formatter:'{c}次'
                     }
                 },
-                data:[32,30, 34, 37,39,45,42,60,52]
+                data:that.data.yList
             }
             
         ]
@@ -169,6 +183,15 @@ Page({
     this.setData({
       deviceIndex: e.detail.value
     })
+    var list = this.data.devicesList
+    var equipmentId = ''
+    for (var i = 0; i < list.length; i++) {
+      if(list[i].equipmentName == this.data.devices[this.data.deviceIndex]){
+        equipmentId = list[i].equipmentId
+        break
+      }
+    }
+    this.getData(equipmentId)
   },
 
   bindStartDateChange: function(e) {
@@ -176,6 +199,7 @@ Page({
     this.setData({
       startDate: e.detail.value
     })
+    this.getData()
   },
 
   bindEndDateChange: function(e) {
@@ -183,8 +207,47 @@ Page({
     this.setData({
       endDate: e.detail.value
     })
+    this.getData()
   },
 
+  getData:function(equipmentId=this.data.equipmentId,startTime=this.data.startDate,endTime=this.data.endDate)
+  {
+    if(!equipmentId){
+      app.showModal('请先选择设备')
+      return
+    }
+    this.setData({
+      isShow:false
+    })
+    wx.showLoading()
+    var sendata = app.getStatistics(equipmentId,startTime,endTime)
+    app.send_data(sendata, util.config.url.getStatistics, function (res) {
+      if(res.resultCode == '10000'){
+        wx.hideLoading()
+        that.setData({
+          xList:res.resultData.xList,
+          yList:res.resultData.yList,
+          minList:res.resultData.minList.toString(),
+          maxList:res.resultData.maxList.toString(),
+          equipmentId:equipmentId
+        })
+        that.setData({
+          ec: {
+            onInit: function (canvas, width, height) {
+              const barChart = echarts.init(canvas, null, {
+                width: width,
+                height: height
+              });
+              canvas.setChart(barChart);
+              barChart.setOption(that.getBarOption());
+              return barChart;
+            }
+          },
+          isShow:true
+        })
+      }
+    })
+  },
   /*我的仓库========================================================*/
 
   showInput: function () {

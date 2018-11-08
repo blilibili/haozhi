@@ -77,6 +77,10 @@ Page({
   },
 
   chooseImage: function () {
+    if(this.data.imageList.length >= 9){
+      app.showModal('图片不能超过9张')
+      return
+    }
     wx.chooseImage({
       sourceType: ['album', 'camera'],
       sizeType: ['original', 'compressed'],
@@ -98,6 +102,20 @@ Page({
     wx.previewImage({
       current: current,
       urls: this.data.imageList
+    })
+  },
+  chooseVideo:function(e)
+  {
+    wx.chooseVideo({
+      sourceType: ['album','camera'],
+      maxDuration: 60,
+      camera: 'back',
+      success(res) {
+        console.log(res.tempFilePath)
+      },
+      fail:function(res){
+        console.log(res)
+      }
     })
   },
 })

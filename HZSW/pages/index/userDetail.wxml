@@ -46,7 +46,7 @@
 			<view class="ruler-tip">
 				<text style="margin-left: {{tzlEffect}}rpx;">{{userinfo.bodyFat}}%</text>
 			</view>
-			<view class="ruler-text">（建议保持在21.0%-24.0%之间）</view>
+			<view class="ruler-text">( {{bodyTip}} )</view>
 		</view>
 	</view>
 	<view class="weui-flex mt86">
@@ -63,7 +63,7 @@
 			<view class="ruler-tip1">
 				<text style="margin-left: {{zflEffect}}rpx;">{{userinfo.fatRate}}%</text>
 			</view>
-			<view class="ruler-text1">（建议保持在18.5%-23.9%之间）</view>
+			<view class="ruler-text1">( {{fatTip}} )</view>
 		</view>
 	</view>
 	<view class="weui-flex mt86">
@@ -78,7 +78,7 @@
 			<view class="ruler-tip2">
 				<text style="margin-left: {{zfhdEffect-36}}rpx;">{{userinfo.fat}}mm</text>
 			</view>
-			<view class="ruler-text2">（建议保持在12-20mm之间）</view>
+			<view class="ruler-text2">( {{thickTip}} )</view>
 		</view>
 	</view>
 </view>

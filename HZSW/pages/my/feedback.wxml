@@ -16,7 +16,7 @@
 	<textarea placeholder="请详细描述你的问题和意见..." placeholder-class="QA-tip" />
 </view>
 <view class="QA-title">
-	图片(选填，提供问题截图，总大小10M以下）
+	图片(选填，提供问题截图）
 </view>
 <view class="weui-cells">
   <view class="weui-cell">
@@ -31,6 +31,27 @@
             </block>
           </view>
           <image bindtap="chooseImage" class="select-img" src="/image/yijian_btn_tianjiatupian.png"/>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="QA-title">
+  视频(选填，提供问题视频）
+</view>
+<view class="weui-cells">
+  <view class="weui-cell">
+    <view class="weui-cell__bd">
+      <view class="weui-uploader">
+        <view class="weui-uploader__bd">
+          <view class="weui-uploader__files">
+            <block wx:for="{{videoList}}" wx:key="value" wx:for-item="image">
+              <view class="weui-uploader__file">
+                <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
+              </view>
+            </block>
+          </view>
+          <image bindtap="chooseVideo" class="select-img" src="/image/yijian_btn_tianjiatupian.png"/>
         </view>
       </view>
     </view>
