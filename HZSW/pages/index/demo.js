@@ -2,7 +2,7 @@ import * as echarts from '../../ec-canvas/echarts';
 
 let chart = null;
 
-function initChart(canvas, width, height) {
+function initChart(canvas, width, height,option) {
   chart = echarts.init(canvas, null, {
     width: width,
     height: height
@@ -19,17 +19,26 @@ function initChart(canvas, width, height) {
     grid:{
       left:'20%', 
     },
-    color:['pink'],
+    color:['#ff9cb8'],
     xAxis : [
         {
             type : 'value',
             axisTick : {show: false},
+            splitArea: {
+                show: true
+            },
+            axisLabel: {
+                formatter: '{value}次'
+            }
         }
     ],
     yAxis : [
         {
             type : 'category',
             axisTick : {show: false},
+            splitArea: {
+                show: true
+            },
             data : ['08~10点','10~12点','08~10点','08~10点','08~10点','08~10点','08~10点','08~10点','其他']
         }
     ],
@@ -40,10 +49,11 @@ function initChart(canvas, width, height) {
             label: {
                 normal: {
                     show: true,
-                    position: 'insideRight'
+                    position: 'insideRight',
+                    formatter:'{c}次'
                 }
             },
-            data:[320, 302, 341, 374, 390, 450, 420, 420, 420]
+            data:[32,30, 34, 37,39,45,42,60,52]
         }
         
     ]

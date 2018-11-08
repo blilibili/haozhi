@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 18,
+			"current": 19,
 			"list": [
 				{
 					"id": -1,
@@ -146,7 +146,14 @@
 				{
 					"id": -1,
 					"name": "统计",
-					"pathName": "pages/count/index"
+					"pathName": "pages/count/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "趋势图",
+					"pathName": "pages/physical/trend",
+					"query": "memberId=10923900"
 				}
 			]
 		}

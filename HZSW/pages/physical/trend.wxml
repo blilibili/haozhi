@@ -1,0 +1,24 @@
+<view class="weui-flex select-tab">
+    <view class="weui-flex__item select-tab-item {{tabIndex == 1?'select-tab-item_active':''}}" data-type="1" bindtap="getTrend">体重</view>
+    <view class="weui-flex__item select-tab-item {{tabIndex == 2?'select-tab-item_active':''}}" data-type="2" bindtap="getTrend">体脂率</view>
+    <view class="weui-flex__item select-tab-item {{tabIndex == 3?'select-tab-item_active':''}}" data-type="3" bindtap="getTrend">脂肪率</view>
+    <view class="weui-flex__item select-tab-item {{tabIndex == 4?'select-tab-item_active':''}}" data-type="4" bindtap="getTrend">脂肪厚度</view>
+</view>
+<view class="weui-flex">
+	<view class="weui-flex__item"></view>
+
+</view>
+<view class="count-title">设备闲忙状态</view>
+<view class="move-container">
+<ec-canvas id="mychart-dom-move-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+</view>
+<view class="count-total" style="padding: 10rpx 30rpx">
+    <view class="weui-flex count-total-body">
+        <view class="count-total-hd"></view>
+        <view class="weui-flex__item count-total-bd">高峰时间段：16点~18点、18点~20点、20点~22点</view>
+    </view>
+    <view class="weui-flex count-total-body">
+        <view class="count-total-hd count-total-hd-color"></view>
+        <view class="weui-flex__item count-total-bd">闲余时间段：08点~10点、12点~14点</view>
+    </view>
+</view>

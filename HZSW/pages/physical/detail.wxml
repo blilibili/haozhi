@@ -3,7 +3,7 @@
 		<text class="ID-title">ID:{{memberId}}</text>
 	</view>
 	<view class="right-item">
-		<text>趋势图</text>
+		<text bindtap="goTrend">趋势图</text>
 	</view>
 	<view class="weui-cell__ft weui-cell__ft_in-access"></view>
 </view>

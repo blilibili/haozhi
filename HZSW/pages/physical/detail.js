@@ -149,4 +149,10 @@ Page({
       }
     })
   },
+  goTrend:function()
+  {
+    wx.navigateTo({
+      url:"/pages/physical/trend?memberId="+this.data.memberId
+    })
+  }
 })

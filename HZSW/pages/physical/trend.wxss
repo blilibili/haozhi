@@ -1,0 +1,53 @@
+/* pages/physical/trend.wxss */
+page{
+	background:#ffffff;
+	height: 100%;
+}
+.nobody{
+	text-align: center;
+	margin-top: 362rpx;
+}
+.select-tab{
+	text-align: center;
+	border-bottom: 1px solid #e5e5e5;
+}
+.select-tab-item{
+	padding: 20rpx 0rpx 20rpx 0rpx;
+}
+.select-tab-item_active{
+	color: #ff9cb8;
+	border-bottom: 1px solid #ff9cb8;
+}
+
+
+.count-title{
+	margin: 50rpx 0px 0px 30rpx;
+}
+ec-canvas {
+  width: 100%;
+  height: 100%;
+}
+.move-container {
+  width: 100%;
+}
+#mychart-dom-move-bar {
+  width: 100%;
+  height: 300px;
+  display: block;
+}
+.count-total-body{
+	align-items: center;
+}
+.count-total-hd{
+	width: 20rpx;
+	height:8rpx;
+	background: #ff9cb8;
+}
+.count-total-hd-color{
+	background: #999999;
+}
+.count-total-bd{
+	margin-left: 20rpx;
+	font-size: 28rpx;
+	color: #666666;
+}

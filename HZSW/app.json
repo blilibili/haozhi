@@ -36,7 +36,8 @@
     "pages/repertory/detail",
     "pages/repertory/chooseRepertory",
     "pages/repertory/chooseStore",
-    "pages/repertory/disSuccess"
+    "pages/repertory/disSuccess",
+    "pages/physical/trend"
   ],
   "window": {
     "backgroundTextStyle": "light",
