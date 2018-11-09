@@ -147,7 +147,7 @@ Page({
 
   doLogin:function()
   {
-    /*
+    
     if(!this.data.phone){
       app.showModal('手机号码不能为空')
       return
@@ -161,7 +161,7 @@ Page({
       return
     }
     var sendata = app.userLogin(this.data.phone,this.data.pwd,this.data.code)
-    */
+    
     /*
     管理员： 13168397239 123456
     店长： 13527637712 123456
@@ -172,7 +172,7 @@ Page({
     膜ID： M900001
     会员ID： 10923900
      */
-    var sendata = app.userLogin(13527637712,'123456',1111)
+    // var sendata = app.userLogin(18329183721,'123456',1111)
     wx.showLoading();
     app.send_data(sendata, util.config.url.login, function (res) {
       if(res.resultCode == '10000'){

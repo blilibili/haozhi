@@ -141,3 +141,7 @@ page{
   height: 100%;
   opacity: 0;
 }
+.select-type image{
+  width: 10px;
+  height: 10px;
+}

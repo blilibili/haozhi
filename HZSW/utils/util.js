@@ -59,6 +59,7 @@ var config = {
     getHouseArray:'menu/getHouseArray',
     getList:'myData/getList',
     getSuggest:'myData/getSuggest',
+    saveFiles:'myData/saveFiles',
   }
 }
 
@@ -157,7 +158,15 @@ function getPhone(phone,num) {
 function searchList(paramName,key,list){
   var reList = []
   for (var i = 0; i < list.length; i++) {
-    if (key == "memberId"&&paramName == list[i].memberId) {
+    if (key == "memberId"&&list[i].memberId.indexOf(paramName) != -1) {
+      reList.push(list[i])
+    }else if (key == "equipmentId"&&list[i].equipmentId.indexOf(paramName) != -1) {
+      reList.push(list[i])
+    }else if (key == "phone"&&list[i].phone.indexOf(paramName) != -1) {
+      reList.push(list[i])
+    }else if (key == "storeId"&&list[i].storeId.indexOf(paramName) != -1) {
+      reList.push(list[i])
+    }else if (key == "houseId"&&list[i].houseId.indexOf(paramName) != -1) {
       reList.push(list[i])
     }else{
 

@@ -98,6 +98,9 @@ Page({
           inputVal: "",
           inputShowed: false
       });
+      this.setData({
+        checkboxItems:this.data.old_userList
+      })
   },
   clearInput: function () {
       this.setData({
@@ -108,6 +111,23 @@ Page({
       this.setData({
           inputVal: e.detail.value
       });
+      if(this.data.old_userList){
+        this.setData({
+          checkboxItems:this.data.old_userList
+        })
+      }else{
+        this.setData({
+          old_userList:this.data.checkboxItems
+        })
+      }
+      this.setData({
+          inputVal: e.detail.value
+      });
+      var list = util.searchList(this.data.inputVal,'phone',this.data.checkboxItems)
+      util.zhw_log(list)
+      this.setData({
+        checkboxItems:list
+      })
   },
 
   showInviteBox:function()

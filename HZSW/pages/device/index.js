@@ -95,6 +95,9 @@ Page({
           inputVal: "",
           inputShowed: false
       });
+      this.setData({
+        deviceList:this.data.old_deviceList
+      })
   },
   clearInput: function () {
       this.setData({
@@ -102,9 +105,23 @@ Page({
       });
   },
   inputTyping: function (e) {
+      if(this.data.old_deviceList){
+        this.setData({
+          deviceList:this.data.old_deviceList
+        })
+      }else{
+        this.setData({
+          old_deviceList:this.data.deviceList
+        })
+      }
       this.setData({
           inputVal: e.detail.value
       });
+      var list = util.searchList(this.data.inputVal,'equipmentId',this.data.deviceList)
+      util.zhw_log(list)
+      this.setData({
+        deviceList:list
+      })
   },
 
   goDeviceList:function(options)

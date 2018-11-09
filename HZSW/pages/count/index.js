@@ -15,7 +15,7 @@ Page({
     devices:[],
     xList:[],
     yList:[],
-    deviceIndex:-1,
+    deviceIndex:0,
     startDate:'',
     endDate:'',
     ec: {
@@ -48,6 +48,8 @@ Page({
             devices:devices,
             devicesList:list
           })
+          //初始化数据
+          that.getData(list[0].equipmentId)
         }else{
 
         }
@@ -260,6 +262,9 @@ Page({
           inputVal: "",
           inputShowed: false
       });
+      this.setData({
+        repertoryList:this.data.old_userList
+      })
   },
   clearInput: function () {
       this.setData({
@@ -270,6 +275,23 @@ Page({
       this.setData({
           inputVal: e.detail.value
       });
+      if(this.data.old_userList){
+        this.setData({
+          repertoryList:this.data.old_userList
+        })
+      }else{
+        this.setData({
+          old_userList:this.data.repertoryList
+        })
+      }
+      this.setData({
+          inputVal: e.detail.value
+      });
+      var list = util.searchList(this.data.inputVal,'houseId',this.data.repertoryList)
+      util.zhw_log(list)
+      this.setData({
+        repertoryList:list
+      })
   },
 
   

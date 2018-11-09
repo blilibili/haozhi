@@ -93,6 +93,9 @@ Page({
           inputVal: "",
           inputShowed: false
       });
+      this.setData({
+        memberList:this.data.old_memberList
+      })
   },
   clearInput: function () {
       this.setData({
@@ -100,8 +103,22 @@ Page({
       });
   },
   inputTyping: function (e) {
+    if(this.data.old_memberList){
       this.setData({
-          inputVal: e.detail.value
-      });
+        memberList:this.data.old_memberList
+      })
+    }else{
+      this.setData({
+        old_memberList:this.data.memberList
+      })
+    }
+    this.setData({
+        inputVal: e.detail.value
+    });
+    var list = util.searchList(this.data.inputVal,'memberId',this.data.memberList)
+    util.zhw_log(list)
+    this.setData({
+      memberList:list
+    })
   }
 })

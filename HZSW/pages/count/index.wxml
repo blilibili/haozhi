@@ -2,10 +2,7 @@
 	<view class="weui-flex select-tab">
         <view class="weui-flex__item">
         <picker bindchange="bingDeviceChange" value="{{deviceIndex}}" range="{{devices}}">
-            <view wx:if="{{deviceIndex == -1}}">
-            选择设备 <image src="/image/tongji_icon_jiantou.png"/>
-            </view>
-            <view wx:else>{{devices[deviceIndex]}}</view>
+            <view>{{devices[deviceIndex]}} <image src="/image/tongji_icon_jiantou.png"/></view>
       </picker>
         </view>
         <view class="weui-flex__item">

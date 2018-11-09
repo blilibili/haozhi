@@ -2,7 +2,7 @@
   <view class="weui-flex__item">反馈类型</view>
   <view class="weui-flex__item tr">
     <picker bindchange="bindPickerChange" value="{{index}}" range="{{list}}">
-      <view wx:if="{{index == -1}}">请选择 ></view>
+      <view wx:if="{{index == -1}}" class="select-type">请选择 <image src="/image/tongji_icon_jiantou.png"/></view>
       <view class="picker" wx:if="{{index != -1}}">
         {{list[index]}}
       </view>
@@ -13,7 +13,7 @@
   问题和意见
 </view>
 <view class="QA">
-	<textarea placeholder="请详细描述你的问题和意见..." placeholder-class="QA-tip" />
+	<textarea placeholder="请详细描述你的问题和意见..." placeholder-class="QA-tip" bindinput="getQA"/>
 </view>
 <view class="QA-title">
 	图片(选填，提供问题截图）
@@ -45,13 +45,11 @@
       <view class="weui-uploader">
         <view class="weui-uploader__bd">
           <view class="weui-uploader__files">
-            <block wx:for="{{videoList}}" wx:key="value" wx:for-item="image">
-              <view class="weui-uploader__file">
-                <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
-              </view>
-            </block>
+            <view wx:if="{{video}}" class="weui-uploader__file">
+              <video controls="false" show-center-play-btn="false" show-fullscreen-btn="false" show-play-btn="false" class="weui-uploader__img" src="{{video}}"></video>
+            </view>
           </view>
-          <image bindtap="chooseVideo" class="select-img" src="/image/yijian_btn_tianjiatupian.png"/>
+          <image bindtap="chooseVideo" class="select-img" src="/image/yijian_btn_tianjiatupian.png" wx:if="{{!video}}"/>
         </view>
       </view>
     </view>
@@ -61,6 +59,6 @@
 	QQ/邮箱
 </view>
 <view class="contract-box">
-	<input placeholder="(选填，方便我们联系您）" placeholder-class="QA-tip" maxlength="40" />
+	<input placeholder="(选填，方便我们联系您）" placeholder-class="QA-tip" maxlength="40" bindinput="getQQ"/>
 </view>
-<button class="login" bindtap="doLogin">提交</button>
+<button class="login" bindtap="doSave">提交</button>

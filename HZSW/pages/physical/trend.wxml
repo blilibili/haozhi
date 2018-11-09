@@ -4,16 +4,16 @@
     <view class="weui-flex__item select-tab-item {{tabIndex == 3?'select-tab-item_active':''}}" data-type="3" bindtap="getTrend">脂肪率</view>
     <view class="weui-flex__item select-tab-item {{tabIndex == 4?'select-tab-item_active':''}}" data-type="4" bindtap="getTrend">脂肪厚度</view>
 </view>
-<view class="weui-flex">
+<view class="weui-flex content">
     <view class="weui-flex__item">最近7次数据</view>
-	<view class="weui-flex__item">
+	<view class="weui-flex__item share">
         <image src="/image/liliao_icon_fenxiang.png" style="width: 36rpx;height: 32rpx;"/>
     </view>
 </view>
 <view class="move-container">
 <ec-canvas wx:if="{{isShow}}" id="mychart-dom-move-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
 </view>
-<view class="weui-flex">
+<view class="weui-flex content">
     <view class="weui-flex__item">全部数据</view>
 </view>
 <view class="move-container">

@@ -24,6 +24,9 @@ Page({
    */
   onLoad: function (options) {
     that = this
+    this.setData({
+      memberId:options.memberId
+    })
     this.getData(1)
   },
 
@@ -39,7 +42,7 @@ Page({
       isShow:false
     })
     wx.showLoading()
-    var sendata = app.getTendency(app.globalData.userInfo.id,type)
+    var sendata = app.getTendency(this.data.memberId,type)
     app.send_data(sendata, util.config.url.getTendency, function (res) {
       if(res.resultCode == '10000'){
         wx.hideLoading()
@@ -156,6 +159,7 @@ Page({
     return {
         grid:{
               top:'10%',
+              bottom:'10%'
             },
         color:['#ff9cb8'],
         xAxis: {

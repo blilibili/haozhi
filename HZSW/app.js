@@ -451,6 +451,20 @@ App({
     return data;
   },
 
+  saveSuggest:function(name,type,suggest,imagesList=undefined,videoList=undefined,qq=undefined)
+  {
+    var data = JSON.stringify({
+      "name":name,
+      "type":type,
+      "suggest":suggest,
+      "imagesList":imagesList,
+      "videoList":videoList,
+      "qq":qq,
+      "txncode":"saveSuggest"
+    })
+    return data;
+  },
+
   updateStoreDetail:function(id,storeId,storeName,address,longitude,latitude)
   {
     var data = JSON.stringify({
@@ -544,7 +558,7 @@ App({
           //Memo 响应信息
           if(txninfo.resultCode != '10000'){
             wx.hideLoading()
-            if(['userLogin','perfectInformation','resetPassword','smsCode','updateSex','updatePhone','deleteDetectionRecord','removeHouseEquipment','addHouseEquipment','addDetectionRecord','confirmReception','breakdownFeedback','deleteStaffList','addStaff','inviteShopowner','removeStoreList','updateStoreDetail','dispatchEquipment','getStatistics','getTendency'].indexOf(d.txncode) != -1){
+            if(['userLogin','perfectInformation','resetPassword','smsCode','updateSex','updatePhone','deleteDetectionRecord','removeHouseEquipment','addHouseEquipment','addDetectionRecord','confirmReception','breakdownFeedback','deleteStaffList','addStaff','inviteShopowner','removeStoreList','updateStoreDetail','dispatchEquipment','getStatistics','getTendency','saveSuggest'].indexOf(d.txncode) != -1){
               wx.showModal({
                 title: '',
                 showCancel: false,

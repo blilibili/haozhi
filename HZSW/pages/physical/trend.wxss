@@ -18,8 +18,6 @@ page{
 	color: #ff9cb8;
 	border-bottom: 1px solid #ff9cb8;
 }
-
-
 .count-title{
 	margin: 50rpx 0px 0px 30rpx;
 }
@@ -50,4 +48,12 @@ ec-canvas {
 	margin-left: 20rpx;
 	font-size: 28rpx;
 	color: #666666;
+}
+.content{
+	padding: 28rpx 0rpx 0rpx 20rpx;
+	font-size: 28rpx;
+}
+.share{
+	text-align: right;
+	margin-right: 30rpx;
 }

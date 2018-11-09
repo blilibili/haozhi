@@ -191,15 +191,24 @@ Page({
   },
 
   showInput: function () {
-      this.setData({
-          inputShowed: true
-      });
+    this.setData({
+        inputShowed: true
+    });
   },
   hideInput: function () {
       this.setData({
           inputVal: "",
           inputShowed: false
       });
+      if(app.globalData.isPhysical){
+        this.setData({
+          userList:this.data.old_userList
+        })
+      }else{
+        this.setData({
+          deviceList:this.data.old_deviceList
+        })
+      }
   },
   clearInput: function () {
       this.setData({
@@ -207,9 +216,45 @@ Page({
       });
   },
   inputTyping: function (e) {
+    if(app.globalData.isPhysical){
+      //理疗记录
+      if(this.data.old_userList){
+        this.setData({
+          userList:this.data.old_userList
+        })
+      }else{
+        this.setData({
+          old_userList:this.data.userList
+        })
+      }
       this.setData({
           inputVal: e.detail.value
       });
+      var list = util.searchList(this.data.inputVal,'memberId',this.data.userList)
+      util.zhw_log(list)
+      this.setData({
+        userList:list
+      })
+    }else{
+      //设备
+      if(this.data.old_deviceList){
+        this.setData({
+          deviceList:this.data.old_deviceList
+        })
+      }else{
+        this.setData({
+          old_deviceList:this.data.deviceList
+        })
+      }
+      this.setData({
+          inputVal: e.detail.value
+      });
+      var list = util.searchList(this.data.inputVal,'equipmentId',this.data.deviceList)
+      util.zhw_log(list)
+      this.setData({
+        deviceList:list
+      })
+    }
   },
 
   /*-----------------------------我的设备---------------------------*/

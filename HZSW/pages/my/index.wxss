@@ -48,3 +48,15 @@
 .my-title{
 	margin-left: 30rpx;
 }
+.contract-us{
+	padding:0px;
+	background:#ffffff;
+	text-align:left;
+	padding-right:15px;
+}
+.contract-us image{
+	margin-left:15px;
+}
+button:after{
+	border:none;
+}
