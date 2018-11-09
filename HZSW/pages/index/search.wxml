@@ -4,7 +4,7 @@
 			<image src="/image/zhuye_ID_icon_shoudongshuru.png"/>
 		</view>
 		<view class="weui-flex__item">
-			<input type="number" placeholder="请输入ID号码" placeholder-class="tip-style" name="phone" maxlength="20" bindinput="getId"/>
+			<input type="text" placeholder="请输入ID号码" placeholder-class="tip-style" name="phone" maxlength="20" bindinput="getId"/>
 		</view>
 	</view>
 	<view class="sear-btn">
