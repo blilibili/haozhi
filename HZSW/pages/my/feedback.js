@@ -92,7 +92,7 @@ Page({
           url: 'https://mylidan.com/api/'+util.config.url.saveFiles,
           filePath: data.tempFilePaths[0],
           name: 'file',
-          formData: {},
+          formData: {"token":app.globalData.userInfo.token},
           success:function(res){
             var res = JSON.parse(res.data)
             util.zhw_log(res)
@@ -143,7 +143,7 @@ Page({
           url: 'https://mylidan.com/api/'+util.config.url.saveFiles,
           filePath: data.tempFilePath,
           name: 'file',
-          formData: {},
+          formData: {"token":app.globalData.userInfo.token},
           success:function(res){
             util.zhw_log(res)
             var res = JSON.parse(res.data)

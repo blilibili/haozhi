@@ -8,6 +8,13 @@ App({
       wx.switchTab({
         url:"/pages/my/index"
       })
+    }else{
+      wx.login({
+        success: res => {
+          // 发送 res.code 到后台换取 openId, sessionKey, unionId
+          this.globalData.wechatCode = res.code
+        }
+      })
     }
 
     /*// 登录
@@ -97,6 +104,7 @@ App({
       "phone":phone,
       "password":pwd,
       "code":code,
+      "wechatCode":this.globalData.wechatCode,
       "txncode":"userLogin"
     })
     return data;
@@ -120,6 +128,7 @@ App({
       "name":name,
       "sex":sex,
       "id":this.globalData.userInfo.id,
+      "token":this.globalData.userInfo.token,
       "txncode":"perfectInformation"
     })
     return data;
@@ -130,7 +139,18 @@ App({
     var data = JSON.stringify({
       "phone":phone,
       "imgUrl":imgUrl,
+      "token":this.globalData.userInfo.token,
       "txncode":"updateAvatar"
+    })
+    return data;
+  },
+
+  loginOut:function()
+  {
+    var data = JSON.stringify({
+      "userId":this.globalData.userInfo.id,
+      "token":this.globalData.userInfo.token,
+      "txncode":"loginOut"
     })
     return data;
   },
@@ -148,6 +168,7 @@ App({
   {
     var data = JSON.stringify({
       "storeId":storeId,
+      "token":this.globalData.userInfo.token,
       "txncode":"getStaffList"
     })
     return data;
@@ -157,6 +178,8 @@ App({
   {
     var data = JSON.stringify({
       "idList":idList,
+      "userId":this.globalData.userInfo.id,
+      "token":this.globalData.userInfo.token,
       "txncode":"deleteStaffList"
     })
     return data;
@@ -167,6 +190,7 @@ App({
     var data = JSON.stringify({
       "userId":userId,
       "sex":sex,
+      "token":this.globalData.userInfo.token,
       "txncode":"updateSex"
     })
     return data;
@@ -177,6 +201,7 @@ App({
     var data = JSON.stringify({
       "userId":userId,
       "typeId":typeId,
+      "token":this.globalData.userInfo.token,
       "txncode":"getMessageList"
     })
     return data;
@@ -186,6 +211,7 @@ App({
   {
     var data = JSON.stringify({
       "memberId":memberId,
+      "token":this.globalData.userInfo.token,
       "txncode":"getDetectionRecordList"
     })
     return data;
@@ -195,6 +221,8 @@ App({
   {
     var data = JSON.stringify({
       "idList":idList,
+      "userId":this.globalData.userInfo.id,
+      "token":this.globalData.userInfo.token,
       "txncode":"deleteDetectionRecord"
     })
     return data;
@@ -206,6 +234,7 @@ App({
       "userId":userId,
       "phone":phone,
       "code":code,
+      "token":this.globalData.userInfo.token,
       "txncode":"updatePhone"
     })
     return data;
@@ -216,6 +245,7 @@ App({
     var data = JSON.stringify({
       "id":userId,
       "memberId":memberId,
+      "token":this.globalData.userInfo.token,
       "txncode":"getMemberList"
     })
     return data;
@@ -225,6 +255,7 @@ App({
   {
     var data = JSON.stringify({
       "storeHouseName":storeHouseName,
+      "token":this.globalData.userInfo.token,
       "txncode":"getStoreHouseList"
     })
     return data;
@@ -235,6 +266,7 @@ App({
     var data = JSON.stringify({
       "id":id,
       "name":name,
+      "token":this.globalData.userInfo.token,
       "txncode":"getHouseEquipment"
     })
     return data;
@@ -244,6 +276,8 @@ App({
   {
     var data = JSON.stringify({
       "idList":idList,
+      "userId":this.globalData.userInfo.id,
+      "token":this.globalData.userInfo.token,
       "txncode":"removeHouseEquipment"
     })
     return data;
@@ -256,6 +290,8 @@ App({
       "equipmentName":equipmentName,
       "equipmentId":equipmentId,
       "status":status,
+      "userId":this.globalData.userInfo.id,
+      "token":this.globalData.userInfo.token,
       "txncode":"addHouseEquipment"
     })
     return data;
@@ -272,6 +308,7 @@ App({
       "phone":phone,
       "longitude":longitude,
       "latitude":latitude,
+      "token":this.globalData.userInfo.token,
       "txncode":"addStoreList"
     })
     return data;
@@ -281,6 +318,7 @@ App({
   {
     var data = JSON.stringify({
       "storeName":storeName,
+      "token":this.globalData.userInfo.token,
       "txncode":"getStoreList"
     })
     return data;
@@ -292,6 +330,7 @@ App({
       "typeId":typeId,
       "scansionId":scansionId,
       "storeId":storeId,
+      "token":this.globalData.userInfo.token,
       "txncode":"scansion"
     })
     return data;
@@ -302,6 +341,7 @@ App({
     var data = JSON.stringify({
       "equipmentId":equipmentId,
       "memberId":memberId,
+      "token":this.globalData.userInfo.token,
       "txncode":"confirmUnlock"
     })
     return data;
@@ -314,6 +354,7 @@ App({
       "storeId":storeId,
       "userId":userId,
       "equipmentName":equipmentName,
+      "token":this.globalData.userInfo.token,
       "txncode":"getEquipmentList"
     })
     return data;
@@ -323,6 +364,8 @@ App({
   {
     var data = JSON.stringify({
       "equipmentId":equipmentId,
+      "userId":this.globalData.userInfo.id,
+      "token":this.globalData.userInfo.token,
       "txncode":"confirmReception"
     })
     return data;
@@ -332,6 +375,7 @@ App({
   {
     var data = JSON.stringify({
       "equipmentId":equipmentId,
+      "token":this.globalData.userInfo.token,
       "txncode":"getEquipmentDetail"
     })
     return data;
@@ -342,6 +386,8 @@ App({
     var data = JSON.stringify({
       "equipmentId":equipmentId,
       "state":state,
+      "userId":this.globalData.userInfo.id,
+      "token":this.globalData.userInfo.token,
       "txncode":"breakdownFeedback"
     })
     return data;
@@ -352,6 +398,8 @@ App({
     var data = JSON.stringify({
       "storeId":storeId,
       "phone":phone,
+      "userId":this.globalData.userInfo.id,
+      "token":this.globalData.userInfo.token,
       "txncode":"addStaff"
     })
     return data;
@@ -371,6 +419,7 @@ App({
   {
     var data = JSON.stringify({
       "equipmentName":equipmentName,
+      "token":this.globalData.userInfo.token,
       "txncode":"getEquipmentArray"
     })
     return data;
@@ -379,6 +428,7 @@ App({
   getHelpList:function()
   {
     var data = JSON.stringify({
+      "token":this.globalData.userInfo.token,
       "txncode":"getHelpList"
     })
     return data;
@@ -388,6 +438,8 @@ App({
   {
     var data = JSON.stringify({
       "idList":idList,
+      "userId":this.globalData.userInfo.id,
+      "token":this.globalData.userInfo.token,
       "txncode":"removeStoreList"
     })
     return data;
@@ -399,6 +451,8 @@ App({
       "type":type,
       "id":id,
       "equipmentId":equipmentId,
+      "userId":this.globalData.userInfo.id,
+      "token":this.globalData.userInfo.token,
       "txncode":"dispatchEquipment"
     })
     return data;
@@ -410,6 +464,7 @@ App({
       "equipmentId":equipmentId,
       "startTime":startTime,
       "endTime":endTime,
+      "token":this.globalData.userInfo.token,
       "txncode":"getStatistics"
     })
     return data;
@@ -420,6 +475,7 @@ App({
     var data = JSON.stringify({
       "memberId":memberId,
       "type":type,
+      "token":this.globalData.userInfo.token,
       "txncode":"getTendency"
     })
     return data;
@@ -428,6 +484,7 @@ App({
   getSuggest:function()
   {
     var data = JSON.stringify({
+      "token":this.globalData.userInfo.token,
       "txncode":"getSuggest"
     })
     return data;
@@ -436,6 +493,7 @@ App({
   getList:function()
   {
     var data = JSON.stringify({
+      "token":this.globalData.userInfo.token,
       "txncode":"getList"
     })
     return data;
@@ -446,6 +504,7 @@ App({
     var data = JSON.stringify({
       "storeId":storeId,
       "userId":userId,
+      "token":this.globalData.userInfo.token,
       "txncode":"getMenuEquipment"
     })
     return data;
@@ -460,6 +519,7 @@ App({
       "imagesList":imagesList,
       "videoList":videoList,
       "qq":qq,
+      "token":this.globalData.userInfo.token,
       "txncode":"saveSuggest"
     })
     return data;
@@ -497,6 +557,8 @@ App({
       "bodyFat":user.bodyFat,
       "fatRate":user.fatRate,
       "fat":user.fat,
+      "token":this.globalData.userInfo.token,
+      "userId":this.globalData.userInfo.id,
       "txncode":"addDetectionRecord"
     })
     return data;
@@ -556,9 +618,18 @@ App({
 
           var txninfo = res.data;
           //Memo 响应信息
-          if(txninfo.resultCode != '10000'){
+          if(txninfo.resultCode == '50004'){
+            wx.clearStorage({
+              success:function(){
+                wx.reLaunch({
+                  url:"/pages/home/index"
+                })
+              }
+            })
+            return
+          }else if(txninfo.resultCode != '10000'){
             wx.hideLoading()
-            if(['userLogin','perfectInformation','resetPassword','smsCode','updateSex','updatePhone','deleteDetectionRecord','removeHouseEquipment','addHouseEquipment','addDetectionRecord','confirmReception','breakdownFeedback','deleteStaffList','addStaff','inviteShopowner','removeStoreList','updateStoreDetail','dispatchEquipment','getStatistics','getTendency','saveSuggest'].indexOf(d.txncode) != -1){
+            if(['userLogin','perfectInformation','resetPassword','smsCode','updateSex','updatePhone','deleteDetectionRecord','removeHouseEquipment','addHouseEquipment','addDetectionRecord','confirmReception','breakdownFeedback','deleteStaffList','addStaff','inviteShopowner','removeStoreList','updateStoreDetail','dispatchEquipment','getStatistics','getTendency','saveSuggest','loginOut'].indexOf(d.txncode) != -1){
               wx.showModal({
                 title: '',
                 showCancel: false,
@@ -623,5 +694,6 @@ App({
     repertoryList:[],//仓库列表
     NewList:[],//最新资讯列表
     SysList:[],//系统消息列表
+    wechatCode:'',//调用wx.login获取的code值
   }
 })

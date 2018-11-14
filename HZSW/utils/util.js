@@ -16,6 +16,7 @@ var config = {
   url : {
     checkout:'index/checkout',
     login:'index/login',
+    loginOut:'index/loginOut',
     smsCode:'index/smsCode',
     perfectInformation:'index/perfectInformation',
     resetPassword:'index/resetPassword',
@@ -50,6 +51,7 @@ var config = {
     updateStoreDetail:'store/updateStoreDetail',
     getEquipmentArray:'equipment/getEquipmentArray',
     dispatchEquipment:'equipment/dispatchEquipment',
+    changeState:'equipment/changeState',
     getStoreHouseList:'store/getStoreHouseList',
     getHouseEquipment:'store/getHouseEquipment',
     addHouseEquipment:'store/addHouseEquipment',
@@ -104,7 +106,7 @@ function errCode ($k){
     '000003':'服务器异常',
     '000004':'其他异常请往下增加',
     '000005':'请求超时',
-    '-1':'成功',
+    '-1':'失败',
     '-2':'权限不足',
     '-3':'该请求是文件类型的HTTP请求',
     '-4':'请求过于频繁',
@@ -130,6 +132,9 @@ function errCode ($k){
     '50001':'设备不可用',
     '50002':'手机号重复',
     '50000':'系统异常',
+    '50003':'设备故障',
+    '50004':'token过期，请重新登陆',
+    '70001':'微信登录接口调用出错',
   }
   return errCode;
 }
