@@ -133,8 +133,14 @@ Page({
         }
         if(that.data.typeId == 1){
           //扫膜
-          app.globalData.indexStep = 3
-          app.globalData.memberUserInfo.membranceId = that.data.scansionId
+          if(app.globalData.indexMoNum < 1){
+            app.globalData.memberUserInfo.membranceId = that.data.scansionId
+          }else{
+            app.globalData.memberUserInfo.membranceId += ',' + that.data.scansionId
+          }
+          app.globalData.indexMoNum += 1
+
+          // app.globalData.indexStep = 3
           wx.navigateBack()
         }
         if(that.data.typeId == 2){

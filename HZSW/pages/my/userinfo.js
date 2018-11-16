@@ -91,4 +91,8 @@ Page({
       }
     })
   },
+
+  logout:function(){
+    app.logout()
+  }
 })

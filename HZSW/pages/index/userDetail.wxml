@@ -4,7 +4,7 @@
 <view class="user-detail">
 	<view class="weui-flex">
 		<view class="detail-hd">膜ID：</view>
-		<view class="weui-flex__item detail-bd">{{userinfo.membranceId}}</view>
+		<view class="weui-flex__item detail-bd detail-break-word">{{userinfo.membranceId}}</view>
 	</view>
 	<view class="weui-flex">
 		<view class="detail-hd">设备ID：</view>

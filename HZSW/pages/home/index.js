@@ -147,7 +147,7 @@ Page({
 
   doLogin:function()
   {
-    
+    /*
     if(!this.data.phone){
       app.showModal('手机号码不能为空')
       return
@@ -160,36 +160,41 @@ Page({
       app.showModal('密码不能为空')
       return
     }
-    var sendata = app.userLogin(this.data.phone,this.data.pwd,this.data.code)
-    
-    /*
-    管理员： 13168397239 123456
-    店长： 13527637712 123456
-    店员： 18329183721 123456
-    -------------
-    扫描接口入参：
-    设备ID： 201983074
-    膜ID： M900001
-    会员ID： 10923900
-     */
-    // var sendata = app.userLogin(18329183721,'123456',1111)
-    wx.showLoading();
-    app.send_data(sendata, util.config.url.login, function (res) {
-      if(res.resultCode == '10000'){
-        //如果不是管理员则本地保存信息
-        app.globalData.userInfo = res.resultData
-        if(res.resultData.grade != 1){
-          wx.setStorageSync('userinfo',res.resultData)
-        }
-        if(!res.resultData.name){
-          wx.redirectTo({
-            url:"/pages/home/editUser"
-          })
-        }else{
-          wx.switchTab({
-            url:"/pages/my/index"
-          })
-        }
+    */
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        /*
+        管理员： 13411111111/123456
+        店长： 13511111111/123456
+        店员： 18311111111/123456
+        -------------
+        扫描接口入参：
+        设备ID： 201983074
+        膜ID： M900001
+        会员ID： 10923900
+         */
+        // var sendata = app.userLogin(this.data.phone,this.data.pwd,this.data.code,res.code)
+        var sendata = app.userLogin(13511111111,'123456',1111,res.code)
+        wx.showLoading();
+        app.send_data(sendata, util.config.url.login, function (res) {
+          if(res.resultCode == '10000'){
+            //如果不是管理员则本地保存信息
+            app.globalData.userInfo = res.resultData
+            if(res.resultData.grade != 1){
+              wx.setStorageSync('userinfo',res.resultData)
+            }
+            if(!res.resultData.name){
+              wx.redirectTo({
+                url:"/pages/home/editUser"
+              })
+            }else{
+              wx.switchTab({
+                url:"/pages/my/index"
+              })
+            }
+          }
+        })
       }
     })
   },

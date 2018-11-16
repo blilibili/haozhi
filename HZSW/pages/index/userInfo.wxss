@@ -40,6 +40,10 @@
 	color: #111111;
 	margin-left: 20rpx;
 }
+.detail-break-word{
+	width:50px;
+	word-wrap:break-word;
+}
 .select-box{
 	font-size: 34rpx;
 	margin-bottom: 32rpx;

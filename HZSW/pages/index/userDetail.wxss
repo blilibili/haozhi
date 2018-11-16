@@ -49,6 +49,10 @@ page{
 	color: #111111;
 	margin-left: 20rpx;
 }
+.detail-break-word{
+	width:50px;
+	word-wrap:break-word;
+}
 .body-detail{
 	padding: 34rpx 32rpx;
 	background: white;

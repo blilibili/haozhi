@@ -9,12 +9,7 @@ App({
         url:"/pages/my/index"
       })
     }else{
-      wx.login({
-        success: res => {
-          // 发送 res.code 到后台换取 openId, sessionKey, unionId
-          this.globalData.wechatCode = res.code
-        }
-      })
+      
     }
 
     /*// 登录
@@ -98,13 +93,13 @@ App({
     return data;
   },
 
-  userLogin:function(phone,pwd,code)
+  userLogin:function(phone,pwd,code,wechatCode)
   {
     var data = JSON.stringify({
       "phone":phone,
       "password":pwd,
       "code":code,
-      "wechatCode":this.globalData.wechatCode,
+      "wechatCode":wechatCode,
       "txncode":"userLogin"
     })
     return data;
@@ -584,6 +579,34 @@ App({
     })
   },
 
+  logout:function()
+  {
+    var that = this
+    wx.clearStorage({
+      success:function(){
+        that.globalData = {
+          userInfo: null,//1为管理员,2为店长,3为普通员工
+          userList:[],
+          isPhysical:true,//true为打开理疗记录页面，false为打开设备管理页面
+          indexStep:1,//1扫设备，2扫膜，3扫用户
+          indexMoNum:0,//扫膜的次数，默认为0
+          memberPhysicalList:[],//会员的理疗记录列表，getDetectionRecordList接口返回
+          memberUserInfo:{},
+          deviceList:[],//设备信息
+          deviceListItem:[],//某个设备下的理疗记录信息
+          storeList:[],//门店信息
+          helpList:[],//帮助中心
+          repertoryList:[],//仓库列表
+          NewList:[],//最新资讯列表
+          SysList:[],//系统消息列表
+        }
+        wx.reLaunch({
+          url:"/pages/home/index"
+        })
+      }
+    })
+  },
+
   /**
    * 网络请求统一方法
    * @param  {[type]} data [description]
@@ -619,12 +642,13 @@ App({
           var txninfo = res.data;
           //Memo 响应信息
           if(txninfo.resultCode == '50004'){
-            wx.clearStorage({
-              success:function(){
-                wx.reLaunch({
-                  url:"/pages/home/index"
-                })
-              }
+            that.logout()
+            return
+          }else if(['50000','70001'].indexOf(txninfo.resultCode) != -1){
+            wx.showModal({
+              title: '',
+              showCancel: false,
+              content: util.errCode()[txninfo.resultCode]
             })
             return
           }else if(txninfo.resultCode != '10000'){
@@ -685,6 +709,7 @@ App({
     userList:[],
     isPhysical:true,//true为打开理疗记录页面，false为打开设备管理页面
     indexStep:1,//1扫设备，2扫膜，3扫用户
+    indexMoNum:0,//扫膜的次数，默认为0
     memberPhysicalList:[],//会员的理疗记录列表，getDetectionRecordList接口返回
     memberUserInfo:{},
     deviceList:[],//设备信息
@@ -694,6 +719,5 @@ App({
     repertoryList:[],//仓库列表
     NewList:[],//最新资讯列表
     SysList:[],//系统消息列表
-    wechatCode:'',//调用wx.login获取的code值
   }
 })

@@ -28,3 +28,14 @@ page{
 .user-sex{
 	color: #666666;
 }
+.logout{
+	position: absolute;
+	bottom: 0rpx;
+	width: 100%;
+	padding:22rpx 0rpx;
+	background: #ffffff;
+	color: #666666;
+	font-size: 34rpx;
+	text-align: center;
+	align-items: center;
+}

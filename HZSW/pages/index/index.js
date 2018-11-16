@@ -131,7 +131,7 @@ Page({
           title:'扫设备',
           step:1
         })
-      }else if(app.globalData.indexStep == 2){
+      }else if(app.globalData.indexStep == 2&&app.globalData.indexMoNum != 4){
         that.setData({
           title:'扫膜',
           step:2
@@ -251,13 +251,42 @@ Page({
             step:2
           })
         }else if(app.globalData.indexStep == 2){
-          //扫膜
-          app.globalData.indexStep = 3
-          app.globalData.memberUserInfo.membranceId = scansionId
-          that.setData({
-            title:'扫用户',
-            step:3
-          })
+          if(app.globalData.indexMoNum < 1){
+            app.globalData.memberUserInfo.membranceId = scansionId
+          }else{
+            app.globalData.memberUserInfo.membranceId += ',' + scansionId
+          }
+          app.globalData.indexMoNum += 1
+          if(app.globalData.indexMoNum == 4){
+            app.globalData.indexStep = 3
+            that.setData({
+              title:'扫用户',
+              step:3
+            })
+          }else{
+            //扫膜
+            wx.showModal({
+              title:'',
+              content:'是否继续扫膜？',
+              cancelText:'否',
+              confirmText:'是',
+              confirmColor:'#ff9cb8',
+              success:function(res){
+                if(res.confirm){
+                  //点击是
+                  
+                }
+                if(res.cancel){
+                  //点击否
+                  app.globalData.indexStep = 3
+                  that.setData({
+                    title:'扫用户',
+                    step:3
+                  })
+                }
+              }
+            })
+          }
         }else{
           app.globalData.indexStep = 1
           app.globalData.memberUserInfo.memberId = scansionId
