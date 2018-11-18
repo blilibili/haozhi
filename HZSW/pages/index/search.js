@@ -139,9 +139,30 @@ Page({
             app.globalData.memberUserInfo.membranceId += ',' + that.data.scansionId
           }
           app.globalData.indexMoNum += 1
-
-          // app.globalData.indexStep = 3
-          wx.navigateBack()
+          if(app.globalData.indexMoNum == 4){
+            app.globalData.indexStep = 3
+            wx.navigateBack()
+          }else{
+            //扫膜
+            wx.showModal({
+              title:'',
+              content:'是否继续扫膜？',
+              cancelText:'否',
+              confirmText:'是',
+              confirmColor:'#ff9cb8',
+              success:function(res){
+                if(res.confirm){
+                  //点击是
+                  
+                }
+                if(res.cancel){
+                  //点击否
+                  app.globalData.indexStep = 3
+                }
+                wx.navigateBack()
+              }
+            })
+          }
         }
         if(that.data.typeId == 2){
           //扫用户

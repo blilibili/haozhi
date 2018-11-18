@@ -20,6 +20,9 @@ Page({
     that = this
     util.zhw_log(options)
     if(options.storeId){
+      wx.setNavigationBarTitle({
+        title:"更换店长"
+      })
       var list = app.globalData.storeList
       for (var i = 0; i < list.length; i++) {
         if(options.storeId == list[i].storeId){
@@ -300,6 +303,12 @@ Page({
         if(res.resultCode == '10000'){
           wx.redirectTo({
             url:'/pages/store/detail?storeName='+that.data.storeName
+          })
+        }else{
+          wx.showModal({
+            title: '',
+            showCancel: false,
+            content: util.errCode()[res.resultCode]
           })
         }
       })

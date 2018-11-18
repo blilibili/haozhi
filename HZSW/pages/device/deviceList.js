@@ -194,31 +194,47 @@ Page({
   doSubmit:function()
   {
     util.zhw_log("设备故障反馈")
-    var device = this.data.device
-    wx.showLoading()
-    var sendata = app.breakdownFeedback(device.equipmentId,this.data.disIndex)
-    app.send_data(sendata, util.config.url.breakdownFeedback, function (res) {
-      if(res.resultCode == '10000'){
-        wx.hideLoading()
+    wx.showModal({
+      title:'',
+      content:'确定要提交设备故障反馈吗？',
+      cancelText:'否',
+      confirmText:'是',
+      confirmColor:'#ff9cb8',
+      success:function(res){
+        if(res.confirm){
+          //点击是
+          var device = that.data.device
+          wx.showLoading()
+          var sendata = app.breakdownFeedback(device.equipmentId,that.data.disIndex)
+          app.send_data(sendata, util.config.url.breakdownFeedback, function (res) {
+            if(res.resultCode == '10000'){
+              wx.hideLoading()
 
-        device.stateCode = that.data.disIndex
-        device.stateName = that.data.disIndex == 3?'故障':'轻度故障';
-        that.setData({
-          device:device,
-          hasFeedback:true
-        })
+              device.stateCode = that.data.disIndex
+              device.stateName = that.data.disIndex == 3?'故障':'轻度故障';
+              that.setData({
+                device:device,
+                hasFeedback:true
+              })
 
-        var deviceList = app.globalData.deviceList
-        for (var i = 0; i < deviceList.length; i++) {
-          if(deviceList[i].equipmentId == device.equipmentId){
-            deviceList[i].stateCode = device.stateCode
-            deviceList[i].stateName = device.stateName
-            break;
-          }
+              var deviceList = app.globalData.deviceList
+              for (var i = 0; i < deviceList.length; i++) {
+                if(deviceList[i].equipmentId == device.equipmentId){
+                  deviceList[i].stateCode = device.stateCode
+                  deviceList[i].stateName = device.stateName
+                  break;
+                }
+              }
+              app.globalData.deviceList = deviceList
+              
+              that.hideDispatchBox()
+            }
+          })
         }
-        app.globalData.deviceList = deviceList
-        
-        that.hideDispatchBox()
+        if(res.cancel){
+          //点击否
+
+        }
       }
     })
   },

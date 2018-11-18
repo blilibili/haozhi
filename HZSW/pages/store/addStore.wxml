@@ -61,8 +61,8 @@
         <view class="weui-cell__hd">
             <view class="weui-label"><text>*</text>门店店长</view>
         </view>
-        <view class="weui-cell__bd local-again">
-            <radio value="r1" checked="true" color="#ff9cb8"/>已邀请
+        <view class="weui-cell__bd local-again" bindtap="inviteStoreAdmin">
+            <radio value="r1" checked="true" color="#ff9cb8" />已邀请
         </view>
     </view>
 </view>
