@@ -55,7 +55,8 @@
     <view class="weui-flex_item btn btn-right" bindtap="showInviteBox">邀请员工</view>
 </view>
 <view class="weui-flex btm-box" wx:if="{{isRemove}}">
-    <view class="weui-flex_item btn" bindtap="selectAll">全选</view>
+    <view class="weui-flex_item btn" bindtap="selectAll" wx:if="{{!isSelectAll}}">全选</view>
+    <view class="weui-flex_item btn" bindtap="cancelAll" wx:if="{{isSelectAll}}">取消全选</view>
     <view class="weui-flex_item btn btn-right" bindtap="doRemove">移除</view>
 </view>
 <import src="../component/invite/invite.wxml" />

@@ -147,7 +147,7 @@ Page({
 
   doLogin:function()
   {
-    
+    /*
     if(!this.data.phone){
       app.showModal('手机号码不能为空')
       return
@@ -160,7 +160,7 @@ Page({
       app.showModal('密码不能为空')
       return
     }
-    
+    */
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
@@ -174,8 +174,8 @@ Page({
         膜ID： M900001
         会员ID： 10923900
          */
-        var sendata = app.userLogin(this.data.phone,this.data.pwd,this.data.code,res.code)
-        // var sendata = app.userLogin(13411111111,'123456',1111,res.code)
+        // var sendata = app.userLogin(this.data.phone,this.data.pwd,this.data.code,res.code)
+        var sendata = app.userLogin(13411111111,'123456',1111,res.code)
         wx.showLoading();
         app.send_data(sendata, util.config.url.login, function (res) {
           if(res.resultCode == '10000'){

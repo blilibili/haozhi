@@ -165,13 +165,13 @@ function searchList(paramName,key,list){
   for (var i = 0; i < list.length; i++) {
     if (key == "memberId"&&list[i].memberId.indexOf(paramName) != -1) {
       reList.push(list[i])
-    }else if (key == "equipmentId"&&list[i].equipmentId.indexOf(paramName) != -1) {
+    }else if (key == "equipmentName"&&list[i].equipmentName.indexOf(paramName) != -1) {
       reList.push(list[i])
-    }else if (key == "phone"&&list[i].phone.indexOf(paramName) != -1) {
+    }else if (key == "name"&&list[i].name.indexOf(paramName) != -1) {
       reList.push(list[i])
-    }else if (key == "storeId"&&list[i].storeId.indexOf(paramName) != -1) {
+    }else if (key == "storeName"&&list[i].storeName.indexOf(paramName) != -1) {
       reList.push(list[i])
-    }else if (key == "houseId"&&list[i].houseId.indexOf(paramName) != -1) {
+    }else if (key == "houseName"&&list[i].houseName.indexOf(paramName) != -1) {
       reList.push(list[i])
     }else{
 

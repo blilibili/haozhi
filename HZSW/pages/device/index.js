@@ -117,7 +117,7 @@ Page({
       this.setData({
           inputVal: e.detail.value
       });
-      var list = util.searchList(this.data.inputVal,'equipmentId',this.data.deviceList)
+      var list = util.searchList(this.data.inputVal,'equipmentName',this.data.deviceList)
       util.zhw_log(list)
       this.setData({
         deviceList:list

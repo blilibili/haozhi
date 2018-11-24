@@ -34,14 +34,14 @@
             <input class="weui-input" value="{{storeAddr}}" placeholder="请输入详细地址" placeholder-class="noselect" bindinput="getStoreAddr"/>
         </view>
     </view>
-    <view class="weui-cell weui-cell_input">
+    <view class="weui-cell weui-cell_input" bindtap="getLocation">
         <view class="weui-cell__hd">
             <view class="weui-label"><text>*</text>地图定位</view>
         </view>
         <view class="weui-cell__bd" wx:if="{{isLocal}}">
             <radio value="r1" checked="true" color="#ff9cb8"/>定位成功
         </view>
-        <view class="weui-cell__bd local-again" bindtap="getLocation">
+        <view class="weui-cell__bd local-again" >
             {{localtext}}
         </view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>

@@ -287,7 +287,7 @@ Page({
       this.setData({
           inputVal: e.detail.value
       });
-      var list = util.searchList(this.data.inputVal,'houseId',this.data.repertoryList)
+      var list = util.searchList(this.data.inputVal,'houseName',this.data.repertoryList)
       util.zhw_log(list)
       this.setData({
         repertoryList:list

@@ -85,14 +85,15 @@ Page({
   },
 
   showInput: function () {
-      this.setData({
-          inputShowed: true
-      });
+    this.setData({
+        inputShowed: true
+    });
   },
   hideInput: function () {
       this.setData({
           inputVal: "",
-          inputShowed: false
+          inputShowed: false,
+          devicesList:this.data.old_deviceList
       });
   },
   clearInput: function () {
@@ -101,9 +102,24 @@ Page({
       });
   },
   inputTyping: function (e) {
+    //设备
+    if(this.data.old_deviceList){
       this.setData({
-          inputVal: e.detail.value
-      });
+        devicesList:this.data.old_deviceList
+      })
+    }else{
+      this.setData({
+        old_deviceList:this.data.devicesList
+      })
+    }
+    this.setData({
+        inputVal: e.detail.value
+    });
+    var list = util.searchList(this.data.inputVal,'equipmentName',this.data.devicesList)
+    util.zhw_log(list)
+    this.setData({
+        devicesList:list
+    })
   },
 
   checkboxChange: function (e) {
@@ -146,7 +162,19 @@ Page({
       devicesList[i].checked = true;
     }
     this.setData({
-      devicesList: devicesList
+      devicesList: devicesList,
+      isSelectAll:true
+    });
+  },
+  cancelAll:function()
+  {
+    var devicesList = this.data.devicesList
+    for (var i = 0, lenI = devicesList.length; i < lenI; ++i) {
+      devicesList[i].checked = false;
+    }
+    this.setData({
+      devicesList: devicesList,
+      isSelectAll:false
     });
   },
   doDel:function()

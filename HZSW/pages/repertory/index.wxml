@@ -63,7 +63,8 @@
 
 	<view class="weui-flex bottom-btn"  wx:if="{{isEdit}}">
 		<view>
-			<text bindtap="selectAll">全选</text>
+			<text bindtap="selectAll" wx:if="{{!isSelectAll}}">全选</text>
+			<text bindtap="cancelAll" wx:if="{{isSelectAll}}">取消全选</text>
 		</view>
 		<view class="weui-flex__item"></view>
 		<view>

@@ -123,7 +123,7 @@ Page({
       this.setData({
           inputVal: e.detail.value
       });
-      var list = util.searchList(this.data.inputVal,'phone',this.data.checkboxItems)
+      var list = util.searchList(this.data.inputVal,'name',this.data.checkboxItems)
       util.zhw_log(list)
       this.setData({
         checkboxItems:list
@@ -228,7 +228,20 @@ Page({
       checkboxItems[i].checked = true;
     }
     this.setData({
-      checkboxItems: checkboxItems
+      checkboxItems: checkboxItems,
+      isSelectAll:true
+    });
+  },
+
+  cancelAll:function()
+  {
+    var checkboxItems = this.data.checkboxItems
+    for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
+      checkboxItems[i].checked = false;
+    }
+    this.setData({
+      checkboxItems: checkboxItems,
+      isSelectAll:false
     });
   },
 })
