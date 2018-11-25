@@ -198,7 +198,8 @@ Page({
     app.send_data(sendata, util.config.url.saveSuggest, function (res) {
       if(res.resultCode == '10000'){
         wx.hideLoading()
-        app.showModal('反馈成功')
+        // app.showModal('反馈成功')
+        wx.navigateBack()
       }
     })
   },

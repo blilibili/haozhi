@@ -124,4 +124,11 @@ Page({
       url:"/pages/store/addStore?storeId="+this.data.store.storeId
     })
   },
+
+  doUdit:function()
+  {
+    wx.redirectTo({
+      url:"/pages/store/addStore?storeId="+this.data.store.storeId+"&type=udit"
+    })
+  },
 })

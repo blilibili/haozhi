@@ -20,7 +20,7 @@
 	                	<navigator url="/pages/my/msgNews?id={{item.id}}" class="" hover-class="none">
 					        <view class="weui-flex user-info">
 					        	<view class="msg-icon">
-									<image src="{{item.imgurl}}"/>
+									<image src="{{item.imgUrl}}"/>
 									<!-- <view class="weui-badge weui-badge_dot noread" ></view> -->
 								</view>
 								<view class="weui-flex_item user-head">

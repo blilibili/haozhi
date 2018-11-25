@@ -6,7 +6,7 @@
       </picker>
         </view>
         <view class="weui-flex__item">
-        <picker mode="date" value="{{startDate}}" start="" end="" bindchange="bindStartDateChange">
+        <picker mode="date" value="{{startDate}}" start="" end="{{endDate}}" bindchange="bindStartDateChange">
             <view wx:if="{{!startDate}}">
             开始时间 <image src="/image/tongji_icon_jiantou.png"/>
             </view>
@@ -16,7 +16,7 @@
           </picker> 
         </view>
         <view class="weui-flex__item">
-        <picker mode="date" value="{{endDate}}" start="" end="" bindchange="bindEndDateChange">
+        <picker mode="date" value="{{endDate}}" start="{{startDate}}" end="" bindchange="bindEndDateChange">
             <view wx:if="{{!endDate}}">
             结束时间 <image src="/image/tongji_icon_jiantou.png"/>
             </view>

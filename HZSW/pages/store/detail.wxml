@@ -1,6 +1,7 @@
 <view class="user-head">
 	<view class="head-name">{{store.storeName}}<text class="user-local">店长-{{store.userName}}</text></view>
 	<view class="head-id">ID:{{store.storeId}}</view>
+	<image src="/image/zhuye_ID_icon_shoudongshuru.png" bindtap="doUdit"/>
 </view>
 <view class="weui-flex user-detail">
 	<view class="detail-hd">

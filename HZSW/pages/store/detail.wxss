@@ -12,6 +12,13 @@ page{
 	padding: 27rpx 30rpx;
 	border-bottom: 1rpx solid #eeeeee;
 }
+.user-head image{
+	width:26rpx;
+	height:32rpx;
+	position:fixed;
+	right:10px;
+	top:18px;
+}
 .head-name{
 	font-size: 34rpx;
 	color: #111111;

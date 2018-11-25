@@ -20,9 +20,15 @@ Page({
     that = this
     util.zhw_log(options)
     if(options.storeId){
-      wx.setNavigationBarTitle({
-        title:"更换店长"
-      })
+      if(options.type == 'udit'){
+        wx.setNavigationBarTitle({
+          title:"编辑门店"
+        })
+      }else{
+        wx.setNavigationBarTitle({
+          title:"更换店长"
+        })
+      }
       var list = app.globalData.storeList
       for (var i = 0; i < list.length; i++) {
         if(options.storeId == list[i].storeId){

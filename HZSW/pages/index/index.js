@@ -289,6 +289,7 @@ Page({
           }
         }else{
           app.globalData.indexStep = 1
+          app.globalData.indexMoNum = 0
           app.globalData.memberUserInfo.memberId = scansionId
           //扫用户
           wx.navigateTo({

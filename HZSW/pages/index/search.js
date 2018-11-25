@@ -167,6 +167,7 @@ Page({
         if(that.data.typeId == 2){
           //扫用户
           app.globalData.indexStep = 1
+          app.globalData.indexMoNum = 0
           app.globalData.memberUserInfo.memberId = that.data.scansionId
           wx.redirectTo({
             url:"/pages/index/userInfo"
