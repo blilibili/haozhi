@@ -90,7 +90,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if(app.globalData.NewList&&app.globalData.SysList){
+      this.setData({
+        NewList:app.globalData.NewList,
+        SysList:app.globalData.SysList
+      })
+    }
   },
 
   /**

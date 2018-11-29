@@ -1,5 +1,6 @@
 // pages/my/msgSys.js
-var app = getApp()
+var app = getApp();
+var util = require("../../utils/util.js");
 Page({
 
   /**
@@ -13,14 +14,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var sendata = app.saveData(options.id)
+    app.send_data(sendata, util.config.url.saveData, function (res) {})
+
     var list = app.globalData.SysList
     for (var i = 0; i < list.length; i++) {
       if(list[i].id == options.id){
+        list[i].falg = 1
         this.setData({
           newInfo:list[i]
         })
+        break
       }
     }
+    app.globalData.SysList = list
   },
 
   /**

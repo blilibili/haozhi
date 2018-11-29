@@ -7,15 +7,18 @@
 <view class="weui-flex content">
     <view class="weui-flex__item">最近7次数据</view>
 	<view class="weui-flex__item share">
-        <image src="/image/liliao_icon_fenxiang.png" style="width: 36rpx;height: 32rpx;"/>
+        <image bindtap="save_old" src="/image/liliao_icon_fenxiang.png" style="width: 36rpx;height: 32rpx;" wx:if="{{importImg}}"/>
     </view>
 </view>
 <view class="move-container">
-<ec-canvas wx:if="{{isShow}}" id="mychart-dom-move-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+<ec-canvas wx:if="{{isShow}}" id="sevenChart" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
 </view>
 <view class="weui-flex content">
     <view class="weui-flex__item">全部数据</view>
+    <view class="weui-flex__item share">
+        <!-- <image bindtap="save2" src="/image/liliao_icon_fenxiang.png" style="width: 36rpx;height: 32rpx;"/> -->
+    </view>
 </view>
 <view class="move-container">
-<ec-canvas wx:if="{{isShow}}" id="mychart-dom-move-bar" canvas-id="mychart-bar" ec="{{ ec2 }}"></ec-canvas>
+<ec-canvas wx:if="{{isShow}}" id="allChart" canvas-id="mychart-bar2" ec="{{ ec2 }}"></ec-canvas>
 </view>

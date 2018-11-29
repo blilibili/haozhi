@@ -273,6 +273,12 @@ Page({
           wx.redirectTo({
             url:'/pages/store/detail?storeName='+that.data.storeName
           })
+        }else{
+          wx.showModal({
+            title: '',
+            showCancel: false,
+            content: util.errCode()[res.resultCode]
+          })
         }
       })
       return

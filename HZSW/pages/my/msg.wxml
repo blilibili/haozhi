@@ -21,7 +21,7 @@
 					        <view class="weui-flex user-info">
 					        	<view class="msg-icon">
 									<image src="{{item.imgUrl}}"/>
-									<!-- <view class="weui-badge weui-badge_dot noread" ></view> -->
+									<view class="weui-badge weui-badge_dot noread" wx:if="{{item.falg == '0'}}"></view>
 								</view>
 								<view class="weui-flex_item user-head">
 									<view class="head-name">{{item.title}}<text class="user-local">{{item.dateTime}}</text></view>
@@ -42,7 +42,7 @@
 					        <view class="weui-flex user-info">
 					        	<view class="msg-icon">
 									<image src="{{item.imgUrl}}"/>
-									<!-- <view class="weui-badge weui-badge_dot noread" ></view> -->
+									<view class="weui-badge weui-badge_dot noread" wx:if="{{item.falg == '0'}}"></view>
 								</view>
 								<view class="weui-flex_item user-head">
 									<view class="head-name">{{item.title}}<text class="user-local">{{item.dateTime}}</text></view>

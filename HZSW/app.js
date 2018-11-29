@@ -331,11 +331,12 @@ App({
     return data;
   },
 
-  confirmUnlock:function(equipmentId,memberId)
+  confirmUnlock:function(equipmentId,memberId,number)
   {
     var data = JSON.stringify({
       "equipmentId":equipmentId,
       "memberId":memberId,
+      "number":number,
       "token":this.globalData.userInfo.token,
       "txncode":"confirmUnlock"
     })
@@ -362,6 +363,16 @@ App({
       "userId":this.globalData.userInfo.id,
       "token":this.globalData.userInfo.token,
       "txncode":"confirmReception"
+    })
+    return data;
+  },
+
+  saveData:function(messageId)
+  {
+    var data = JSON.stringify({
+      "messageId":messageId,
+      "token":this.globalData.userInfo.token,
+      "txncode":"saveData"
     })
     return data;
   },
@@ -559,23 +570,13 @@ App({
     return data;
   },
 
-  showModal:function(content,title='',showCancel = false,cancelText = '',cancelColor = '',confirmText = '确定',confirmColor = '')
+  showModal:function(content)
   {
     wx.showModal({
-      title: title,
-      showCancel: showCancel,
-      cancelText: cancelText,
-      cancelColor: cancelColor,
-      confirmText: confirmText,
-      confirmColor: confirmColor,
-      content: content,
-      success:function(res){
-        if (res.confirm) {
-
-        } else if (res.cancel) {
-
-        }
-      }
+      title: '',
+      confirmText:'确定',
+      showCancel: false,
+      content: content
     })
   },
 
@@ -647,6 +648,7 @@ App({
           }else if(['50000','70001'].indexOf(txninfo.resultCode) != -1){
             wx.showModal({
               title: '',
+              confirmText:'确定',
               showCancel: false,
               content: util.errCode()[txninfo.resultCode]
             })
@@ -656,6 +658,7 @@ App({
             if(['userLogin','perfectInformation','resetPassword','smsCode','updateSex','updatePhone','deleteDetectionRecord','removeHouseEquipment','addHouseEquipment','addDetectionRecord','confirmReception','breakdownFeedback','deleteStaffList','addStaff','inviteShopowner','removeStoreList','updateStoreDetail','dispatchEquipment','getStatistics','getTendency','saveSuggest','loginOut'].indexOf(d.txncode) != -1){
               wx.showModal({
                 title: '',
+                confirmText:'确定',
                 showCancel: false,
                 content: util.errCode()[txninfo.resultCode]
               })
@@ -670,6 +673,7 @@ App({
           wx.hideLoading()
           wx.showModal({
             title: '',
+            confirmText:'确定',
             showCancel: false,
             content: util.errCode()['000003']
           })
@@ -677,6 +681,7 @@ App({
           wx.hideLoading()
           wx.showModal({
             title: '',
+            confirmText:'确定',
             showCancel: false,
             content: util.errCode()['000005']
           })
@@ -684,6 +689,7 @@ App({
           wx.hideLoading()
           wx.showModal({
             title: '',
+            confirmText:'确定',
             showCancel: false,
             content: util.errCode()['000001']
           })
@@ -694,6 +700,7 @@ App({
         util.zhw_log(res)
         wx.showModal({
           title: '',
+          confirmText:'确定',
           showCancel: false,
           content: res.errMsg
         })

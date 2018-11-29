@@ -17,6 +17,7 @@ Page({
     ec2: {
       lazyLoad: true 
     },
+    importImg:false
   },
 
   /**
@@ -27,7 +28,6 @@ Page({
     this.setData({
       memberId:options.memberId
     })
-    this.getData(1)
   },
 
   /**
@@ -39,7 +39,8 @@ Page({
   getData:function(type)
   {
     this.setData({
-      isShow:false
+      isShow:false,
+      importImg:false
     })
     wx.showLoading()
     var sendata = app.getTendency(this.data.memberId,type)
@@ -76,6 +77,9 @@ Page({
             }
           },
           isShow:true
+        })
+        that.setData({
+          importImg:true
         })
       }
     })
@@ -116,7 +120,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    util.zhw_log('onShow')
+    this.getData(this.data.tabIndex)
   },
 
   /**
@@ -228,4 +233,177 @@ Page({
         }]
     };
   },
+
+  shareTrend:function()
+  {
+    this.save();
+  },
+
+  save_old:function() {
+    if(!this.data.isShow){
+      return
+    }
+    wx.getSystemInfo({
+      success:function(res){
+        util.zhw_log(res)
+        if(res.brand.toLowerCase() == 'iphone'){
+          util.zhw_log('苹果手机生成图片中....')
+          wx.showLoading()
+          var imgList = []
+          var ecComponent = that.selectComponent('#sevenChart');
+          var ecComponent2 = that.selectComponent('#allChart');
+          ecComponent.canvasToTempFilePath({
+            success: function (res){
+              util.zhw_log(res)
+              imgList.push(res.tempFilePath)
+            },
+            fail: function (res){
+              app.showModal('分享失败')
+              return
+            }
+          });
+          setTimeout(function(){
+            ecComponent2.canvasToTempFilePath({
+              success: function (res){
+                util.zhw_log(res)
+                imgList.push(res.tempFilePath)
+                util.zhw_log(imgList)
+                wx.previewImage({
+                  urls: imgList,
+                  success:function(res){
+                    wx.hideLoading()
+                    util.zhw_log(res)
+                  },
+                  fail:function(err){
+                    util.zhw_log(err)
+                  }
+                })
+              },
+              fail: function (res){
+                app.showModal('分享失败')
+                return
+              }
+            });
+    },1000)
+        }else{
+          util.zhw_log('安卓手机生成图片中....')
+          wx.showLoading()
+            var imgList = []
+            var ecComponent = that.selectComponent('#sevenChart');
+            ecComponent.canvasToTempFilePath({
+              success: function (res){
+                util.zhw_log(res)
+                imgList.push(res.tempFilePath)
+                wx.previewImage({
+                  urls: imgList,
+                  success:function(res){
+                    wx.hideLoading()
+                    util.zhw_log(res)
+                  },
+                  fail:function(err){
+                    util.zhw_log(err)
+                  }
+                })
+              },
+              fail: function (res){
+                app.showModal('分享失败')
+                return
+              }
+            },false);
+        }
+      }
+    })
+    
+    return
+    setTimeout(function(){
+      util.zhw_log('跑定时')
+      var ecComponent2 = that.selectComponent('#sevenChart');
+      util.zhw_log('ecComponent2')
+      util.zhw_log(ecComponent2)
+      ecComponent2.canvasToTempFilePath({
+        success: function (res){
+          util.zhw_log(res)
+          wx.hideLoading()
+          imgList.push(res.tempFilePath)
+          util.zhw_log(imgList)
+          wx.previewImage({
+            urls: imgList,
+            success:function(res){
+              util.zhw_log(res)
+            },
+            fail:function(err){
+              util.zhw_log(err)
+            }
+          })
+        },
+        fail: function (res){
+          app.showModal('分享失败')
+        }
+      });
+    },1000)
+  },
+
+  save:function() {
+    if(!this.data.isShow){
+      return
+    }
+    // 保存图片到临时的本地文件
+    wx.showLoading()
+    util.zhw_log('生成图片中....')
+    var imgList = []
+    var ecComponent = this.selectComponent('#sevenChart');
+    util.zhw_log('ecComponent')
+    util.zhw_log(ecComponent)
+    ecComponent.canvasToTempFilePath({
+      success: function (res){
+        util.zhw_log(res)
+        imgList.push(res.tempFilePath)
+        wx.previewImage({
+          urls: imgList,
+          success:function(res){
+            wx.hideLoading()
+            util.zhw_log(res)
+          },
+          fail:function(err){
+            util.zhw_log(err)
+          }
+        })
+      },
+      fail: function (res){
+        app.showModal('分享失败')
+      }
+    });
+  },
+
+  save2:function() {
+    if(!this.data.isShow){
+      return
+    }
+    // 保存图片到临时的本地文件
+    wx.showLoading()
+    util.zhw_log('生成图片2中....')
+    var imgList = []
+    var ecComponent = this.selectComponent('#allChart');
+    util.zhw_log('ecComponent')
+    util.zhw_log(ecComponent)
+    ecComponent.canvasToTempFilePath({
+      success: function (res){
+        util.zhw_log(res)
+        imgList.push(res.tempFilePath)
+        wx.previewImage({
+          urls: imgList,
+          success:function(res){
+            wx.hideLoading()
+            util.zhw_log(res)
+          },
+          fail:function(err){
+            util.zhw_log(err)
+          }
+        })
+      },
+      fail: function (res){
+        app.showModal('分享失败')
+      }
+    });
+  }
 })

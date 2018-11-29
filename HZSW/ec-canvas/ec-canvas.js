@@ -69,12 +69,15 @@ Component({
       }).exec();
     },
 
-    canvasToTempFilePath(opt) {
+    canvasToTempFilePath(opt,flag=true) {
       if (!opt.canvasId) {
         opt.canvasId = this.data.canvasId;
       }
 
-      ctx.draw(true, () => {
+      //增加 fileType
+      opt.fileType = 'jpg'
+
+      ctx.draw(flag, () => {
         wx.canvasToTempFilePath(opt, this);
       });
     },

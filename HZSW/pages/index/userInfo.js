@@ -182,7 +182,9 @@ Page({
           confirmColor:'#ff9cb8',
           success:function(res){
             if(res.confirm){
-              var sendata = app.confirmUnlock(that.data.userinfo.equipmentId,that.data.userinfo.memberId)
+              //新增扫的膜的张数参数：number //heaveil 20181127
+              var number = user.membranceId.split(",").length
+              var sendata = app.confirmUnlock(that.data.userinfo.equipmentId,that.data.userinfo.memberId,number)
               app.send_data(sendata, util.config.url.confirmUnlock, function (res) {
                 if(res.resultCode == '10000'){
                   wx.showToast({

@@ -28,7 +28,12 @@ ec-canvas {
 .move-container {
   width: 100%;
 }
-#mychart-dom-move-bar {
+#sevenChart{
+  width: 100%;
+  height: 300px;
+  display: block;
+}
+#allChart{
   width: 100%;
   height: 300px;
   display: block;
