@@ -89,7 +89,7 @@ Page({
         wx.showLoading({title:'上传中'})
         util.zhw_log(data)
         wx.uploadFile({
-          url: 'https://mylidan.com/api/'+util.config.url.saveFiles,
+          url: util.domain+util.config.url.saveFiles,
           filePath: data.tempFilePaths[0],
           name: 'file',
           formData: {"token":app.globalData.userInfo.token},
@@ -140,7 +140,7 @@ Page({
         }
         wx.showLoading({title:'上传中'})
         wx.uploadFile({
-          url: 'https://mylidan.com/api/'+util.config.url.saveFiles,
+          url: util.domain+util.config.url.saveFiles,
           filePath: data.tempFilePath,
           name: 'file',
           formData: {"token":app.globalData.userInfo.token},

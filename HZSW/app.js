@@ -624,7 +624,7 @@ App({
     var d = JSON.parse(data);
     util.zhw_log(data);
     wx.request({
-      url: 'https://mylidan.com/api/'+url,
+      url: util.domain+url,
       method: 'POST',
       data: data,
       header: {

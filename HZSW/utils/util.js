@@ -4,11 +4,11 @@ var utildebug = false;
 var debugLog = true;
 
 //测试环境的配置
-var domain = '';
+var domain = 'https://mylidan.com/api/';
 
 if(!utildebug){
     //正式环境配置
-    domain = '';//正式环境域名
+    domain = 'https://www.haozhishengwuhoutai.cn/api/';//正式环境域名
 }
 
 var config = {
